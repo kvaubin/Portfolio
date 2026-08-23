@@ -235,6 +235,7 @@
     border:1px solid var(--line);min-height:580px;padding:8px;
   }
   .tiktok-card blockquote{margin:0 !important;min-width:0 !important;width:100% !important;}
+  .embed-carousel.tiktok-white .tiktok-card{background:#fff;}
   /* Merged Reels & Clips carousel (Instagram Reels + TikTok, interleaved) */
   .ig-grid.mixed-grid{align-items:stretch;}
   .ig-grid.mixed-grid .reel-card,
@@ -395,13 +396,22 @@
   #overlay-lgds .tiktok-card,
   #overlay-lgds .reel-card{background:#ffffff;}
   #overlay-lgds .embed-kind{color:var(--ink-faint);}
-  #overlay-lgds .thumb-placeholder-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+  #overlay-lgds .thumb-placeholder-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:20px;}
   #overlay-lgds .thumb-placeholder{
     aspect-ratio:16/9;border:1.5px dashed var(--line);border-radius:var(--radius-md);
     display:flex;align-items:center;justify-content:center;background:var(--surface-2);
     color:var(--ink-faint);font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;
   }
-  @media(max-width:640px){#overlay-lgds .thumb-placeholder-grid{grid-template-columns:repeat(2,1fr);}}
+  .thumb-tile{
+    aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:var(--surface-2);
+    border:1px solid var(--line);
+  }
+  .thumb-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease;}
+  .thumb-tile:hover img{transform:scale(1.06);}
+  @media(max-width:640px){
+    #overlay-lgds .thumb-placeholder-grid{grid-template-columns:repeat(2,1fr);}
+    #overlay-lgds .thumb-placeholder-grid.thumb-real{grid-template-columns:repeat(3,1fr);gap:6px;}
+  }
 </style>
 </head>
 <body>
@@ -544,11 +554,106 @@
     </div>    </div>
 
     <h4>Thumbnails</h4>
-    <div class="thumb-placeholder-grid">
-      <div class="thumb-placeholder">Add thumbnail</div>
-      <div class="thumb-placeholder">Add thumbnail</div>
-      <div class="thumb-placeholder">Add thumbnail</div>
-      <div class="thumb-placeholder">Add thumbnail</div>
+    <div class="thumb-placeholder-grid thumb-real">
+      <div class="thumb-tile"><img src="assets/thumbnails/s2hfsvMmTNU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/2LYYFtMKBZU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/WqAuRUnHES4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/wfGyS93Pggc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/anQy3B-SCCM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/UPKblWhTJkI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/O8NqJbzmrFg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/7tRcQ3yaGOI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/6NAiNp6YUQU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/EMOH1XQal1M_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/EHM_N2nli3Y_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/2FI9REQkRDE_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/B-hg2boxZbE_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/8jHfza36qj0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/bpfJChdzZ5c_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/o7qT_qfxd6k_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/XUqn0rghRIc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/4H067trfeRI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/an7pULTSdnw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/mZmJ3VEBNLA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/Cp49DEbONJg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/lTzjjxL8Cyg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/opMoBwbktbM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/y-AJIjmiMY8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/KMpn0we0o8g_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/fHVsNAgzoIo_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/5kfPrkznKwQ_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/OhX9mfgrJ1Y_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/BQwsA7qWv4A_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/k_5-pItMFyQ_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/K0mYjzQlIgg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/yDfDqoYG9gs_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/Id5a4wxzx4A_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/j08L6_MoQ8o_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/EHrL4F3ZGiI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/Dcy2Lxr6qEY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/hJo43jiU8NA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/dXufQn96DE4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/EupitF1rGKg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/frKPmqEfLg8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/4ScUKVjYsJw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/hl-EdE1SBnk_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/G8ibiORf994_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/_xLvXkqjOxg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/TZkTO4NfS5U_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/e1xzyIjeIeI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/oa_gX80mIJ4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/SLdPEg2RHxo_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/FNh6UeEIMBg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/4k7xVsuX2Uw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/F3QmONP9V_4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/atW-ahGImf0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/_IlUlJ_GkE0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/3azoSmnTTdI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/vBEIk3X4UFQ_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/YTmxNkPUUrs_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/noCqZYzERW4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/mw1wfPSF8_o_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/8ojU0Nih2kE_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/zTdmBil__cI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/IF4zCr0q4z0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/eMDlXNikBfA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/6gWymkYEQk8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/1Tue0WxpmrM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/zcpirhs0cRY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/c_WojLcUqVw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/BPB-fco2Sjc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/NWkNWwhnvXw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/wHLfWAcGLFU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/SZy6VU3tB0I_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/ijtbbl95r3Q_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/9lwh21i7Dcc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/ATEXA8RaJLk_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/uPGo2qK8-uA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/1dePqOPCHg0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/t6KGJM-32Rw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/BJ0OGsC-8HA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/KZnccDjskr8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/lfuIq0PtC7c_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/cS-Nanb6MXY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/IPtSD5UuCkA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/-YmMGpobo6w_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/v5q2iwLJw74_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/ofM8aJYMl7E_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/Ktx-gL8SUOM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/J9g7j2GqKPM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/meSYq4n4D5I_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/V08AN0hCIDQ_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/dhRTKKmCRtE_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/tQ6wnrJqPSc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/_r4Goxs4pyk_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/x3BdVm7A9x8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/XU8eEXNcVFY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/aGVeX9GhjPc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/WpuBwkuNdZ4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/huZ4rVeMIHY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/fYunYPG8mr8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/5jOfMSRfExg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile"><img src="assets/thumbnails/Om9e-eAQ0rc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
     </div>
   </div>
   <div class="overlay-foot">
@@ -587,7 +692,7 @@
       <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous TikToks">←</button>
       <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next TikToks">→</button>
     </div>
-    <div class="embed-carousel">
+    <div class="embed-carousel tiktok-white">
       <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7565826006045445393" data-video-id="7565826006045445393" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
       <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7490818157410536759" data-video-id="7490818157410536759" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
       <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7581037676082498823" data-video-id="7581037676082498823" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
