@@ -58,7 +58,15 @@
     padding:6px 14px;border-radius:100px;transition:.2s;
   }
   .nav-social:hover{color:var(--ink);border-color:var(--ink-dim);}
-  @media(max-width:900px){.nav-links a:not(.nav-social){display:none;}}
+  .nav-social-group{display:flex;align-items:center;gap:8px;}
+  .nav-icon{
+    display:flex;align-items:center;justify-content:center;
+    width:32px;height:32px;border-radius:50%;border:1px solid var(--line);
+    color:var(--ink-dim);transition:.2s;
+  }
+  .nav-icon:hover{color:var(--ink);border-color:var(--ink-dim);background:rgba(255,255,255,0.06);}
+  .nav-icon svg{width:15px;height:15px;display:block;}
+  @media(max-width:900px){.nav-links a:not(.nav-icon){display:none;}}
   @media(max-width:600px){nav{padding:0 20px;}}
 
   /* ---------- HERO ---------- */
@@ -189,6 +197,8 @@
   @media(max-width:640px){.overlay-gallery{grid-template-columns:1fr;}.overlay-gallery .g-tall{grid-column:span 1;}}
   .ig-grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:flex-start;}
   .ig-grid .instagram-media{margin:0 !important;flex:0 0 auto;}
+  .reel-card{border-radius:var(--radius-md);overflow:hidden;background:var(--surface-2);border:1px solid var(--line);padding:10px;transition:transform .3s ease,border-color .3s ease;}
+  .reel-card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,0.22);}
   .design-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;}
   @media(max-width:640px){.design-grid{grid-template-columns:1fr;}}
   .design-tile{border-radius:var(--radius-md);overflow:hidden;background:var(--surface-2);border:1px solid var(--line);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;}
@@ -295,7 +305,14 @@
     <a href="#digital">Projects</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
-    <a class="nav-social" href="https://twitter.com/kaubin" target="_blank" rel="noopener">@kaubin</a>
+    <div class="nav-social-group">
+      <a class="nav-icon" href="https://twitter.com/kaubin" target="_blank" rel="noopener" aria-label="X — @kaubin" title="@kaubin on X">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"/></svg>
+      </a>
+      <a class="nav-icon" href="https://instagram.com/kevnaubin" target="_blank" rel="noopener" aria-label="Instagram — @kevnaubin" title="@kevnaubin on Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </div>
   </div>
 </nav>
 
@@ -337,7 +354,7 @@
       </div>
       <div class="cta-link" onclick="openOverlay('lgds')">Watch project →</div>
     </div>
-    <div class="placeholder-media grad-lgds scale-in" onclick="openOverlay('lgds')" style="cursor:pointer;background-image:url('https://i.ytimg.com/vi/97fLwZgpWEk/maxresdefault.jpg');background-size:cover;background-position:center;">
+    <div class="placeholder-media grad-lgds scale-in" onclick="openOverlay('lgds')" style="cursor:pointer;background-image:url('https://i.ytimg.com/vi/6NAiNp6YUQU/maxresdefault.jpg');background-size:cover;background-position:center;">
       <div class="media-label">La Gang du Show — Season archive</div>
     </div>
   </div>
@@ -346,7 +363,7 @@
 <!-- PROJECT DETAIL OVERLAY: LA GANG DU SHOW -->
 <div class="overlay" id="overlay-lgds">
   <div class="overlay-close" onclick="closeOverlay('lgds')">✕</div>
-  <div class="overlay-hero grad-lgds" style="background-image:url('https://i.ytimg.com/vi/97fLwZgpWEk/maxresdefault.jpg');background-size:cover;background-position:center;">
+  <div class="overlay-hero grad-lgds" style="background-image:url('https://i.ytimg.com/vi/6NAiNp6YUQU/maxresdefault.jpg');background-size:cover;background-position:center;">
     <div class="overlay-hero-content">
       <span class="eyebrow">La Gang du Show</span>
       <h2>Podcast, production,<br>and everything after.</h2>
@@ -361,11 +378,11 @@
     <p>Every episode starts as raw camera angles and mic tracks, shot and recorded by @jemcee. From there, it's mine — I produce the structure, edit the full episode, cut it down into clips, and run the posting schedule that gets it in front of people.</p>
     <h4>Production Details</h4>
     <div class="overlay-gallery">
-      <div class="g g-tall" style="background-image:url('https://i.ytimg.com/vi/97fLwZgpWEk/maxresdefault.jpg');background-size:cover;background-position:center;"></div>
-      <div class="g" style="background-image:url('https://i.ytimg.com/vi/3buUq_Zy_xc/hqdefault.jpg');background-size:cover;background-position:center;"></div>
-      <div class="g" style="background-image:url('https://i.ytimg.com/vi/nDlY4_nT0-c/hqdefault.jpg');background-size:cover;background-position:center;"></div>
-      <div class="g" style="background-image:url('https://i.ytimg.com/vi/97fLwZgpWEk/hqdefault.jpg');background-size:cover;background-position:center;"></div>
-      <div class="g" style="background-image:url('https://i.ytimg.com/vi/3buUq_Zy_xc/maxresdefault.jpg');background-size:cover;background-position:center;"></div>
+      <div class="g g-tall" style="background-image:url('https://i.ytimg.com/vi/6NAiNp6YUQU/maxresdefault.jpg');background-size:cover;background-position:center;"></div>
+      <div class="g" style="background-image:url('https://i.ytimg.com/vi/8jHfza36qj0/hqdefault.jpg');background-size:cover;background-position:center;"></div>
+      <div class="g" style="background-image:url('https://i.ytimg.com/vi/y-AJIjmiMY8/hqdefault.jpg');background-size:cover;background-position:center;"></div>
+      <div class="g" style="background-image:url('https://i.ytimg.com/vi/6NAiNp6YUQU/hqdefault.jpg');background-size:cover;background-position:center;"></div>
+      <div class="g" style="background-image:url('https://i.ytimg.com/vi/8jHfza36qj0/maxresdefault.jpg');background-size:cover;background-position:center;"></div>
     </div>
     <h4>What I Handle</h4>
     <p>Full-episode editing, short-form clip cuts, captioning, posting schedule, and the overall creative direction of how the show shows up online — the pacing, the pull-quotes, the moments that get pulled out for social.</p>
@@ -382,13 +399,13 @@
 
     <h4>Popular Reels</h4>
     <div class="ig-grid">
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DR-EfE9Dsv5/" data-instgrm-version="14"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DQhKHZLkfK-/" data-instgrm-version="14"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DNI64cdxw1s/" data-instgrm-version="14"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DMVXn_PR7Z0/" data-instgrm-version="14"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DFdRPirRbE0/" data-instgrm-version="14"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/C9shEi9p-2X/" data-instgrm-version="14"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/C8Kiz9Qv8Pj/" data-instgrm-version="14"></blockquote>
+      <div class="reel-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DR-EfE9Dsv5/" data-instgrm-captioned="false" data-instgrm-version="14"></blockquote></div>
+      <div class="reel-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DQhKHZLkfK-/" data-instgrm-captioned="false" data-instgrm-version="14"></blockquote></div>
+      <div class="reel-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DNI64cdxw1s/" data-instgrm-captioned="false" data-instgrm-version="14"></blockquote></div>
+      <div class="reel-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DMVXn_PR7Z0/" data-instgrm-captioned="false" data-instgrm-version="14"></blockquote></div>
+      <div class="reel-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DFdRPirRbE0/" data-instgrm-captioned="false" data-instgrm-version="14"></blockquote></div>
+      <div class="reel-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/C9shEi9p-2X/" data-instgrm-captioned="false" data-instgrm-version="14"></blockquote></div>
+      <div class="reel-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/C8Kiz9Qv8Pj/" data-instgrm-captioned="false" data-instgrm-version="14"></blockquote></div>
     </div>
   </div>
   <div class="overlay-foot">
@@ -406,16 +423,28 @@
   </div>
   <div class="hgallery">
     <div class="h-card video reveal">
-      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/97fLwZgpWEk" title="BJ & Brandon Labonté — La Gang #54" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="h-meta"><span class="kind">Episode</span><span class="name">BJ &amp; Brandon Labonté — La Gang #54</span><span class="sub">Full episode</span></div>
+      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/6NAiNp6YUQU" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="h-meta"><span class="kind">Episode</span><span class="name">Popular Episode</span><span class="sub">La Gang du Show</span></div>
     </div>
     <div class="h-card video reveal">
-      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/3buUq_Zy_xc" title="François Lambert — ses débuts & Loto-Québec" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="h-meta"><span class="kind">Episode</span><span class="name">François Lambert — ses débuts &amp; Loto-Québec</span><span class="sub">Full episode</span></div>
+      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/8jHfza36qj0" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="h-meta"><span class="kind">Episode</span><span class="name">Popular Episode</span><span class="sub">La Gang du Show</span></div>
     </div>
     <div class="h-card video reveal">
-      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/nDlY4_nT0-c" title="La Culture du Skateboard avec Julien Gagnon" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="h-meta"><span class="kind">Clip</span><span class="name">La Culture du Skateboard — Julien Gagnon</span><span class="sub">Extrait</span></div>
+      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/y-AJIjmiMY8" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="h-meta"><span class="kind">Episode</span><span class="name">Popular Episode</span><span class="sub">La Gang du Show</span></div>
+    </div>
+    <div class="h-card video reveal">
+      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/7tRcQ3yaGOI?start=1181" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="h-meta"><span class="kind">Episode</span><span class="name">Popular Episode</span><span class="sub">La Gang du Show</span></div>
+    </div>
+    <div class="h-card video reveal">
+      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/s2hfsvMmTNU" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="h-meta"><span class="kind">Episode</span><span class="name">Popular Episode</span><span class="sub">La Gang du Show</span></div>
+    </div>
+    <div class="h-card video reveal">
+      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/wfGyS93Pggc" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="h-meta"><span class="kind">Episode</span><span class="name">Popular Episode</span><span class="sub">La Gang du Show</span></div>
     </div>
   </div>
 </section>
