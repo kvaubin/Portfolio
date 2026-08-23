@@ -396,22 +396,51 @@
   #overlay-lgds .tiktok-card,
   #overlay-lgds .reel-card{background:#ffffff;}
   #overlay-lgds .embed-kind{color:var(--ink-faint);}
-  #overlay-lgds .thumb-placeholder-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:20px;}
   #overlay-lgds .thumb-placeholder{
     aspect-ratio:16/9;border:1.5px dashed var(--line);border-radius:var(--radius-md);
     display:flex;align-items:center;justify-content:center;background:var(--surface-2);
     color:var(--ink-faint);font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;
   }
+  .thumb-carousel{display:flex;gap:20px;overflow-x:auto;padding:8px 4px 30px;scroll-snap-type:x mandatory;scroll-behavior:smooth;}
+  .thumb-carousel::-webkit-scrollbar{height:5px;}
+  .thumb-carousel::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px;}
   .thumb-tile{
-    aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:var(--surface-2);
-    border:1px solid var(--line);
+    flex:0 0 min(360px,72vw);scroll-snap-align:start;
+    aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--surface-2);
+    border:1px solid var(--line);cursor:zoom-in;position:relative;
+    transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease,border-color .35s ease;
   }
-  .thumb-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease;}
-  .thumb-tile:hover img{transform:scale(1.06);}
-  @media(max-width:640px){
-    #overlay-lgds .thumb-placeholder-grid{grid-template-columns:repeat(2,1fr);}
-    #overlay-lgds .thumb-placeholder-grid.thumb-real{grid-template-columns:repeat(3,1fr);gap:6px;}
+  .thumb-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+  .thumb-tile:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,0.12);border-color:rgba(10,10,10,0.2);}
+  .thumb-tile:hover img{transform:scale(1.08);}
+  .thumb-tile::after{
+    content:"⤢";position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;
+    background:rgba(255,255,255,0.9);color:#0a0a0a;display:flex;align-items:center;justify-content:center;
+    font-size:14px;opacity:0;transform:scale(.7);transition:opacity .25s ease,transform .25s ease;
   }
+  .thumb-tile:hover::after{opacity:1;transform:scale(1);}
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    position:fixed;inset:0;z-index:3000;background:rgba(6,6,7,0.92);backdrop-filter:blur(6px);
+    display:flex;align-items:center;justify-content:center;padding:48px;
+    opacity:0;pointer-events:none;transition:opacity .4s ease;
+  }
+  .lightbox.open{opacity:1;pointer-events:auto;}
+  .lightbox img{
+    max-width:90vw;max-height:88vh;border-radius:18px;display:block;
+    box-shadow:0 40px 100px rgba(0,0,0,0.6);
+    transform:scale(.82) translateY(20px);opacity:0;
+    transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .35s ease;
+  }
+  .lightbox.open img{transform:scale(1) translateY(0);opacity:1;}
+  .lightbox-close{
+    position:fixed;top:26px;right:30px;width:44px;height:44px;border-radius:50%;
+    background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);color:#fff;
+    font-size:18px;cursor:pointer;transition:background .2s,transform .2s;
+  }
+  .lightbox-close:hover{background:rgba(255,255,255,0.18);transform:scale(1.06);}
+  @media(max-width:640px){.thumb-tile{flex-basis:78vw;}}
 </style>
 </head>
 <body>
@@ -554,106 +583,113 @@
     </div>    </div>
 
     <h4>Thumbnails</h4>
-    <div class="thumb-placeholder-grid thumb-real">
-      <div class="thumb-tile"><img src="assets/thumbnails/s2hfsvMmTNU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/2LYYFtMKBZU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/WqAuRUnHES4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/wfGyS93Pggc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/anQy3B-SCCM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/UPKblWhTJkI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/O8NqJbzmrFg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/7tRcQ3yaGOI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/6NAiNp6YUQU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/EMOH1XQal1M_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/EHM_N2nli3Y_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/2FI9REQkRDE_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/B-hg2boxZbE_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/8jHfza36qj0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/bpfJChdzZ5c_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/o7qT_qfxd6k_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/XUqn0rghRIc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/4H067trfeRI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/an7pULTSdnw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/mZmJ3VEBNLA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/Cp49DEbONJg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/lTzjjxL8Cyg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/opMoBwbktbM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/y-AJIjmiMY8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/KMpn0we0o8g_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/fHVsNAgzoIo_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/5kfPrkznKwQ_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/OhX9mfgrJ1Y_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/BQwsA7qWv4A_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/k_5-pItMFyQ_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/K0mYjzQlIgg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/yDfDqoYG9gs_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/Id5a4wxzx4A_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/j08L6_MoQ8o_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/EHrL4F3ZGiI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/Dcy2Lxr6qEY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/hJo43jiU8NA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/dXufQn96DE4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/EupitF1rGKg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/frKPmqEfLg8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/4ScUKVjYsJw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/hl-EdE1SBnk_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/G8ibiORf994_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/_xLvXkqjOxg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/TZkTO4NfS5U_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/e1xzyIjeIeI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/oa_gX80mIJ4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/SLdPEg2RHxo_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/FNh6UeEIMBg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/4k7xVsuX2Uw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/F3QmONP9V_4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/atW-ahGImf0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/_IlUlJ_GkE0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/3azoSmnTTdI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/vBEIk3X4UFQ_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/YTmxNkPUUrs_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/noCqZYzERW4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/mw1wfPSF8_o_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/8ojU0Nih2kE_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/zTdmBil__cI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/IF4zCr0q4z0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/eMDlXNikBfA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/6gWymkYEQk8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/1Tue0WxpmrM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/zcpirhs0cRY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/c_WojLcUqVw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/BPB-fco2Sjc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/NWkNWwhnvXw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/wHLfWAcGLFU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/SZy6VU3tB0I_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/ijtbbl95r3Q_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/9lwh21i7Dcc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/ATEXA8RaJLk_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/uPGo2qK8-uA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/1dePqOPCHg0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/t6KGJM-32Rw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/BJ0OGsC-8HA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/KZnccDjskr8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/lfuIq0PtC7c_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/cS-Nanb6MXY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/IPtSD5UuCkA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/-YmMGpobo6w_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/v5q2iwLJw74_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/ofM8aJYMl7E_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/Ktx-gL8SUOM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/J9g7j2GqKPM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/meSYq4n4D5I_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/V08AN0hCIDQ_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/dhRTKKmCRtE_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/tQ6wnrJqPSc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/_r4Goxs4pyk_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/x3BdVm7A9x8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/XU8eEXNcVFY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/aGVeX9GhjPc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/WpuBwkuNdZ4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/huZ4rVeMIHY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/fYunYPG8mr8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/5jOfMSRfExg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile"><img src="assets/thumbnails/Om9e-eAQ0rc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+    <div class="embed-carousel-wrap">
+      <div class="carousel-controls">
+        <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous thumbnails">←</button>
+        <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next thumbnails">→</button>
+      </div>
+      <div class="thumb-carousel embed-carousel">
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/s2hfsvMmTNU_maxres.jpg')"><img src="assets/thumbnails/s2hfsvMmTNU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/2LYYFtMKBZU_maxres.jpg')"><img src="assets/thumbnails/2LYYFtMKBZU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/WqAuRUnHES4_maxres.jpg')"><img src="assets/thumbnails/WqAuRUnHES4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/wfGyS93Pggc_maxres.jpg')"><img src="assets/thumbnails/wfGyS93Pggc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/anQy3B-SCCM_maxres.jpg')"><img src="assets/thumbnails/anQy3B-SCCM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/UPKblWhTJkI_maxres.jpg')"><img src="assets/thumbnails/UPKblWhTJkI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/O8NqJbzmrFg_maxres.jpg')"><img src="assets/thumbnails/O8NqJbzmrFg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/7tRcQ3yaGOI_maxres.jpg')"><img src="assets/thumbnails/7tRcQ3yaGOI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/6NAiNp6YUQU_maxres.jpg')"><img src="assets/thumbnails/6NAiNp6YUQU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/EMOH1XQal1M_maxres.jpg')"><img src="assets/thumbnails/EMOH1XQal1M_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/EHM_N2nli3Y_maxres.jpg')"><img src="assets/thumbnails/EHM_N2nli3Y_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/2FI9REQkRDE_maxres.jpg')"><img src="assets/thumbnails/2FI9REQkRDE_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/B-hg2boxZbE_maxres.jpg')"><img src="assets/thumbnails/B-hg2boxZbE_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/8jHfza36qj0_maxres.jpg')"><img src="assets/thumbnails/8jHfza36qj0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/bpfJChdzZ5c_maxres.jpg')"><img src="assets/thumbnails/bpfJChdzZ5c_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/o7qT_qfxd6k_maxres.jpg')"><img src="assets/thumbnails/o7qT_qfxd6k_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/XUqn0rghRIc_maxres.jpg')"><img src="assets/thumbnails/XUqn0rghRIc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/4H067trfeRI_maxres.jpg')"><img src="assets/thumbnails/4H067trfeRI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/an7pULTSdnw_maxres.jpg')"><img src="assets/thumbnails/an7pULTSdnw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/mZmJ3VEBNLA_maxres.jpg')"><img src="assets/thumbnails/mZmJ3VEBNLA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/Cp49DEbONJg_maxres.jpg')"><img src="assets/thumbnails/Cp49DEbONJg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/lTzjjxL8Cyg_maxres.jpg')"><img src="assets/thumbnails/lTzjjxL8Cyg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/opMoBwbktbM_maxres.jpg')"><img src="assets/thumbnails/opMoBwbktbM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/y-AJIjmiMY8_maxres.jpg')"><img src="assets/thumbnails/y-AJIjmiMY8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/KMpn0we0o8g_maxres.jpg')"><img src="assets/thumbnails/KMpn0we0o8g_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/fHVsNAgzoIo_maxres.jpg')"><img src="assets/thumbnails/fHVsNAgzoIo_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/5kfPrkznKwQ_maxres.jpg')"><img src="assets/thumbnails/5kfPrkznKwQ_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/OhX9mfgrJ1Y_maxres.jpg')"><img src="assets/thumbnails/OhX9mfgrJ1Y_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/BQwsA7qWv4A_maxres.jpg')"><img src="assets/thumbnails/BQwsA7qWv4A_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/k_5-pItMFyQ_maxres.jpg')"><img src="assets/thumbnails/k_5-pItMFyQ_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/K0mYjzQlIgg_maxres.jpg')"><img src="assets/thumbnails/K0mYjzQlIgg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/yDfDqoYG9gs_maxres.jpg')"><img src="assets/thumbnails/yDfDqoYG9gs_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/Id5a4wxzx4A_maxres.jpg')"><img src="assets/thumbnails/Id5a4wxzx4A_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/j08L6_MoQ8o_maxres.jpg')"><img src="assets/thumbnails/j08L6_MoQ8o_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/EHrL4F3ZGiI_maxres.jpg')"><img src="assets/thumbnails/EHrL4F3ZGiI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/Dcy2Lxr6qEY_maxres.jpg')"><img src="assets/thumbnails/Dcy2Lxr6qEY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/hJo43jiU8NA_maxres.jpg')"><img src="assets/thumbnails/hJo43jiU8NA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/dXufQn96DE4_maxres.jpg')"><img src="assets/thumbnails/dXufQn96DE4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/EupitF1rGKg_maxres.jpg')"><img src="assets/thumbnails/EupitF1rGKg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/frKPmqEfLg8_maxres.jpg')"><img src="assets/thumbnails/frKPmqEfLg8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/4ScUKVjYsJw_maxres.jpg')"><img src="assets/thumbnails/4ScUKVjYsJw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/hl-EdE1SBnk_maxres.jpg')"><img src="assets/thumbnails/hl-EdE1SBnk_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/G8ibiORf994_maxres.jpg')"><img src="assets/thumbnails/G8ibiORf994_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/_xLvXkqjOxg_maxres.jpg')"><img src="assets/thumbnails/_xLvXkqjOxg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/TZkTO4NfS5U_maxres.jpg')"><img src="assets/thumbnails/TZkTO4NfS5U_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/e1xzyIjeIeI_maxres.jpg')"><img src="assets/thumbnails/e1xzyIjeIeI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/oa_gX80mIJ4_maxres.jpg')"><img src="assets/thumbnails/oa_gX80mIJ4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/SLdPEg2RHxo_maxres.jpg')"><img src="assets/thumbnails/SLdPEg2RHxo_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/FNh6UeEIMBg_maxres.jpg')"><img src="assets/thumbnails/FNh6UeEIMBg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/4k7xVsuX2Uw_maxres.jpg')"><img src="assets/thumbnails/4k7xVsuX2Uw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/F3QmONP9V_4_maxres.jpg')"><img src="assets/thumbnails/F3QmONP9V_4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/atW-ahGImf0_maxres.jpg')"><img src="assets/thumbnails/atW-ahGImf0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/_IlUlJ_GkE0_maxres.jpg')"><img src="assets/thumbnails/_IlUlJ_GkE0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/3azoSmnTTdI_maxres.jpg')"><img src="assets/thumbnails/3azoSmnTTdI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/vBEIk3X4UFQ_maxres.jpg')"><img src="assets/thumbnails/vBEIk3X4UFQ_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/YTmxNkPUUrs_maxres.jpg')"><img src="assets/thumbnails/YTmxNkPUUrs_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/noCqZYzERW4_maxres.jpg')"><img src="assets/thumbnails/noCqZYzERW4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/mw1wfPSF8_o_maxres.jpg')"><img src="assets/thumbnails/mw1wfPSF8_o_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/8ojU0Nih2kE_maxres.jpg')"><img src="assets/thumbnails/8ojU0Nih2kE_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/zTdmBil__cI_maxres.jpg')"><img src="assets/thumbnails/zTdmBil__cI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/IF4zCr0q4z0_maxres.jpg')"><img src="assets/thumbnails/IF4zCr0q4z0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/eMDlXNikBfA_maxres.jpg')"><img src="assets/thumbnails/eMDlXNikBfA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/6gWymkYEQk8_maxres.jpg')"><img src="assets/thumbnails/6gWymkYEQk8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/1Tue0WxpmrM_maxres.jpg')"><img src="assets/thumbnails/1Tue0WxpmrM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/zcpirhs0cRY_maxres.jpg')"><img src="assets/thumbnails/zcpirhs0cRY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/c_WojLcUqVw_maxres.jpg')"><img src="assets/thumbnails/c_WojLcUqVw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/BPB-fco2Sjc_maxres.jpg')"><img src="assets/thumbnails/BPB-fco2Sjc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/NWkNWwhnvXw_maxres.jpg')"><img src="assets/thumbnails/NWkNWwhnvXw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/wHLfWAcGLFU_maxres.jpg')"><img src="assets/thumbnails/wHLfWAcGLFU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/SZy6VU3tB0I_maxres.jpg')"><img src="assets/thumbnails/SZy6VU3tB0I_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/ijtbbl95r3Q_maxres.jpg')"><img src="assets/thumbnails/ijtbbl95r3Q_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/9lwh21i7Dcc_maxres.jpg')"><img src="assets/thumbnails/9lwh21i7Dcc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/ATEXA8RaJLk_maxres.jpg')"><img src="assets/thumbnails/ATEXA8RaJLk_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/uPGo2qK8-uA_maxres.jpg')"><img src="assets/thumbnails/uPGo2qK8-uA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/1dePqOPCHg0_maxres.jpg')"><img src="assets/thumbnails/1dePqOPCHg0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/t6KGJM-32Rw_maxres.jpg')"><img src="assets/thumbnails/t6KGJM-32Rw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/BJ0OGsC-8HA_maxres.jpg')"><img src="assets/thumbnails/BJ0OGsC-8HA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/KZnccDjskr8_maxres.jpg')"><img src="assets/thumbnails/KZnccDjskr8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/lfuIq0PtC7c_maxres.jpg')"><img src="assets/thumbnails/lfuIq0PtC7c_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/cS-Nanb6MXY_maxres.jpg')"><img src="assets/thumbnails/cS-Nanb6MXY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/IPtSD5UuCkA_maxres.jpg')"><img src="assets/thumbnails/IPtSD5UuCkA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/-YmMGpobo6w_maxres.jpg')"><img src="assets/thumbnails/-YmMGpobo6w_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/v5q2iwLJw74_maxres.jpg')"><img src="assets/thumbnails/v5q2iwLJw74_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/ofM8aJYMl7E_maxres.jpg')"><img src="assets/thumbnails/ofM8aJYMl7E_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/Ktx-gL8SUOM_maxres.jpg')"><img src="assets/thumbnails/Ktx-gL8SUOM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/J9g7j2GqKPM_maxres.jpg')"><img src="assets/thumbnails/J9g7j2GqKPM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/meSYq4n4D5I_maxres.jpg')"><img src="assets/thumbnails/meSYq4n4D5I_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/V08AN0hCIDQ_maxres.jpg')"><img src="assets/thumbnails/V08AN0hCIDQ_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/dhRTKKmCRtE_maxres.jpg')"><img src="assets/thumbnails/dhRTKKmCRtE_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/tQ6wnrJqPSc_maxres.jpg')"><img src="assets/thumbnails/tQ6wnrJqPSc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/_r4Goxs4pyk_maxres.jpg')"><img src="assets/thumbnails/_r4Goxs4pyk_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/x3BdVm7A9x8_maxres.jpg')"><img src="assets/thumbnails/x3BdVm7A9x8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/XU8eEXNcVFY_maxres.jpg')"><img src="assets/thumbnails/XU8eEXNcVFY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/aGVeX9GhjPc_maxres.jpg')"><img src="assets/thumbnails/aGVeX9GhjPc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/WpuBwkuNdZ4_maxres.jpg')"><img src="assets/thumbnails/WpuBwkuNdZ4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/huZ4rVeMIHY_maxres.jpg')"><img src="assets/thumbnails/huZ4rVeMIHY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/fYunYPG8mr8_maxres.jpg')"><img src="assets/thumbnails/fYunYPG8mr8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/5jOfMSRfExg_maxres.jpg')"><img src="assets/thumbnails/5jOfMSRfExg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/Om9e-eAQ0rc_maxres.jpg')"><img src="assets/thumbnails/Om9e-eAQ0rc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
+      </div>
+    </div>
     </div>
   </div>
   <div class="overlay-foot">
@@ -839,6 +875,11 @@
 
 <footer>Kevin Aubin · Montréal, Québec · © 2026</footer>
 
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+  <img id="lightbox-img" src="" alt="Enlarged thumbnail">
+</div>
+
 <script>
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 8));
@@ -906,6 +947,24 @@
     document.getElementById('overlay-' + id).classList.remove('open');
     document.body.style.overflow = '';
   }
+
+  function openLightbox(src){
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = src;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = document.querySelector('.overlay.open') ? 'hidden' : '';
+  }
+  document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox' || e.target.id === 'lightbox-close') closeLightbox();
+  });
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
 </script>
 
 </body>
