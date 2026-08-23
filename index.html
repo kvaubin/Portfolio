@@ -195,10 +195,35 @@
   .overlay-gallery .g-tall{grid-column:span 2;aspect-ratio:16/8;}
   .overlay-gallery .g{aspect-ratio:4/3;border-radius:var(--radius-md);overflow:hidden;}
   @media(max-width:640px){.overlay-gallery{grid-template-columns:1fr;}.overlay-gallery .g-tall{grid-column:span 1;}}
-  .ig-grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:flex-start;}
-  .ig-grid .instagram-media{margin:0 !important;flex:0 0 auto;}
-  .reel-card{border-radius:var(--radius-md);overflow:hidden;background:var(--surface-2);border:1px solid var(--line);padding:10px;transition:transform .3s ease,border-color .3s ease;}
-  .reel-card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,0.22);}
+  .ig-grid{
+    display:flex;gap:18px;overflow-x:auto;justify-content:flex-start;
+    padding:8px 4px 26px;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  }
+  .ig-grid::-webkit-scrollbar{height:5px;}
+  .ig-grid::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px;}
+  .ig-grid .reel-card{
+    flex:0 0 min(330px,78vw);scroll-snap-align:start;
+    border-radius:var(--radius-lg);overflow:hidden;background:var(--surface-2);
+    border:1px solid var(--line);padding:8px;
+    transition:transform .3s ease,border-color .3s ease;
+  }
+  .ig-grid .reel-card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,0.22);}
+  .embed-carousel-wrap{position:relative;margin-top:30px;}
+  .embed-carousel{display:flex;gap:20px;overflow-x:auto;padding:8px 24px 30px;scroll-snap-type:x mandatory;scroll-behavior:smooth;}
+  .embed-carousel::-webkit-scrollbar{height:5px;}
+  .embed-carousel::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px;}
+  .embed-carousel .h-card{width:min(420px,82vw);flex-basis:min(420px,82vw);}
+  .carousel-title{max-width:1180px;margin:52px auto 0;padding:0 24px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);}
+  .carousel-controls{display:flex;gap:8px;position:absolute;right:24px;top:-42px;}
+  .carousel-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--ink);cursor:pointer;font-size:16px;transition:.2s;}
+  .carousel-btn:hover{background:rgba(255,255,255,.10);border-color:var(--ink-dim);}
+  .tiktok-card{
+    flex:0 0 min(325px,78vw);scroll-snap-align:start;
+    border-radius:var(--radius-lg);overflow:hidden;background:#080808;
+    border:1px solid var(--line);min-height:580px;padding:8px;
+  }
+  .tiktok-card blockquote{margin:0 !important;min-width:0 !important;width:100% !important;}
+  @media(max-width:700px){.carousel-controls{display:none;}.carousel-title{margin-top:38px;}}
   .design-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;}
   @media(max-width:640px){.design-grid{grid-template-columns:1fr;}}
   .design-tile{border-radius:var(--radius-md);overflow:hidden;background:var(--surface-2);border:1px solid var(--line);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;}
@@ -398,7 +423,12 @@
     </div>
 
     <h4>Popular Reels</h4>
-    <div class="ig-grid">
+    <div class="embed-carousel-wrap">
+      <div class="carousel-controls">
+        <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous reels">←</button>
+        <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next reels">→</button>
+      </div>
+      <div class="ig-grid">
       <div class="reel-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DR-EfE9Dsv5/" data-instgrm-captioned="false" data-instgrm-version="14"></blockquote></div>
       <div class="reel-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DQhKHZLkfK-/" data-instgrm-captioned="false" data-instgrm-version="14"></blockquote></div>
       <div class="reel-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DNI64cdxw1s/" data-instgrm-captioned="false" data-instgrm-version="14"></blockquote></div>
@@ -406,7 +436,7 @@
       <div class="reel-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DFdRPirRbE0/" data-instgrm-captioned="false" data-instgrm-version="14"></blockquote></div>
       <div class="reel-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/C9shEi9p-2X/" data-instgrm-captioned="false" data-instgrm-version="14"></blockquote></div>
       <div class="reel-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/C8Kiz9Qv8Pj/" data-instgrm-captioned="false" data-instgrm-version="14"></blockquote></div>
-    </div>
+    </div>    </div>
   </div>
   <div class="overlay-foot">
     <a class="btn solid" href="https://instagram.com/lagangdushow" target="_blank" rel="noopener">Watch on Instagram</a>
@@ -418,33 +448,44 @@
 <section class="clips-section" id="clips">
   <div class="section-head reveal">
     <span class="eyebrow">Podcasts &amp; Clips</span>
-    <h2>A rolling archive of episodes and cuts.</h2>
-    <p>Full episodes, short clips, interviews and behind-the-scenes — swap in real exports whenever you're ready to finalize.</p>
+    <h2>Watch the show. Then catch the clips.</h2>
+    <p>Full episodes on YouTube, with the best moments cut down for TikTok and short-form.</p>
   </div>
-  <div class="hgallery">
-    <div class="h-card video reveal">
-      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/6NAiNp6YUQU" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="h-meta"><span class="kind">Episode</span><span class="name">Notre homme AchilleFPS nous dit TOUT sur son aventure à OD Chypre</span><span class="sub">La Gang du Show</span></div>
+
+  <div class="carousel-title">YouTube · Full Episodes</div>
+  <div class="embed-carousel-wrap">
+    <div class="carousel-controls">
+      <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous episodes">←</button>
+      <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next episodes">→</button>
     </div>
-    <div class="h-card video reveal">
-      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/8jHfza36qj0" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="h-meta"><span class="kind">Episode</span><span class="name">20 ans d’amitié avec Laurie Doucet : OD, Justin Bieber et nos vies de bars</span><span class="sub">La Gang du Show</span></div>
+    <div class="embed-carousel">
+      <div class="h-card video reveal"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/6NAiNp6YUQU" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Notre homme AchilleFPS nous dit TOUT sur son aventure à OD Chypre</span><span class="sub">La Gang du Show</span></div></div>
+      <div class="h-card video reveal"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/8jHfza36qj0" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">20 ans d’amitié avec Laurie Doucet : OD, Justin Bieber et nos vies de bars</span><span class="sub">La Gang du Show</span></div></div>
+      <div class="h-card video reveal"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/y-AJIjmiMY8" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Les BUCKBOYS vont EXPLOSER le Québec</span><span class="sub">La Gang du Show</span></div></div>
+      <div class="h-card video reveal"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/7tRcQ3yaGOI?start=1181" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Rosalie Lessard sans filtre sur son parcours atypique</span><span class="sub">La Gang du Show</span></div></div>
+      <div class="h-card video reveal"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/s2hfsvMmTNU" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">AchilleFPS revient sur son match Lewislefou VS Oli Primeau</span><span class="sub">La Gang du Show</span></div></div>
+      <div class="h-card video reveal"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/wfGyS93Pggc" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Félix “Rouge Forêt” Bouchard ne digère PAS la défaite du Canada 🇨🇦</span><span class="sub">La Gang du Show</span></div></div>
     </div>
-    <div class="h-card video reveal">
-      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/y-AJIjmiMY8" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="h-meta"><span class="kind">Episode</span><span class="name">Les BUCKBOYS vont EXPLOSER le Québec</span><span class="sub">La Gang du Show</span></div>
+  </div>
+
+  <div class="carousel-title">TikTok · Clips</div>
+  <div class="embed-carousel-wrap">
+    <div class="carousel-controls">
+      <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous TikToks">←</button>
+      <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next TikToks">→</button>
     </div>
-    <div class="h-card video reveal">
-      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/7tRcQ3yaGOI?start=1181" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="h-meta"><span class="kind">Episode</span><span class="name">Rosalie Lessard sans filtre sur son parcours atypique</span><span class="sub">La Gang du Show</span></div>
-    </div>
-    <div class="h-card video reveal">
-      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/s2hfsvMmTNU" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="h-meta"><span class="kind">Episode</span><span class="name">AchilleFPS revient sur son match Lewislefou VS Oli Primeau</span><span class="sub">La Gang du Show</span></div>
-    </div>
-    <div class="h-card video reveal">
-      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/wfGyS93Pggc" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="h-meta"><span class="kind">Episode</span><span class="name">Félix “Rouge Forêt” Bouchard ne digère PAS la défaite du Canada 🇨🇦</span><span class="sub">La Gang du Show</span></div>
+    <div class="embed-carousel">
+      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7565826006045445393" data-video-id="7565826006045445393"></blockquote></div>
+      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7490818157410536759" data-video-id="7490818157410536759"></blockquote></div>
+      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7581037676082498823" data-video-id="7581037676082498823"></blockquote></div>
+      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7461824260433054982" data-video-id="7461824260433054982"></blockquote></div>
+      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7613354413452709127" data-video-id="7613354413452709127"></blockquote></div>
+      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7562769676053269781" data-video-id="7562769676053269781"></blockquote></div>
+      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7474461302245657911" data-video-id="7474461302245657911"></blockquote></div>
+      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7588101313523698961" data-video-id="7588101313523698961"></blockquote></div>
+      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7607749201706913025" data-video-id="7607749201706913025"></blockquote></div>
+      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7627381202441227541" data-video-id="7627381202441227541"></blockquote></div>
+      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7529467586854128902" data-video-id="7529467586854128902"></blockquote></div>
     </div>
   </div>
 </section>
@@ -606,6 +647,19 @@
   twScript.src = 'https://platform.twitter.com/widgets.js';
   twScript.async = true;
   document.body.appendChild(twScript);
+
+  const ttScript = document.createElement('script');
+  ttScript.src = 'https://www.tiktok.com/embed.js';
+  ttScript.async = true;
+  document.body.appendChild(ttScript);
+
+  function scrollCarousel(button, direction){
+    const wrap = button.closest('.embed-carousel-wrap');
+    const carousel = wrap && (wrap.querySelector('.embed-carousel') || wrap.querySelector('.ig-grid'));
+    if (!carousel) return;
+    const amount = Math.min(carousel.clientWidth * 0.78, 520);
+    carousel.scrollBy({left: direction * amount, behavior:'smooth'});
+  }
 
   function openOverlay(id){
     document.getElementById('overlay-' + id).classList.add('open');
