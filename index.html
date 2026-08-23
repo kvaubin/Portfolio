@@ -153,22 +153,6 @@
   }
   .cta-link:hover{border-color:var(--accent);gap:12px;}
 
-  .clip-rail{
-    display:flex;gap:18px;overflow-x:auto;padding:6px 4px 14px;
-    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
-  }
-  .clip-rail::-webkit-scrollbar{height:5px;}
-  .clip-rail::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px;}
-  .clip-tile{
-    flex:0 0 auto;width:150px;aspect-ratio:9/16;border-radius:var(--radius-md);
-    position:relative;overflow:hidden;scroll-snap-align:start;
-    transition:transform .4s cubic-bezier(.2,.8,.2,1);
-  }
-  .clip-tile:hover{transform:translateY(-6px) scale(1.03);}
-  .clip-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.72), transparent 50%);}
-  .clip-tile span{position:relative;z-index:1;display:block;padding:12px;font-size:12px;color:#fff;font-weight:600;align-self:flex-end;}
-  .clip-tile{display:flex;align-items:flex-end;}
-
   /* ---------- PROJECT DETAIL OVERLAY ---------- */
   .overlay{
     position:fixed;inset:0;z-index:1000;background:#000;
@@ -205,6 +189,12 @@
   @media(max-width:640px){.overlay-gallery{grid-template-columns:1fr;}.overlay-gallery .g-tall{grid-column:span 1;}}
   .ig-grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:flex-start;}
   .ig-grid .instagram-media{margin:0 !important;flex:0 0 auto;}
+  .design-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;}
+  @media(max-width:640px){.design-grid{grid-template-columns:1fr;}}
+  .design-tile{border-radius:var(--radius-md);overflow:hidden;background:var(--surface-2);border:1px solid var(--line);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;}
+  .design-tile img{width:100%;height:100%;object-fit:cover;display:block;}
+  .design-tile.video-tile{background:#0a0a0b;}
+  .design-tile.video-tile video{width:100%;height:100%;object-fit:contain;}
   .overlay-foot{max-width:760px;margin:70px auto 140px;padding:0 32px;display:flex;gap:16px;flex-wrap:wrap;}
   .btn{
     font-size:14.5px;font-weight:600;padding:13px 24px;border-radius:100px;
@@ -234,6 +224,11 @@
   .h-card .kind{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);}
   .h-card .name{font-size:19px;font-weight:600;margin-top:8px;letter-spacing:-0.01em;}
   .h-card .sub{font-size:13px;color:var(--ink-dim);margin-top:4px;}
+  .h-card.video{aspect-ratio:auto;background:var(--surface-2);border:1px solid var(--line);display:flex;flex-direction:column;}
+  .h-card.video::after{display:none;}
+  .h-card.video .yt-embed{position:relative;width:100%;aspect-ratio:16/9;background:#000;}
+  .h-card.video .yt-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .h-card.video .h-meta{position:static;height:auto;padding:16px 18px 20px;}
 
   /* ---------- PRODUCTION ---------- */
   .production{background:var(--bg);padding:170px 0;}
@@ -259,53 +254,6 @@
   .digi-tech span{font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);border:1px solid var(--line);padding:4px 9px;border-radius:100px;}
   .digi-body .go{margin-top:18px;display:inline-block;font-size:13.5px;font-weight:600;color:var(--accent);}
 
-  /* ---------- ARCHIVE ---------- */
-  .archive{background:var(--bg);padding:170px 0;}
-  .archive-grid{
-    max-width:1180px;margin:80px auto 0;padding:0 32px;
-    display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:110px;gap:14px;
-  }
-  @media(max-width:900px){.archive-grid{grid-template-columns:repeat(3,1fr);grid-auto-rows:90px;}}
-  @media(max-width:560px){.archive-grid{grid-template-columns:repeat(2,1fr);}}
-  .a-tile{border-radius:14px;position:relative;overflow:hidden;}
-  .a-tile .lbl{position:absolute;bottom:10px;left:12px;z-index:1;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.65);text-transform:uppercase;}
-  .a-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.4), transparent 60%);}
-  .a1{grid-column:span 2;grid-row:span 2;}
-  .a2{grid-column:span 2;}
-  .a3{grid-column:span 2;grid-row:span 1;}
-  .a4{grid-column:span 1;grid-row:span 2;}
-  .a5{grid-column:span 3;grid-row:span 1;}
-  .a6{grid-column:span 2;grid-row:span 2;}
-  .a7{grid-column:span 1;}
-  .a8{grid-column:span 2;}
-  .a9{grid-column:span 1;grid-row:span 2;}
-  .g1{background:linear-gradient(160deg,#3a2a1c,#0a0a0a);}
-  .g2{background:linear-gradient(160deg,#1c2438,#0a0a0a);}
-  .g3{background:linear-gradient(160deg,#2a1830,#0a0a0a);}
-  .g4{background:linear-gradient(160deg,#0f2a24,#0a0a0a);}
-  .g5{background:linear-gradient(160deg,#331c14,#0a0a0a);}
-  .g6{background:linear-gradient(160deg,#282218,#0a0a0a);}
-  .g7{background:linear-gradient(160deg,#1a1a2e,#0a0a0a);}
-  .g8{background:linear-gradient(160deg,#123024,#0a0a0a);}
-  .g9{background:linear-gradient(160deg,#2a1440,#0a0a0a);}
-
-  /* ---------- X SECTION ---------- */
-  .xsection{background:var(--surface);padding:170px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .x-grid{max-width:1000px;margin:70px auto 0;padding:0 32px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-  @media(max-width:820px){.x-grid{grid-template-columns:1fr 1fr;}}
-  @media(max-width:560px){.x-grid{grid-template-columns:1fr;}}
-  .x-card{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-md);padding:22px;transition:.25s;}
-  .x-card:hover{border-color:rgba(255,255,255,0.2);transform:translateY(-3px);}
-  .x-head{display:flex;align-items:center;gap:10px;}
-  .x-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(160deg,var(--accent),var(--violet));flex-shrink:0;}
-  .x-name{font-size:13.5px;font-weight:600;}
-  .x-handle{font-size:12px;color:var(--ink-faint);}
-  .x-body{margin-top:14px;font-size:14.5px;line-height:1.55;color:var(--ink-dim);}
-  .x-body .ph-line{background:var(--line);border-radius:4px;height:11px;margin-top:8px;}
-  .x-foot{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-faint);display:flex;justify-content:space-between;font-family:var(--mono);}
-  .x-note{max-width:600px;margin:30px auto 0;text-align:center;padding:0 24px;font-size:13px;color:var(--ink-faint);}
-  .x-follow{display:flex;justify-content:center;margin-top:40px;}
-
   /* ---------- ABOUT ---------- */
   .about{background:var(--bg);padding:180px 0;}
   .about-wrap{max-width:900px;margin:0 auto;padding:0 32px;text-align:center;}
@@ -322,16 +270,6 @@
   .skill-block ul{list-style:none;margin-top:20px;}
   .skill-block li{font-size:16px;color:var(--ink-dim);padding:8px 0;border-top:1px solid var(--line);}
   .skill-block li:first-child{border-top:none;}
-
-  /* ---------- PROCESS ---------- */
-  .process{background:var(--bg);padding:170px 0;}
-  .process-list{max-width:820px;margin:80px auto 0;padding:0 32px;}
-  .p-step{display:grid;grid-template-columns:110px 1fr;gap:28px;padding:44px 0;border-top:1px solid var(--line);align-items:baseline;}
-  .p-step:last-child{border-bottom:1px solid var(--line);}
-  .p-step .p-num{font-family:var(--mono);font-size:14px;color:var(--ink-faint);}
-  .p-step h3{font-size:26px;font-weight:700;letter-spacing:-0.02em;}
-  .p-step p{margin-top:10px;font-size:15.5px;color:var(--ink-dim);max-width:480px;line-height:1.6;}
-  @media(max-width:560px){.p-step{grid-template-columns:1fr;gap:8px;}}
 
   /* ---------- CONTACT ---------- */
   .contact{
@@ -399,33 +337,16 @@
       </div>
       <div class="cta-link" onclick="openOverlay('lgds')">Watch project →</div>
     </div>
-    <div class="placeholder-media grad-lgds scale-in">
+    <div class="placeholder-media grad-lgds scale-in" onclick="openOverlay('lgds')" style="cursor:pointer;background-image:url('https://i.ytimg.com/vi/97fLwZgpWEk/maxresdefault.jpg');background-size:cover;background-position:center;">
       <div class="media-label">La Gang du Show — Season archive</div>
     </div>
-  </div>
-
-  <!-- PROJECT 02 — PODCASTS & CLIPS (rail preview) -->
-  <div class="feature-project" style="margin-bottom:60px;">
-    <div class="feature-copy scale-in" style="grid-column:1/-1;max-width:640px;">
-      <span class="num">02 / Featured</span>
-      <h3>On camera. Behind the camera.<br>Everywhere in between.</h3>
-      <p class="lead">Episodes, clips, edits and behind-the-scenes footage — a rolling look at what's come out of the last few months of production.</p>
-    </div>
-  </div>
-  <div class="clip-rail" style="max-width:1280px;margin:0 auto 0;padding:6px 32px 30px;">
-    <div class="clip-tile grad-clip1"><span>Best moment of the ep</span></div>
-    <div class="clip-tile grad-clip2"><span>Cold open cut</span></div>
-    <div class="clip-tile grad-clip3"><span>Guest reaction</span></div>
-    <div class="clip-tile grad-clip4"><span>Full episode teaser</span></div>
-    <div class="clip-tile grad-clip5"><span>Debate highlight</span></div>
-    <div class="clip-tile grad-clip6"><span>Behind the mic</span></div>
   </div>
 </section>
 
 <!-- PROJECT DETAIL OVERLAY: LA GANG DU SHOW -->
 <div class="overlay" id="overlay-lgds">
   <div class="overlay-close" onclick="closeOverlay('lgds')">✕</div>
-  <div class="overlay-hero grad-lgds">
+  <div class="overlay-hero grad-lgds" style="background-image:url('https://i.ytimg.com/vi/97fLwZgpWEk/maxresdefault.jpg');background-size:cover;background-position:center;">
     <div class="overlay-hero-content">
       <span class="eyebrow">La Gang du Show</span>
       <h2>Podcast, production,<br>and everything after.</h2>
@@ -440,14 +361,24 @@
     <p>Every episode starts as raw camera angles and mic tracks, shot and recorded by @jemcee. From there, it's mine — I produce the structure, edit the full episode, cut it down into clips, and run the posting schedule that gets it in front of people.</p>
     <h4>Production Details</h4>
     <div class="overlay-gallery">
-      <div class="g g-tall grad-lgds"></div>
-      <div class="g grad-clip1"></div>
-      <div class="g grad-clip2"></div>
-      <div class="g grad-clip3"></div>
-      <div class="g grad-clip4"></div>
+      <div class="g g-tall" style="background-image:url('https://i.ytimg.com/vi/97fLwZgpWEk/maxresdefault.jpg');background-size:cover;background-position:center;"></div>
+      <div class="g" style="background-image:url('https://i.ytimg.com/vi/3buUq_Zy_xc/hqdefault.jpg');background-size:cover;background-position:center;"></div>
+      <div class="g" style="background-image:url('https://i.ytimg.com/vi/nDlY4_nT0-c/hqdefault.jpg');background-size:cover;background-position:center;"></div>
+      <div class="g" style="background-image:url('https://i.ytimg.com/vi/97fLwZgpWEk/hqdefault.jpg');background-size:cover;background-position:center;"></div>
+      <div class="g" style="background-image:url('https://i.ytimg.com/vi/3buUq_Zy_xc/maxresdefault.jpg');background-size:cover;background-position:center;"></div>
     </div>
     <h4>What I Handle</h4>
     <p>Full-episode editing, short-form clip cuts, captioning, posting schedule, and the overall creative direction of how the show shows up online — the pacing, the pull-quotes, the moments that get pulled out for social.</p>
+
+    <h4>Logo &amp; Graphic Design</h4>
+    <p>Beyond editing, I designed the show's current logo and the graphics used across sponsorships and cross-promotion — plus a short animated logo reveal used as a video opener.</p>
+    <div class="design-grid">
+      <div class="design-tile"><img src="assets/lgds-logo.png" alt="La Gang du Show logo redesign" loading="lazy"></div>
+      <div class="design-tile"><img src="assets/lgds-patreon-crossover.png" alt="La Gang du Show x Patreon crossover graphic" loading="lazy"></div>
+      <div class="design-tile video-tile">
+        <video src="assets/lgds-logo-anim.webm" autoplay loop muted playsinline></video>
+      </div>
+    </div>
 
     <h4>Popular Reels</h4>
     <div class="ig-grid">
@@ -474,12 +405,18 @@
     <p>Full episodes, short clips, interviews and behind-the-scenes — swap in real exports whenever you're ready to finalize.</p>
   </div>
   <div class="hgallery">
-    <div class="h-card grad-clip1 reveal"><div class="h-meta"><span class="kind">Episode</span><span class="name">Ep. 42 — Full Episode</span><span class="sub">Edited &amp; posted</span></div></div>
-    <div class="h-card grad-clip2 reveal"><div class="h-meta"><span class="kind">Clip</span><span class="name">Cold Open Cut</span><span class="sub">0:31 · Reel</span></div></div>
-    <div class="h-card grad-clip3 reveal"><div class="h-meta"><span class="kind">Clip</span><span class="name">Guest Reaction</span><span class="sub">0:55 · Reel</span></div></div>
-    <div class="h-card grad-clip4 reveal"><div class="h-meta"><span class="kind">BTS</span><span class="name">Behind the Mic</span><span class="sub">Behind-the-scenes</span></div></div>
-    <div class="h-card grad-clip5 reveal"><div class="h-meta"><span class="kind">Clip</span><span class="name">Debate Highlight</span><span class="sub">0:38 · Reel</span></div></div>
-    <div class="h-card grad-clip6 reveal"><div class="h-meta"><span class="kind">Episode</span><span class="name">Ep. 41 — Full Episode</span><span class="sub">Edited &amp; posted</span></div></div>
+    <div class="h-card video reveal">
+      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/97fLwZgpWEk" title="BJ & Brandon Labonté — La Gang #54" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="h-meta"><span class="kind">Episode</span><span class="name">BJ &amp; Brandon Labonté — La Gang #54</span><span class="sub">Full episode</span></div>
+    </div>
+    <div class="h-card video reveal">
+      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/3buUq_Zy_xc" title="François Lambert — ses débuts & Loto-Québec" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="h-meta"><span class="kind">Episode</span><span class="name">François Lambert — ses débuts &amp; Loto-Québec</span><span class="sub">Full episode</span></div>
+    </div>
+    <div class="h-card video reveal">
+      <div class="yt-embed"><iframe src="https://www.youtube.com/embed/nDlY4_nT0-c" title="La Culture du Skateboard avec Julien Gagnon" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="h-meta"><span class="kind">Clip</span><span class="name">La Culture du Skateboard — Julien Gagnon</span><span class="sub">Extrait</span></div>
+    </div>
   </div>
 </section>
 
@@ -533,59 +470,40 @@
         <h3>Apple / UI Concepts</h3>
         <p>NeoFreeBird-6 — a Theos/Logos jailbreak tweak reworking the X iOS app: source labels, post-location visibility, and compose button placement.</p>
         <div class="digi-tech"><span>Theos</span><span>Logos</span><span>iOS Internals</span></div>
-        <a class="go" href="#">View project →</a>
+        <div class="cta-link" style="margin-top:18px;font-size:13.5px;" onclick="openOverlay('apple')">View project →</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ARCHIVE -->
-<section class="archive">
-  <div class="section-head reveal">
-    <span class="eyebrow">The Archive</span>
-    <h2>A little bit of everything.</h2>
-    <p>Posters, stills, UI concepts and experiments that don't fit anywhere else.</p>
-  </div>
-  <div class="archive-grid">
-    <div class="a-tile a1 g1 reveal"><span class="lbl">Poster study</span></div>
-    <div class="a-tile a2 g2 reveal"><span class="lbl">UI concept</span></div>
-    <div class="a-tile a3 g3 reveal"><span class="lbl">Video still</span></div>
-    <div class="a-tile a4 g4 reveal"><span class="lbl">Screenshot</span></div>
-    <div class="a-tile a5 g5 reveal"><span class="lbl">Experiment</span></div>
-    <div class="a-tile a6 g6 reveal"><span class="lbl">Behind the scenes</span></div>
-    <div class="a-tile a7 g7 reveal"><span class="lbl">Graphic</span></div>
-    <div class="a-tile a8 g8 reveal"><span class="lbl">Map study</span></div>
-    <div class="a-tile a9 g9 reveal"><span class="lbl">Concept art</span></div>
-  </div>
-</section>
-
-<!-- X / TWITTER -->
-<section class="xsection" id="x">
-  <div class="section-head reveal">
-    <span class="eyebrow">@kaubin on X</span>
-    <h2>What I'm thinking about.</h2>
-    <p>Apple news, leaks and discoveries — as they happen.</p>
-  </div>
-  <div class="x-grid">
-    <div class="x-card reveal">
-      <div class="x-head"><div class="x-avatar"></div><div><div class="x-name">Kevin Aubin</div><div class="x-handle">@kaubin</div></div></div>
-      <div class="x-body">Live post preview — connect the @kaubin account to pull this in automatically.<div class="ph-line" style="width:80%"></div><div class="ph-line" style="width:55%"></div></div>
-      <div class="x-foot"><span>Placeholder</span><span>Not yet connected</span></div>
-    </div>
-    <div class="x-card reveal">
-      <div class="x-head"><div class="x-avatar"></div><div><div class="x-name">Kevin Aubin</div><div class="x-handle">@kaubin</div></div></div>
-      <div class="x-body">Live post preview — connect the @kaubin account to pull this in automatically.<div class="ph-line" style="width:70%"></div><div class="ph-line" style="width:40%"></div></div>
-      <div class="x-foot"><span>Placeholder</span><span>Not yet connected</span></div>
-    </div>
-    <div class="x-card reveal">
-      <div class="x-head"><div class="x-avatar"></div><div><div class="x-name">Kevin Aubin</div><div class="x-handle">@kaubin</div></div></div>
-      <div class="x-body">Live post preview — connect the @kaubin account to pull this in automatically.<div class="ph-line" style="width:85%"></div><div class="ph-line" style="width:60%"></div></div>
-      <div class="x-foot"><span>Placeholder</span><span>Not yet connected</span></div>
+<!-- PROJECT DETAIL OVERLAY: APPLE / UI CONCEPTS -->
+<div class="overlay" id="overlay-apple">
+  <div class="overlay-close" onclick="closeOverlay('apple')">✕</div>
+  <div class="overlay-hero grad-ui">
+    <div class="overlay-hero-content">
+      <span class="eyebrow">Apple / UI Concepts</span>
+      <h2>NeoFreeBird-6 and<br>iOS internals.</h2>
+      <div class="overlay-meta">
+        <div><span class="k">Type</span><span class="v">Theos / Logos Tweak</span></div>
+        <div><span class="k">Target</span><span class="v">X (Twitter) for iOS</span></div>
+        <div><span class="k">Status</span><span class="v">In progress</span></div>
+      </div>
     </div>
   </div>
-  <p class="x-note">This feed is a placeholder — it's built to drop in real posts from @kaubin the moment the account is connected.</p>
-  <div class="x-follow"><a class="btn solid" href="https://twitter.com/kaubin" target="_blank" rel="noopener">Follow @kaubin →</a></div>
-</section>
+  <div class="overlay-body">
+    <p>NeoFreeBird-6 is a jailbreak tweak that reworks parts of the X iOS app — flicker-free source label display, a toggle to hide post locations, and a repositioned floating compose button, all built on Theos and Logos.</p>
+    <h4>Popular Tweets</h4>
+    <div class="ig-grid" id="tweet-embeds">
+      <blockquote class="twitter-tweet"><a href="https://twitter.com/kaubin"></a></blockquote>
+      <blockquote class="twitter-tweet"><a href="https://twitter.com/kaubin"></a></blockquote>
+      <blockquote class="twitter-tweet"><a href="https://twitter.com/kaubin"></a></blockquote>
+    </div>
+  </div>
+  <div class="overlay-foot">
+    <a class="btn solid" href="https://twitter.com/kaubin" target="_blank" rel="noopener">Follow @kaubin</a>
+    <a class="btn" href="#" onclick="closeOverlay('apple');return false;">Back to work</a>
+  </div>
+</div>
 
 <!-- ABOUT -->
 <section class="about" id="about">
@@ -616,20 +534,6 @@
       <div class="big-label">MEDIA</div>
       <ul><li>Podcasts</li><li>Social Content</li><li>Digital Publishing</li></ul>
     </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section class="process">
-  <div class="section-head reveal">
-    <span class="eyebrow">Process</span>
-    <h2>How it comes together.</h2>
-  </div>
-  <div class="process-list">
-    <div class="p-step reveal"><span class="p-num">01</span><div><h3>Idea</h3><p>Start with a concept — what's worth making, and why.</p></div></div>
-    <div class="p-step reveal"><span class="p-num">02</span><div><h3>Create</h3><p>Design, film, build and experiment until it takes shape.</p></div></div>
-    <div class="p-step reveal"><span class="p-num">03</span><div><h3>Refine</h3><p>Edit, polish and iterate until it's actually good.</p></div></div>
-    <div class="p-step reveal"><span class="p-num">04</span><div><h3>Publish</h3><p>Put it out into the world.</p></div></div>
   </div>
 </section>
 
@@ -669,11 +573,19 @@
   igScript.async = true;
   document.body.appendChild(igScript);
 
+  const twScript = document.createElement('script');
+  twScript.src = 'https://platform.twitter.com/widgets.js';
+  twScript.async = true;
+  document.body.appendChild(twScript);
+
   function openOverlay(id){
     document.getElementById('overlay-' + id).classList.add('open');
     document.body.style.overflow = 'hidden';
     if (window.instgrm && window.instgrm.Embeds) {
       window.instgrm.Embeds.process();
+    }
+    if (window.twttr && window.twttr.widgets) {
+      window.twttr.widgets.load(document.getElementById('overlay-' + id));
     }
   }
   function closeOverlay(id){
