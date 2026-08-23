@@ -16,6 +16,8 @@
     --accent:#2997ff;
     --accent-dim:rgba(41,151,255,0.14);
     --violet:#7d5fff;
+    --lgds-green:#1f7a4d;
+    --lgds-green-dim:rgba(31,122,77,0.12);
     --radius-xl:32px;
     --radius-lg:24px;
     --radius-md:16px;
@@ -134,6 +136,16 @@
   .placeholder-media .media-label{position:relative;z-index:1;padding:22px 26px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:rgba(255,255,255,0.75);text-transform:uppercase;}
 
   .grad-lgds{background:radial-gradient(120% 140% at 20% 0%, #3a2a1c 0%, #17110c 45%, #0a0a0a 100%);}
+  .lgds-teaser{
+    background:linear-gradient(155deg, var(--lgds-green-dim) 0%, #ffffff 65%);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .lgds-teaser::after{display:none;}
+  .lgds-teaser-logo{max-width:38%;max-height:38%;object-fit:contain;}
+  .lgds-teaser .media-label{
+    position:absolute;left:0;right:0;bottom:0;z-index:1;
+    color:#0a0a0a;background:linear-gradient(to top, rgba(255,255,255,0.92), transparent);
+  }
   .grad-clip1{background:linear-gradient(155deg,#1c2438,#0a0a0a);}
   .grad-clip2{background:linear-gradient(155deg,#2a1830,#0a0a0a);}
   .grad-clip3{background:linear-gradient(155deg,#0f2a24,#0a0a0a);}
@@ -353,6 +365,42 @@
   .contact-links a:hover{color:var(--ink);}
 
   footer{padding:50px 24px;text-align:center;font-size:12px;color:var(--ink-faint);font-family:var(--mono);border-top:1px solid var(--line);}
+
+  /* ---------- LA GANG DU SHOW — white/green theme, scoped to this project only ---------- */
+  #overlay-lgds{
+    --bg:#ffffff;--surface:#f6f9f7;--surface-2:#eef4f0;
+    --ink:#0a0a0a;--ink-dim:#4a4a4a;--ink-faint:#767676;
+    --line:rgba(10,10,10,0.12);
+    --accent:var(--lgds-green);--accent-dim:var(--lgds-green-dim);
+    --violet:#2f9e6b;
+    background:var(--bg);color:var(--ink);
+  }
+  #overlay-lgds .overlay-hero{
+    height:auto;min-height:0;background:linear-gradient(155deg, var(--lgds-green-dim) 0%, #ffffff 60%);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:120px 32px 64px;
+  }
+  #overlay-lgds .overlay-hero::after{display:none;}
+  #overlay-lgds .overlay-hero-content{max-width:640px;}
+  #overlay-lgds .lgds-hero-logo{width:120px;height:auto;margin:0 auto 26px;display:block;}
+  #overlay-lgds .overlay-meta{justify-content:center;}
+  #overlay-lgds .overlay-close{background:rgba(10,10,10,0.06);border-color:var(--line);color:var(--ink);}
+  #overlay-lgds .overlay-close:hover{background:rgba(10,10,10,0.12);}
+  #overlay-lgds .carousel-btn{background:rgba(10,10,10,0.03);border-color:var(--line);color:var(--ink);}
+  #overlay-lgds .carousel-btn:hover{background:rgba(10,10,10,0.07);border-color:var(--ink-faint);}
+  #overlay-lgds .btn.solid{background:var(--accent);color:#fff;border-color:var(--accent);}
+  #overlay-lgds .btn.solid:hover{background:#175c39;border-color:#175c39;}
+  #overlay-lgds .btn:not(.solid){color:var(--ink);}
+  #overlay-lgds .btn:not(.solid):hover{background:rgba(10,10,10,0.04);}
+  #overlay-lgds .tiktok-card{background:var(--surface-2);}
+  #overlay-lgds .embed-kind{color:var(--ink-faint);}
+  #overlay-lgds .thumb-placeholder-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+  #overlay-lgds .thumb-placeholder{
+    aspect-ratio:16/9;border:1.5px dashed var(--line);border-radius:var(--radius-md);
+    display:flex;align-items:center;justify-content:center;background:var(--surface-2);
+    color:var(--ink-faint);font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;
+  }
+  @media(max-width:640px){#overlay-lgds .thumb-placeholder-grid{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
@@ -414,7 +462,8 @@
       </div>
       <div class="cta-link" onclick="openOverlay('lgds')">Watch project →</div>
     </div>
-    <div class="placeholder-media grad-lgds scale-in" onclick="openOverlay('lgds')" style="cursor:pointer;background-image:url('https://i.ytimg.com/vi/6NAiNp6YUQU/maxresdefault.jpg');background-size:cover;background-position:center;">
+    <div class="placeholder-media lgds-teaser scale-in" onclick="openOverlay('lgds')" style="cursor:pointer;">
+      <img class="lgds-teaser-logo" src="assets/lgds-logo.png" alt="La Gang du Show logo">
       <div class="media-label">La Gang du Show — Season archive</div>
     </div>
   </div>
@@ -423,8 +472,9 @@
 <!-- PROJECT DETAIL OVERLAY: LA GANG DU SHOW -->
 <div class="overlay" id="overlay-lgds">
   <div class="overlay-close" onclick="closeOverlay('lgds')">✕</div>
-  <div class="overlay-hero grad-lgds" style="background-image:url('https://i.ytimg.com/vi/6NAiNp6YUQU/maxresdefault.jpg');background-size:cover;background-position:center;">
+  <div class="overlay-hero">
     <div class="overlay-hero-content">
+      <img class="lgds-hero-logo" src="assets/lgds-logo.png" alt="La Gang du Show logo">
       <span class="eyebrow">La Gang du Show</span>
       <h2>Podcast, production,<br>and everything after.</h2>
       <div class="overlay-meta">
@@ -436,14 +486,6 @@
   </div>
   <div class="overlay-body">
     <p>Every episode starts as raw camera angles and mic tracks, shot and recorded by @jemcee. From there, it's mine — I produce the structure, edit the full episode, cut it down into clips, and run the posting schedule that gets it in front of people.</p>
-    <h4>Production Details</h4>
-    <div class="overlay-gallery">
-      <div class="g g-tall" style="background-image:url('https://i.ytimg.com/vi/6NAiNp6YUQU/maxresdefault.jpg');background-size:cover;background-position:center;"></div>
-      <div class="g" style="background-image:url('https://i.ytimg.com/vi/8jHfza36qj0/hqdefault.jpg');background-size:cover;background-position:center;"></div>
-      <div class="g" style="background-image:url('https://i.ytimg.com/vi/y-AJIjmiMY8/hqdefault.jpg');background-size:cover;background-position:center;"></div>
-      <div class="g" style="background-image:url('https://i.ytimg.com/vi/7tRcQ3yaGOI/hqdefault.jpg');background-size:cover;background-position:center;"></div>
-      <div class="g" style="background-image:url('https://i.ytimg.com/vi/s2hfsvMmTNU/hqdefault.jpg');background-size:cover;background-position:center;"></div>
-    </div>
     <h4>What I Handle</h4>
     <p>Full-episode editing, short-form clip cuts, captioning, posting schedule, and the overall creative direction of how the show shows up online — the pacing, the pull-quotes, the moments that get pulled out for social.</p>
 
@@ -480,25 +522,33 @@
         <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next reels">→</button>
       </div>
       <div class="ig-grid mixed-grid">
-      <div class="ig-reel-card"><a href="https://www.instagram.com/reel/DR-EfE9Dsv5/" target="_blank" rel="noopener"><span class="ig-reel-label">Instagram Reel</span><span class="ig-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg></span><span class="ig-reel-cta">Watch on Instagram →</span></a></div>
+      <div class="reel-card"><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DR-EfE9Dsv5/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:8px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:328px; min-width:288px; padding:0; width:99%;"><div style="padding:16px;"><a href="https://www.instagram.com/reel/DR-EfE9Dsv5/?utm_source=ig_embed&amp;utm_campaign=loading" style="background:#FFFFFF; line-height:0; padding:0; text-align:center; text-decoration:none; width:100%; display:block;" target="_blank" rel="noopener">View this reel on Instagram</a></div></blockquote></div>
       <div class="tiktok-card"><span class="embed-kind">TikTok</span><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7565826006045445393" data-video-id="7565826006045445393" data-embed-from="oembed" style="max-width:325px;min-width:288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-      <div class="ig-reel-card"><a href="https://www.instagram.com/reel/DQhKHZLkfK-/" target="_blank" rel="noopener"><span class="ig-reel-label">Instagram Reel</span><span class="ig-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg></span><span class="ig-reel-cta">Watch on Instagram →</span></a></div>
+      <div class="reel-card"><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DQhKHZLkfK-/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:8px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:328px; min-width:288px; padding:0; width:99%;"><div style="padding:16px;"><a href="https://www.instagram.com/reel/DQhKHZLkfK-/?utm_source=ig_embed&amp;utm_campaign=loading" style="background:#FFFFFF; line-height:0; padding:0; text-align:center; text-decoration:none; width:100%; display:block;" target="_blank" rel="noopener">View this reel on Instagram</a></div></blockquote></div>
       <div class="tiktok-card"><span class="embed-kind">TikTok</span><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7490818157410536759" data-video-id="7490818157410536759" data-embed-from="oembed" style="max-width:325px;min-width:288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-      <div class="ig-reel-card"><a href="https://www.instagram.com/reel/DNI64cdxw1s/" target="_blank" rel="noopener"><span class="ig-reel-label">Instagram Reel</span><span class="ig-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg></span><span class="ig-reel-cta">Watch on Instagram →</span></a></div>
+      <div class="reel-card"><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DNI64cdxw1s/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:8px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:328px; min-width:288px; padding:0; width:99%;"><div style="padding:16px;"><a href="https://www.instagram.com/reel/DNI64cdxw1s/?utm_source=ig_embed&amp;utm_campaign=loading" style="background:#FFFFFF; line-height:0; padding:0; text-align:center; text-decoration:none; width:100%; display:block;" target="_blank" rel="noopener">View this reel on Instagram</a></div></blockquote></div>
       <div class="tiktok-card"><span class="embed-kind">TikTok</span><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7581037676082498823" data-video-id="7581037676082498823" data-embed-from="oembed" style="max-width:325px;min-width:288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-      <div class="ig-reel-card"><a href="https://www.instagram.com/reel/DMVXn_PR7Z0/" target="_blank" rel="noopener"><span class="ig-reel-label">Instagram Reel</span><span class="ig-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg></span><span class="ig-reel-cta">Watch on Instagram →</span></a></div>
+      <div class="reel-card"><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DMVXn_PR7Z0/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:8px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:328px; min-width:288px; padding:0; width:99%;"><div style="padding:16px;"><a href="https://www.instagram.com/reel/DMVXn_PR7Z0/?utm_source=ig_embed&amp;utm_campaign=loading" style="background:#FFFFFF; line-height:0; padding:0; text-align:center; text-decoration:none; width:100%; display:block;" target="_blank" rel="noopener">View this reel on Instagram</a></div></blockquote></div>
       <div class="tiktok-card"><span class="embed-kind">TikTok</span><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7461824260433054982" data-video-id="7461824260433054982" data-embed-from="oembed" style="max-width:325px;min-width:288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-      <div class="ig-reel-card"><a href="https://www.instagram.com/reel/DFdRPirRbE0/" target="_blank" rel="noopener"><span class="ig-reel-label">Instagram Reel</span><span class="ig-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg></span><span class="ig-reel-cta">Watch on Instagram →</span></a></div>
+      <div class="reel-card"><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DFdRPirRbE0/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:8px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:328px; min-width:288px; padding:0; width:99%;"><div style="padding:16px;"><a href="https://www.instagram.com/reel/DFdRPirRbE0/?utm_source=ig_embed&amp;utm_campaign=loading" style="background:#FFFFFF; line-height:0; padding:0; text-align:center; text-decoration:none; width:100%; display:block;" target="_blank" rel="noopener">View this reel on Instagram</a></div></blockquote></div>
       <div class="tiktok-card"><span class="embed-kind">TikTok</span><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7613354413452709127" data-video-id="7613354413452709127" data-embed-from="oembed" style="max-width:325px;min-width:288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-      <div class="ig-reel-card"><a href="https://www.instagram.com/reel/C9shEi9p-2X/" target="_blank" rel="noopener"><span class="ig-reel-label">Instagram Reel</span><span class="ig-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg></span><span class="ig-reel-cta">Watch on Instagram →</span></a></div>
+      <div class="reel-card"><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/C9shEi9p-2X/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:8px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:328px; min-width:288px; padding:0; width:99%;"><div style="padding:16px;"><a href="https://www.instagram.com/reel/C9shEi9p-2X/?utm_source=ig_embed&amp;utm_campaign=loading" style="background:#FFFFFF; line-height:0; padding:0; text-align:center; text-decoration:none; width:100%; display:block;" target="_blank" rel="noopener">View this reel on Instagram</a></div></blockquote></div>
       <div class="tiktok-card"><span class="embed-kind">TikTok</span><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7562769676053269781" data-video-id="7562769676053269781" data-embed-from="oembed" style="max-width:325px;min-width:288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-      <div class="ig-reel-card"><a href="https://www.instagram.com/reel/C8Kiz9Qv8Pj/" target="_blank" rel="noopener"><span class="ig-reel-label">Instagram Reel</span><span class="ig-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg></span><span class="ig-reel-cta">Watch on Instagram →</span></a></div>
+      <div class="reel-card"><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/C8Kiz9Qv8Pj/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:8px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:328px; min-width:288px; padding:0; width:99%;"><div style="padding:16px;"><a href="https://www.instagram.com/reel/C8Kiz9Qv8Pj/?utm_source=ig_embed&amp;utm_campaign=loading" style="background:#FFFFFF; line-height:0; padding:0; text-align:center; text-decoration:none; width:100%; display:block;" target="_blank" rel="noopener">View this reel on Instagram</a></div></blockquote></div>
       <div class="tiktok-card"><span class="embed-kind">TikTok</span><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7474461302245657911" data-video-id="7474461302245657911" data-embed-from="oembed" style="max-width:325px;min-width:288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
       <div class="tiktok-card"><span class="embed-kind">TikTok</span><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7588101313523698961" data-video-id="7588101313523698961" data-embed-from="oembed" style="max-width:325px;min-width:288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
       <div class="tiktok-card"><span class="embed-kind">TikTok</span><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7607749201706913025" data-video-id="7607749201706913025" data-embed-from="oembed" style="max-width:325px;min-width:288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
       <div class="tiktok-card"><span class="embed-kind">TikTok</span><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7627381202441227541" data-video-id="7627381202441227541" data-embed-from="oembed" style="max-width:325px;min-width:288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
       <div class="tiktok-card"><span class="embed-kind">TikTok</span><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7529467586854128902" data-video-id="7529467586854128902" data-embed-from="oembed" style="max-width:325px;min-width:288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
     </div>    </div>
+
+    <h4>Thumbnails</h4>
+    <div class="thumb-placeholder-grid">
+      <div class="thumb-placeholder">Add thumbnail</div>
+      <div class="thumb-placeholder">Add thumbnail</div>
+      <div class="thumb-placeholder">Add thumbnail</div>
+      <div class="thumb-placeholder">Add thumbnail</div>
+    </div>
   </div>
   <div class="overlay-foot">
     <a class="btn solid" href="https://instagram.com/lagangdushow" target="_blank" rel="noopener">Watch on Instagram</a>
@@ -700,6 +750,11 @@
     mesh.style.transform = `translate(${x}px, ${y}px)`;
   });
 
+  const igScript = document.createElement('script');
+  igScript.src = '//www.instagram.com/embed.js';
+  igScript.async = true;
+  document.body.appendChild(igScript);
+
   const twScript = document.createElement('script');
   twScript.src = 'https://platform.twitter.com/widgets.js';
   twScript.async = true;
@@ -733,6 +788,9 @@
   function openOverlay(id){
     document.getElementById('overlay-' + id).classList.add('open');
     document.body.style.overflow = 'hidden';
+    if (window.instgrm && window.instgrm.Embeds) {
+      window.instgrm.Embeds.process();
+    }
     if (window.twttr && window.twttr.widgets) {
       window.twttr.widgets.load(document.getElementById('overlay-' + id));
     }
