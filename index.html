@@ -344,6 +344,27 @@
   .digi-body h3{font-size:20px;font-weight:700;margin-top:10px;letter-spacing:-0.01em;}
   .digi-body p{margin-top:10px;font-size:14.5px;color:var(--ink-dim);line-height:1.55;}
   .digi-tech{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;}
+
+  /* ---------- APPLE & TECH — white section, scoped to itself ---------- */
+  .apple-section{
+    background:#ffffff;color:#0a0a0a;padding:150px 0 100px;
+    --ink:#0a0a0a;--ink-dim:#4a4a4a;--ink-faint:#767676;--surface-2:#f2f2f4;--line:rgba(10,10,10,0.1);--accent:#0071e3;
+  }
+  .apple-inner{max-width:720px;margin:0 auto;padding:0 32px;text-align:center;}
+  .apple-inner .eyebrow{color:var(--accent);font-size:13px;font-weight:600;letter-spacing:.02em;display:block;margin-bottom:16px;}
+  .apple-inner h2{font-size:clamp(32px,5vw,52px);font-weight:700;letter-spacing:-0.03em;line-height:1.05;}
+  .apple-inner .lead{margin-top:18px;font-size:18px;color:var(--ink-dim);line-height:1.65;}
+  .apple-points{list-style:none;margin:34px 0 0;padding:0;text-align:left;display:flex;flex-direction:column;gap:14px;}
+  .apple-points li{display:flex;gap:14px;align-items:flex-start;font-size:15px;line-height:1.55;color:var(--ink-dim);}
+  .apple-points li b{color:var(--ink);font-weight:600;}
+  .apple-points .pt-emoji{font-size:18px;line-height:1.5;flex-shrink:0;}
+  .apple-inner .btn.solid{margin-top:34px;display:inline-block;background:#0a0a0a;color:#fff;border:1px solid #0a0a0a;padding:13px 26px;border-radius:100px;font-size:14px;font-weight:600;transition:.2s;}
+  .apple-inner .btn.solid:hover{background:#2a2a2a;}
+  .apple-tweets-wrap{max-width:1180px;margin:64px auto 0;padding:0 32px;position:relative;}
+  .apple-tweets-wrap .carousel-btn{background:rgba(10,10,10,0.04);border-color:var(--line);color:var(--ink);}
+  .apple-tweets-wrap .carousel-btn:hover{background:rgba(10,10,10,0.08);border-color:var(--ink-faint);}
+  .apple-section .reel-card{background:#fff;}
+  @media(max-width:640px){.apple-tweets-wrap{padding:0 20px;}}
   .digi-tech span{font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);border:1px solid var(--line);padding:4px 9px;border-radius:100px;}
   .digi-body .go{margin-top:18px;display:inline-block;font-size:13.5px;font-weight:600;color:var(--accent);}
 
@@ -800,58 +821,42 @@
         <a class="go" href="#">View project →</a>
       </div>
     </div>
-    <div class="digi-card reveal">
-      <div class="digi-media grad-ui"></div>
-      <div class="digi-body">
-        <span class="yr">2025–2026</span>
-        <h3>Apple / UI Concepts</h3>
-        <p>NeoFreeBird-6 — a Theos/Logos jailbreak tweak reworking the X iOS app: source labels, post-location visibility, and compose button placement.</p>
-        <div class="digi-tech"><span>Theos</span><span>Logos</span><span>iOS Internals</span></div>
-        <div class="cta-link" style="margin-top:18px;font-size:13.5px;" onclick="openOverlay('apple')">View project →</div>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- PROJECT DETAIL OVERLAY: APPLE / UI CONCEPTS -->
-<div class="overlay" id="overlay-apple">
-  <div class="overlay-close" onclick="closeOverlay('apple')">✕</div>
-  <div class="overlay-hero grad-ui">
-    <div class="overlay-hero-content">
-      <span class="eyebrow">Apple / UI Concepts</span>
-      <h2>NeoFreeBird-6 and<br>iOS internals.</h2>
-      <div class="overlay-meta">
-        <div><span class="k">Type</span><span class="v">Theos / Logos Tweak</span></div>
-        <div><span class="k">Target</span><span class="v">X (Twitter) for iOS</span></div>
-        <div><span class="k">Status</span><span class="v">In progress</span></div>
-      </div>
+<!-- APPLE & TECH -->
+<section class="apple-section">
+  <div class="apple-inner reveal">
+    <span class="eyebrow">Apple &amp; Tech</span>
+    <h2>Québécois Apple &amp; tech enthusiast.</h2>
+    <p class="lead">Covering iPhone, iOS, Apple leaks, new features, and interesting tech news — with a focus on discovering and sharing things before they blow up.</p>
+    <ul class="apple-points">
+      <li><span class="pt-emoji">🍎</span><span><b>Apple / iPhone / iOS</b> — iPhone releases, iOS betas, new features, like the iOS 17.3 Apple Music collaborative playlist rollout.</span></li>
+      <li><span class="pt-emoji">📱</span><span><b>Apple leaks &amp; rumors</b> — early looks like leaked iPhone 15 Pro cases and Dynamic Island observations.</span></li>
+      <li><span class="pt-emoji">🥽</span><span><b>Apple hardware</b> — new devices and features, including posts that later got picked up by multiple tech outlets.</span></li>
+      <li><span class="pt-emoji">🇨🇦</span><span><b>Canadian tech angle</b> — a Québec-based Apple/tech voice, also covering Canadian telecom offers.</span></li>
+      <li><span class="pt-emoji">📰</span><span><b>Picked up by tech media</b> — posts referenced by outlets including MacRumors.</span></li>
+    </ul>
+    <a class="btn solid" href="https://x.com/kaubin" target="_blank" rel="noopener">Follow @kaubin on X →</a>
+  </div>
+
+  <div class="embed-carousel-wrap apple-tweets-wrap">
+    <div class="carousel-controls">
+      <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous tweets">←</button>
+      <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next tweets">→</button>
+    </div>
+    <div class="ig-grid embed-carousel" id="tweet-embeds">
+      <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1755312748760629684"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1640834861043798017"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1752405548027294072"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1749524471755485471"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1765818163344589307"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/2090258224695910559"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1685712788981710848"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1649488487538630656"></a></blockquote></div>
     </div>
   </div>
-  <div class="overlay-body">
-    <p>NeoFreeBird-6 is a jailbreak tweak that reworks parts of the X iOS app — flicker-free source label display, a toggle to hide post locations, and a repositioned floating compose button, all built on Theos and Logos.</p>
-    <h4>Popular Tweets</h4>
-    <div class="embed-carousel-wrap">
-      <div class="carousel-controls">
-        <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous tweets">←</button>
-        <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next tweets">→</button>
-      </div>
-      <div class="ig-grid embed-carousel" id="tweet-embeds">
-        <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1755312748760629684"></a></blockquote></div>
-        <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1640834861043798017"></a></blockquote></div>
-        <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1752405548027294072"></a></blockquote></div>
-        <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1749524471755485471"></a></blockquote></div>
-        <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1765818163344589307"></a></blockquote></div>
-        <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/2090258224695910559"></a></blockquote></div>
-        <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1685712788981710848"></a></blockquote></div>
-        <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1649488487538630656"></a></blockquote></div>
-      </div>
-    </div>
-  </div>
-  <div class="overlay-foot">
-    <a class="btn solid" href="https://twitter.com/kaubin" target="_blank" rel="noopener">Follow @kaubin</a>
-    <a class="btn" href="#" onclick="closeOverlay('apple');return false;">Back to work</a>
-  </div>
-</div>
+</section>
 
 <!-- ABOUT -->
 <section class="about" id="about">
