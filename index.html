@@ -485,14 +485,14 @@
   #overlay-lgds .overlay-hero::after{display:none;}
   .lgds-mosaic{
     position:absolute;inset:-8%;z-index:0;
-    display:grid;grid-template-columns:repeat(9,1fr);gap:2px;
-    filter:blur(16px) saturate(1.15) brightness(1.02);
-    transform:scale(1.08);opacity:.6;
+    display:grid;grid-template-columns:repeat(9,1fr);gap:3px;
+    filter:saturate(1.1) brightness(1.03);
+    transform:scale(1.02);opacity:.85;
   }
   .lgds-mosaic img{width:100%;height:100%;object-fit:cover;display:block;}
   .lgds-mosaic-veil{
     position:absolute;inset:0;z-index:1;
-    background:linear-gradient(155deg, rgba(255,255,255,.72) 0%, #ffffff 68%);
+    background:linear-gradient(155deg, rgba(255,255,255,.28) 0%, rgba(255,255,255,.72) 68%);
   }
   #overlay-lgds .overlay-hero-content{max-width:640px;position:relative;z-index:2;}
   @media(max-width:700px){.lgds-mosaic{grid-template-columns:repeat(5,1fr);}}
