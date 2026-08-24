@@ -204,9 +204,9 @@
   .lgds-teaser .media-label .explore-cta{margin-top:12px;display:block;}
   .explore-pill{
     display:inline-flex;align-items:center;gap:10px;background:#fff;color:#0a0a0a;
-    font-family:var(--sans);font-weight:700;font-size:16px;letter-spacing:-0.01em;text-transform:none;
-    padding:16px 26px;border-radius:100px;transition:background .25s ease,color .25s ease,transform .25s ease,box-shadow .25s ease;
-    box-shadow:0 10px 30px rgba(0,0,0,0.35),0 0 0 1px rgba(255,255,255,0.08);
+    font-family:var(--sans);font-weight:700;font-size:17px;letter-spacing:-0.01em;text-transform:none;
+    padding:18px 30px;border-radius:100px;transition:background .25s ease,color .25s ease,transform .25s ease,box-shadow .25s ease;
+    box-shadow:0 0 0 1px rgba(255,255,255,0.15), 0 12px 36px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.12);
     animation:pillPulse 2.6s ease-in-out infinite;
   }
   .explore-pill svg{width:16px;height:16px;transition:transform .35s cubic-bezier(.2,.8,.2,1);}
@@ -586,7 +586,7 @@
 
 <!-- SELECTED WORK -->
 <section class="work" id="work">
-  <div class="section-head reveal">
+  <div class="section-head center reveal" style="margin:0 auto;text-align:center;padding-bottom:20px;">
     <span class="eyebrow">Selected Work</span>
     <h2>Things I've made.</h2>
   </div>
@@ -595,14 +595,14 @@
   <div class="feature-project">
     <div class="feature-copy scale-in">
       <h3>La Gang du Show</h3>
-      <p class="lead">Podcast, video production and digital content built around La Gang du Show — from raw session footage to everything that ends up on @lagangdushow.</p>
+      <p class="lead">Receiving raw files, assembling full episodes for streaming, cutting clips for social, designing thumbnails — handling the full post-production and content pipeline for @lagangdushow.</p>
       <div class="tag-row">
-        <span class="chip">Video production</span>
-        <span class="chip">Clips</span>
+        <span class="chip">Post-production</span>
         <span class="chip">Editing</span>
-        <span class="chip">Social content</span>
+        <span class="chip">Clips</span>
+        <span class="chip">Thumbnails</span>
+        <span class="chip">Distribution</span>
       </div>
-      <a class="cta-link" href="#lgds-detail" onclick="openDetail(event)">Watch project →</a>
     </div>
     <div class="placeholder-media lgds-teaser scale-in" onclick="toggleDetailFromCard()" role="button" tabindex="0" aria-controls="lgds-detail" aria-expanded="false" style="cursor:pointer;">
       <div class="lgds-stack">
@@ -648,7 +648,7 @@
         <div class="cloud-item" style="--tx:60.5%;--ty:-58.2%;--rot:-13.2deg;--sc:0.98;--delay:0.587s;"><img src="assets/thumbnails/IlUlJ_GkE0_maxres.jpg" alt="" loading="lazy"></div>
       </div>
       <div class="media-label">
-        <span class="ep-count">98+ episodes, clips &amp; reels</span>
+        <span class="ep-count">98+ episodes, clips, thumbnails &amp; design</span>
         <span class="explore-cta"><span class="explore-pill" id="explore-pill-label">Open project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></span>
       </div>
     </div>
@@ -918,22 +918,22 @@
 
 <!-- PRODUCTION -->
 <section class="production" id="production">
-  <div class="section-head reveal">
+  <div class="section-head center reveal" style="margin:0 auto;text-align:center;padding-bottom:20px;">
     <span class="eyebrow">Production</span>
     <h2>I work across the whole process.</h2>
-    <p>Not just one piece of it — planning, producing, editing, and getting it out into the world.</p>
+    <p>Not just one piece of it — receiving files, editing, cutting for social, and getting it distributed.</p>
   </div>
   <div class="prod-grid">
-    <div class="prod-cell reveal"><span class="idx">01</span><h3>Video Production</h3><p>Planning, filming, editing and publishing — end to end.</p></div>
-    <div class="prod-cell reveal"><span class="idx">02</span><h3>Podcast Production</h3><p>Recording, editing, clips and distribution across platforms.</p></div>
-    <div class="prod-cell reveal"><span class="idx">03</span><h3>Creative Direction</h3><p>Visual concepts, branding and how a project presents itself.</p></div>
-    <div class="prod-cell reveal"><span class="idx">04</span><h3>Post Production</h3><p>Editing, motion, sound and social-first content, cut for the feed.</p></div>
+    <div class="prod-cell reveal"><span class="idx">01</span><h3>Post-Production</h3><p>Receiving raw files, editing and assembling the final cut — audio, video, pacing, end to end.</p></div>
+    <div class="prod-cell reveal"><span class="idx">02</span><h3>Podcast Production</h3><p>Editing full episodes, exporting for streaming, and distributing across platforms.</p></div>
+    <div class="prod-cell reveal"><span class="idx">03</span><h3>Social Content</h3><p>Cutting clips, writing captions, designing thumbnails and managing the posting schedule.</p></div>
+    <div class="prod-cell reveal"><span class="idx">04</span><h3>Graphic Design</h3><p>Logos, overlays, sponsorship graphics and the visual identity that travels with the content.</p></div>
   </div>
 </section>
 
 <!-- DIGITAL PROJECTS -->
 <section class="digital" id="digital">
-  <div class="section-head reveal">
+  <div class="section-head center reveal" style="margin:0 auto;text-align:center;padding-bottom:20px;">
     <span class="eyebrow">Digital Projects</span>
     <h2>Built on the internet.</h2>
     <p>Websites, tools and interface experiments I've built outside of production work.</p>
@@ -946,7 +946,6 @@
         <h3>Repères Kilométriques</h3>
         <p>An interactive map of Quebec's highway kilometre markers, built on open MTQ data — with a mobile-friendly sidebar for navigating on the go.</p>
         <div class="digi-tech"><span>Leaflet.js</span><span>Open Data</span><span>GitHub Pages</span></div>
-        <a class="go" href="#">View project →</a>
       </div>
     </div>
     <div class="digi-card reveal">
@@ -956,7 +955,6 @@
         <h3>Websites &amp; Experiments</h3>
         <p>Fan sites and interactive builds — a CRT/VHS-styled countdown site, a PDF.js-powered 3D flipbook, and a regional towing-company map.</p>
         <div class="digi-tech"><span>HTML/CSS/JS</span><span>PDF.js</span><span>CSS Animation</span></div>
-        <a class="go" href="#">View project →</a>
       </div>
     </div>
   </div>
@@ -966,7 +964,7 @@
 <section class="apple-section">
   <div class="apple-inner reveal">
     <span class="eyebrow">Apple &amp; Tech</span>
-    <h2>Apple &amp; tech enthusiast.</h2>
+    <h2>Apple &amp; tech, closely followed.</h2>
     <p class="lead">Covering iPhone, iOS, Apple leaks, new features, and interesting tech news — with a focus on discovering and sharing things before they blow up.</p>
     <ul class="apple-points">
       <li><span class="pt-emoji">🍎</span><span><b>Apple / iPhone / iOS</b> — iPhone releases, iOS betas, new features, like the iOS 17.3 Apple Music collaborative playlist rollout.</span></li>
@@ -999,15 +997,15 @@
 <section class="about" id="about">
   <div class="about-wrap reveal">
     <span class="eyebrow">About</span>
-    <h2>A little bit of everything.</h2>
-    <p class="big">I'm Kevin Aubin, a digital creator who likes building things — making videos, designing interfaces, and turning ideas into things people can actually see and use.</p>
+    <h2>Based in Montréal.<br>Built on the internet.</h2>
+    <p class="big">I'm Kevin Aubin — I handle post-production, social content, graphic design and web projects. I take things from raw files to finished, published work.</p>
     <div class="about-line">My work sits between <b>Technology</b> · <b>Design</b> · <b>Video</b> · <b>Production</b> · <b>Internet culture</b></div>
   </div>
 </section>
 
 <!-- SKILLS -->
 <section class="skills">
-  <div class="section-head reveal">
+  <div class="section-head center reveal" style="margin:0 auto;text-align:center;padding-bottom:20px;">
     <span class="eyebrow">Skills</span>
     <h2>What I bring to the table.</h2>
   </div>
