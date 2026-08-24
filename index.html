@@ -253,11 +253,12 @@
   .platform-icons a:hover{background:rgba(255,255,255,0.12);border-color:var(--ink-dim);transform:translateY(-2px);}
   .platform-icons svg{width:19px;height:19px;fill:currentColor;}
   .platform-row .handle{font-size:14px;color:var(--ink-dim);margin-top:2px;font-weight:500;}
-  .overlay-body{max-width:760px;margin:0 auto;padding:80px 32px 140px;}
+  .overlay-body{max-width:1180px;margin:0 auto;padding:80px 32px 140px;}
   .overlay-body p{font-size:19px;line-height:1.75;color:var(--ink-dim);}
   .overlay-body h4{font-size:13px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;margin:56px 0 20px;font-family:var(--mono);}
   .overlay-body h4.logo-h4{display:flex;align-items:center;gap:10px;}
   .overlay-body h4.logo-h4 .ct-logo{width:15px;height:15px;flex-shrink:0;color:var(--ink-faint);}
+  .overlay-prose{max-width:720px;}
   .overlay-gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
   .overlay-gallery .g-tall{grid-column:span 2;aspect-ratio:16/8;}
   .overlay-gallery .g{aspect-ratio:4/3;border-radius:var(--radius-md);overflow:hidden;}
@@ -480,22 +481,10 @@
   #overlay-lgds .overlay-hero{
     height:auto;min-height:0;background:linear-gradient(155deg, var(--lgds-green-dim) 0%, #ffffff 60%);
     display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;padding:120px 32px 64px;position:relative;overflow:hidden;
+    text-align:center;padding:120px 32px 64px;
   }
   #overlay-lgds .overlay-hero::after{display:none;}
-  .lgds-mosaic{
-    position:absolute;inset:-8%;z-index:0;
-    display:grid;grid-template-columns:repeat(9,1fr);gap:3px;
-    filter:saturate(1.1) brightness(1.03);
-    transform:scale(1.02);opacity:.85;
-  }
-  .lgds-mosaic img{width:100%;height:100%;object-fit:cover;display:block;}
-  .lgds-mosaic-veil{
-    position:absolute;inset:0;z-index:1;
-    background:linear-gradient(155deg, rgba(255,255,255,.28) 0%, rgba(255,255,255,.72) 68%);
-  }
-  #overlay-lgds .overlay-hero-content{max-width:640px;position:relative;z-index:2;}
-  @media(max-width:700px){.lgds-mosaic{grid-template-columns:repeat(5,1fr);}}
+  #overlay-lgds .overlay-hero-content{max-width:640px;}
   #overlay-lgds .overlay-hero-content h2{font-size:clamp(28px,4vw,48px);}
   #overlay-lgds .lgds-hero-logo{width:120px;height:auto;margin:0 auto 26px;display:block;}
   #overlay-lgds .overlay-meta{justify-content:center;}
@@ -517,9 +506,9 @@
     display:flex;align-items:center;justify-content:center;background:var(--surface-2);
     color:var(--ink-faint);font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;
   }
-  .thumb-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:20px;}
+  .thumb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:24px;margin-bottom:20px;}
   .thumb-tile{
-    aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:var(--surface-2);
+    aspect-ratio:16/9;border-radius:var(--radius-md);overflow:hidden;background:var(--surface-2);
     border:1px solid var(--line);cursor:zoom-in;position:relative;
     transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease,border-color .35s ease;
   }
@@ -527,13 +516,12 @@
   .thumb-tile:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(0,0,0,0.12);border-color:rgba(10,10,10,0.2);}
   .thumb-tile:hover img{transform:scale(1.08);}
   .thumb-tile::after{
-    content:"⤢";position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;
+    content:"⤢";position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;
     background:rgba(255,255,255,0.9);color:#0a0a0a;display:flex;align-items:center;justify-content:center;
-    font-size:12px;opacity:0;transform:scale(.7);transition:opacity .25s ease,transform .25s ease;
+    font-size:13px;opacity:0;transform:scale(.7);transition:opacity .25s ease,transform .25s ease;
   }
   .thumb-tile:hover::after{opacity:1;transform:scale(1);}
-  @media(max-width:900px){.thumb-grid{grid-template-columns:repeat(3,1fr);gap:14px;}}
-  @media(max-width:640px){.thumb-grid{grid-template-columns:repeat(2,1fr);gap:10px;}}
+  @media(max-width:640px){.thumb-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;}}
 
   /* ---------- LIGHTBOX ---------- */
   .lightbox{
@@ -635,8 +623,6 @@
 <div class="overlay" id="overlay-lgds">
   <div class="overlay-close" onclick="closeOverlay('lgds')">✕</div>
   <div class="overlay-hero">
-    <div class="lgds-mosaic" id="lgds-mosaic" aria-hidden="true"></div>
-    <div class="lgds-mosaic-veil" aria-hidden="true"></div>
     <div class="overlay-hero-content">
       <img class="lgds-hero-logo" src="assets/lgds-logo.png" alt="La Gang du Show logo">
       <span class="eyebrow">La Gang du Show</span>
@@ -658,16 +644,18 @@
     </div>
   </div>
   <div class="overlay-body">
-    <h4>What I Handle</h4>
-    <p>Full-episode editing, short-form clip cuts, captioning, posting schedule, and the overall creative direction of how the show shows up online — the pacing, the pull-quotes, the moments that get pulled out for social.</p>
+    <div class="overlay-prose">
+      <h4>What I Handle</h4>
+      <p>Full-episode editing, short-form clip cuts, captioning, posting schedule, and the overall creative direction of how the show shows up online — the pacing, the pull-quotes, the moments that get pulled out for social.</p>
 
-    <h4>Logo &amp; Graphic Design</h4>
-    <p>Beyond editing, I designed the show's current logo and the graphics used across sponsorships and cross-promotion — plus a short animated logo reveal used as a video opener.</p>
-    <div class="design-grid">
-      <div class="design-tile"><img src="assets/lgds-logo.png" alt="La Gang du Show logo redesign" loading="lazy"></div>
-      <div class="design-tile"><img src="assets/lgds-patreon-crossover.png" alt="La Gang du Show x Patreon crossover graphic" loading="lazy"></div>
-      <div class="design-tile video-tile">
-        <video src="assets/lgds-logo-anim.webm" autoplay loop muted playsinline></video>
+      <h4>Logo &amp; Graphic Design</h4>
+      <p>Beyond editing, I designed the show's current logo and the graphics used across sponsorships and cross-promotion — plus a short animated logo reveal used as a video opener.</p>
+      <div class="design-grid">
+        <div class="design-tile"><img src="assets/lgds-logo.png" alt="La Gang du Show logo redesign" loading="lazy"></div>
+        <div class="design-tile"><img src="assets/lgds-patreon-crossover.png" alt="La Gang du Show x Patreon crossover graphic" loading="lazy"></div>
+        <div class="design-tile video-tile">
+          <video src="assets/lgds-logo-anim.webm" autoplay loop muted playsinline></video>
+        </div>
       </div>
     </div>
 
@@ -1023,127 +1011,6 @@
     const y = (e.clientY / window.innerHeight - 0.5) * 24;
     mesh.style.transform = `translate(${x}px, ${y}px)`;
   });
-
-  // All thumbnails from assets/thumbnails, used to build the blurred
-  // mosaic background behind the La Gang du Show project hero.
-  const lgdsThumbnails = [
-    'assets/thumbnails/-YmMGpobo6w_maxres.jpg',
-    'assets/thumbnails/1Tue0WxpmrM_maxres.jpg',
-    'assets/thumbnails/1dePqOPCHg0_maxres.jpg',
-    'assets/thumbnails/2FI9REQkRDE_maxres.jpg',
-    'assets/thumbnails/2LYYFtMKBZU_maxres.jpg',
-    'assets/thumbnails/3azoSmnTTdI_maxres.jpg',
-    'assets/thumbnails/4H067trfeRI_maxres.jpg',
-    'assets/thumbnails/4ScUKVjYsJw_maxres.jpg',
-    'assets/thumbnails/4k7xVsuX2Uw_maxres.jpg',
-    'assets/thumbnails/5jOfMSRfExg_maxres.jpg',
-    'assets/thumbnails/5kfPrkznKwQ_maxres.jpg',
-    'assets/thumbnails/6NAiNp6YUQU_maxres.jpg',
-    'assets/thumbnails/6gWymkYEQk8_maxres.jpg',
-    'assets/thumbnails/7tRcQ3yaGOI_maxres.jpg',
-    'assets/thumbnails/8jHfza36qj0_maxres.jpg',
-    'assets/thumbnails/8ojU0Nih2kE_maxres.jpg',
-    'assets/thumbnails/9lwh21i7Dcc_maxres.jpg',
-    'assets/thumbnails/ATEXA8RaJLk_maxres.jpg',
-    'assets/thumbnails/B-hg2boxZbE_maxres.jpg',
-    'assets/thumbnails/BJ0OGsC-8HA_maxres.jpg',
-    'assets/thumbnails/BPB-fco2Sjc_maxres.jpg',
-    'assets/thumbnails/BQwsA7qWv4A_maxres.jpg',
-    'assets/thumbnails/Cp49DEbONJg_maxres.jpg',
-    'assets/thumbnails/Dcy2Lxr6qEY_maxres.jpg',
-    'assets/thumbnails/EHM_N2nli3Y_maxres.jpg',
-    'assets/thumbnails/EHrL4F3ZGiI_maxres.jpg',
-    'assets/thumbnails/EMOH1XQal1M_maxres.jpg',
-    'assets/thumbnails/EupitF1rGKg_maxres.jpg',
-    'assets/thumbnails/F3QmONP9V_4_maxres.jpg',
-    'assets/thumbnails/FNh6UeEIMBg_maxres.jpg',
-    'assets/thumbnails/G8ibiORf994_maxres.jpg',
-    'assets/thumbnails/IF4zCr0q4z0_maxres.jpg',
-    'assets/thumbnails/IPtSD5UuCkA_maxres.jpg',
-    'assets/thumbnails/Id5a4wxzx4A_maxres.jpg',
-    'assets/thumbnails/IlUlJ_GkE0_maxres.jpg',
-    'assets/thumbnails/J9g7j2GqKPM_maxres.jpg',
-    'assets/thumbnails/K0mYjzQlIgg_maxres.jpg',
-    'assets/thumbnails/KMpn0we0o8g_maxres.jpg',
-    'assets/thumbnails/KZnccDjskr8_maxres.jpg',
-    'assets/thumbnails/Ktx-gL8SUOM_maxres.jpg',
-    'assets/thumbnails/NWkNWwhnvXw_maxres.jpg',
-    'assets/thumbnails/O8NqJbzmrFg_maxres.jpg',
-    'assets/thumbnails/OhX9mfgrJ1Y_maxres.jpg',
-    'assets/thumbnails/Om9e-eAQ0rc_maxres.jpg',
-    'assets/thumbnails/SLdPEg2RHxo_maxres.jpg',
-    'assets/thumbnails/SZy6VU3tB0I_maxres.jpg',
-    'assets/thumbnails/TZkTO4NfS5U_maxres.jpg',
-    'assets/thumbnails/UPKblWhTJkI_maxres.jpg',
-    'assets/thumbnails/V08AN0hCIDQ_maxres.jpg',
-    'assets/thumbnails/WpuBwkuNdZ4_maxres.jpg',
-    'assets/thumbnails/WqAuRUnHES4_maxres.jpg',
-    'assets/thumbnails/XU8eEXNcVFY_maxres.jpg',
-    'assets/thumbnails/XUqn0rghRIc_maxres.jpg',
-    'assets/thumbnails/YTmxNkPUUrs_maxres.jpg',
-    'assets/thumbnails/aGVeX9GhjPc_maxres.jpg',
-    'assets/thumbnails/an7pULTSdnw_maxres.jpg',
-    'assets/thumbnails/anQy3B-SCCM_maxres.jpg',
-    'assets/thumbnails/atW-ahGImf0_maxres.jpg',
-    'assets/thumbnails/bpfJChdzZ5c_maxres.jpg',
-    'assets/thumbnails/cS-Nanb6MXY_maxres.jpg',
-    'assets/thumbnails/c_WojLcUqVw_maxres.jpg',
-    'assets/thumbnails/dXufQn96DE4_maxres.jpg',
-    'assets/thumbnails/dhRTKKmCRtE_maxres.jpg',
-    'assets/thumbnails/e1xzyIjeIeI_maxres.jpg',
-    'assets/thumbnails/eMDlXNikBfA_maxres.jpg',
-    'assets/thumbnails/fHVsNAgzoIo_maxres.jpg',
-    'assets/thumbnails/fYunYPG8mr8_maxres.jpg',
-    'assets/thumbnails/frKPmqEfLg8_maxres.jpg',
-    'assets/thumbnails/hJo43jiU8NA_maxres.jpg',
-    'assets/thumbnails/hl-EdE1SBnk_maxres.jpg',
-    'assets/thumbnails/huZ4rVeMIHY_maxres.jpg',
-    'assets/thumbnails/ijtbbl95r3Q_maxres.jpg',
-    'assets/thumbnails/j08L6_MoQ8o_maxres.jpg',
-    'assets/thumbnails/k_5-pItMFyQ_maxres.jpg',
-    'assets/thumbnails/lTzjjxL8Cyg_maxres.jpg',
-    'assets/thumbnails/lfuIq0PtC7c_maxres.jpg',
-    'assets/thumbnails/mZmJ3VEBNLA_maxres.jpg',
-    'assets/thumbnails/meSYq4n4D5I_maxres.jpg',
-    'assets/thumbnails/mw1wfPSF8_o_maxres.jpg',
-    'assets/thumbnails/noCqZYzERW4_maxres.jpg',
-    'assets/thumbnails/o7qT_qfxd6k_maxres.jpg',
-    'assets/thumbnails/oa_gX80mIJ4_maxres.jpg',
-    'assets/thumbnails/ofM8aJYMl7E_maxres.jpg',
-    'assets/thumbnails/opMoBwbktbM_maxres.jpg',
-    'assets/thumbnails/r4Goxs4pyk_maxres.jpg',
-    'assets/thumbnails/s2hfsvMmTNU_maxres.jpg',
-    'assets/thumbnails/t6KGJM-32Rw_maxres.jpg',
-    'assets/thumbnails/tQ6wnrJqPSc_maxres.jpg',
-    'assets/thumbnails/uPGo2qK8-uA_maxres.jpg',
-    'assets/thumbnails/v5q2iwLJw74_maxres.jpg',
-    'assets/thumbnails/vBEIk3X4UFQ_maxres.jpg',
-    'assets/thumbnails/wHLfWAcGLFU_maxres.jpg',
-    'assets/thumbnails/wfGyS93Pggc_maxres.jpg',
-    'assets/thumbnails/x3BdVm7A9x8_maxres.jpg',
-    'assets/thumbnails/xLvXkqjOxg_maxres.jpg',
-    'assets/thumbnails/y-AJIjmiMY8_maxres.jpg',
-    'assets/thumbnails/yDfDqoYG9gs_maxres.jpg',
-    'assets/thumbnails/zTdmBil__cI_maxres.jpg',
-    'assets/thumbnails/zcpirhs0cRY_maxres.jpg',
-  ];
-
-  function buildLgdsMosaic(){
-    const mosaic = document.getElementById('lgds-mosaic');
-    if (!mosaic || mosaic.childElementCount) return;
-    // Shuffle so the tile order looks organic instead of alphabetical.
-    const shuffled = [...lgdsThumbnails].sort(() => Math.random() - 0.5);
-    // Enough tiles to comfortably tile the hero at any width; repeats if needed.
-    const tileCount = 45;
-    for (let i = 0; i < tileCount; i++){
-      const img = document.createElement('img');
-      img.src = shuffled[i % shuffled.length];
-      img.loading = 'lazy';
-      img.alt = '';
-      mosaic.appendChild(img);
-    }
-  }
-  buildLgdsMosaic();
 
   const igScript = document.createElement('script');
   igScript.src = '//www.instagram.com/embed.js';
