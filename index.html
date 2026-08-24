@@ -469,38 +469,16 @@
 
   footer{padding:50px 24px;text-align:center;font-size:12px;color:var(--ink-faint);font-family:var(--mono);border-top:1px solid var(--line);}
 
-  /* ---------- LA GANG DU SHOW — white/green theme, scoped to this project only ---------- */
-  #overlay-lgds{
-    --bg:#ffffff;--surface:#f6f9f7;--surface-2:#eef4f0;
-    --ink:#0a0a0a;--ink-dim:#4a4a4a;--ink-faint:#767676;
-    --line:rgba(10,10,10,0.12);
-    --accent:var(--lgds-green);--accent-dim:var(--lgds-green-dim);
-    --violet:#2f9e6b;
-    background:var(--bg);color:var(--ink);
-  }
+  /* ---------- LA GANG DU SHOW — layout tweaks only; uses the default black theme ---------- */
   #overlay-lgds .overlay-hero{
-    height:auto;min-height:0;background:linear-gradient(155deg, var(--lgds-green-dim) 0%, #ffffff 60%);
+    height:auto;min-height:0;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;padding:120px 32px 64px;
   }
-  #overlay-lgds .overlay-hero::after{display:none;}
   #overlay-lgds .overlay-hero-content{max-width:640px;}
   #overlay-lgds .overlay-hero-content h2{font-size:clamp(28px,4vw,48px);}
-  #overlay-lgds .lgds-hero-logo{width:120px;height:auto;margin:0 auto 26px;display:block;}
+  #overlay-lgds .lgds-hero-logo{width:120px;height:auto;margin:0 auto 26px;display:block;filter:brightness(0) invert(1);}
   #overlay-lgds .overlay-meta{justify-content:center;}
-  #overlay-lgds .platform-icons a{background:rgba(10,10,10,0.045);border-color:var(--line);color:var(--ink);}
-  #overlay-lgds .platform-icons a:hover{background:rgba(10,10,10,0.09);border-color:var(--ink-faint);}
-  #overlay-lgds .overlay-close{background:rgba(10,10,10,0.06);border-color:var(--line);color:var(--ink);}
-  #overlay-lgds .overlay-close:hover{background:rgba(10,10,10,0.12);}
-  #overlay-lgds .carousel-btn{background:rgba(10,10,10,0.03);border-color:var(--line);color:var(--ink);}
-  #overlay-lgds .carousel-btn:hover{background:rgba(10,10,10,0.07);border-color:var(--ink-faint);}
-  #overlay-lgds .btn.solid{background:var(--accent);color:#fff;border-color:var(--accent);}
-  #overlay-lgds .btn.solid:hover{background:#175c39;border-color:#175c39;}
-  #overlay-lgds .btn:not(.solid){color:var(--ink);}
-  #overlay-lgds .btn:not(.solid):hover{background:rgba(10,10,10,0.04);}
-  #overlay-lgds .tiktok-card,
-  #overlay-lgds .reel-card{background:#ffffff;}
-  #overlay-lgds .embed-kind{color:var(--ink-faint);}
   #overlay-lgds .thumb-placeholder{
     aspect-ratio:16/9;border:1.5px dashed var(--line);border-radius:var(--radius-md);
     display:flex;align-items:center;justify-content:center;background:var(--surface-2);
