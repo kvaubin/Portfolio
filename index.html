@@ -25,7 +25,7 @@
     --mono:"SF Mono","SFMono-Regular",ui-monospace,Menlo,Consolas,monospace;
   }
   *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;scroll-padding-top:56px;}
   body{
     background:var(--bg);color:var(--ink);font-family:var(--sans);
     overflow-x:hidden;
@@ -127,7 +127,7 @@
   .section-head.left{text-align:left;margin:0;max-width:640px;}
 
   /* ---------- SELECTED WORK ---------- */
-  .work{background:var(--bg);padding:110px 0 60px;}
+  .work{background:var(--bg);padding:72px 0 60px;}
 
   .placeholder-media{
     position:relative;overflow:hidden;border-radius:var(--radius-lg);
@@ -159,11 +159,10 @@
   .lgds-teaser:hover .lgds-teaser-thumb{transform:scale(1.03);opacity:0;}
   .lgds-thumbcloud{position:absolute;inset:0;z-index:4;overflow:visible;pointer-events:none;}
   .cloud-item{
-    position:absolute;top:50%;left:50%;width:23%;aspect-ratio:16/9;
+    position:absolute;top:50%;left:50%;width:17%;aspect-ratio:16/9;
     transform:translate(-50%,-50%) scale(.14) rotate(0deg);
     opacity:0;transition:transform .8s cubic-bezier(.2,.8,.2,1), opacity .5s ease;
     transition-delay:0s;
-    z-index:var(--z,1);
   }
   .lgds-teaser:hover .cloud-item{
     opacity:1;
@@ -356,13 +355,6 @@
   .btn:not(.solid):hover{border-color:var(--ink-dim);}
 
   /* ---------- PODCASTS & CLIPS ---------- */
-  .clips-section{background:var(--surface);padding:160px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  /* Smaller cards on the main page only — the overlay ("bigger page") keeps the original larger sizing */
-  .clips-section .tiktok-card{flex:0 0 min(230px,60vw);min-height:410px;padding:6px;}
-  .clips-section .embed-carousel .h-card{width:min(300px,72vw);flex-basis:min(300px,72vw);}
-  .clips-section .h-card .name{font-size:15px;}
-  .clips-section .h-card .kind{font-size:10px;}
-  .clips-section .h-card.video .h-meta{padding:12px 14px 16px;}
   .hgallery{
     margin-top:70px;display:flex;gap:20px;overflow-x:auto;
     padding:10px 24px 30px calc(50vw - 620px);scroll-snap-type:x mandatory;
@@ -584,8 +576,6 @@
     <p>A collection of projects, productions, ideas and experiments.</p>
   </div>
 
-  <div style="height:56px"></div>
-
   <!-- PROJECT 01 — LA GANG DU SHOW -->
   <div class="feature-project">
     <div class="feature-copy scale-in">
@@ -606,36 +596,38 @@
       </div>
       <img class="lgds-teaser-thumb" src="assets/thumbnails/s2hfsvMmTNU_maxres.jpg" alt="La Gang du Show — episode thumbnail">
       <div class="lgds-thumbcloud">
-        <div class="cloud-item" style="--tx:-116.4%;--ty:-70.8%;--rot:2.1deg;--sc:0.93;--delay:0.144s;--z:4;"><img src="assets/thumbnails/-YmMGpobo6w_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:-68.7%;--ty:-69.1%;--rot:-6.2deg;--sc:1.00;--delay:0.112s;--z:5;"><img src="assets/thumbnails/1Tue0WxpmrM_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:-26.7%;--ty:-68.5%;--rot:-6.0deg;--sc:0.93;--delay:0.093s;--z:6;"><img src="assets/thumbnails/1dePqOPCHg0_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:22.4%;--ty:-65.4%;--rot:-5.3deg;--sc:0.96;--delay:0.093s;--z:6;"><img src="assets/thumbnails/2FI9REQkRDE_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:70.0%;--ty:-64.4%;--rot:1.1deg;--sc:0.98;--delay:0.112s;--z:5;"><img src="assets/thumbnails/2LYYFtMKBZU_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:118.8%;--ty:-71.6%;--rot:5.0deg;--sc:0.97;--delay:0.144s;--z:4;"><img src="assets/thumbnails/3azoSmnTTdI_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:-117.8%;--ty:-37.1%;--rot:-2.7deg;--sc:1.05;--delay:0.121s;--z:5;"><img src="assets/thumbnails/4H067trfeRI_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:-71.6%;--ty:-33.3%;--rot:1.9deg;--sc:0.98;--delay:0.081s;--z:6;"><img src="assets/thumbnails/4ScUKVjYsJw_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:-22.6%;--ty:-37.5%;--rot:-6.2deg;--sc:0.95;--delay:0.05s;--z:8;"><img src="assets/thumbnails/4k7xVsuX2Uw_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:24.4%;--ty:-34.6%;--rot:-2.6deg;--sc:1.01;--delay:0.05s;--z:8;"><img src="assets/thumbnails/5jOfMSRfExg_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:68.6%;--ty:-35.6%;--rot:4.1deg;--sc:1.03;--delay:0.081s;--z:6;"><img src="assets/thumbnails/5kfPrkznKwQ_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:113.0%;--ty:-33.4%;--rot:0.4deg;--sc:1.06;--delay:0.121s;--z:5;"><img src="assets/thumbnails/6gWymkYEQk8_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:-113.2%;--ty:-1.7%;--rot:6.7deg;--sc:0.94;--delay:0.112s;--z:5;"><img src="assets/thumbnails/8ojU0Nih2kE_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:-69.7%;--ty:2.1%;--rot:-4.9deg;--sc:1.00;--delay:0.068s;--z:7;"><img src="assets/thumbnails/9lwh21i7Dcc_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:-26.7%;--ty:1.3%;--rot:3.7deg;--sc:1.01;--delay:0.022s;--z:9;"><img src="assets/thumbnails/ATEXA8RaJLk_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:26.0%;--ty:-1.5%;--rot:2.7deg;--sc:1.02;--delay:0.022s;--z:9;"><img src="assets/thumbnails/B-hg2boxZbE_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:69.6%;--ty:-0.4%;--rot:4.8deg;--sc:1.07;--delay:0.068s;--z:7;"><img src="assets/thumbnails/BJ0OGsC-8HA_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:114.8%;--ty:1.3%;--rot:-6.2deg;--sc:1.03;--delay:0.112s;--z:5;"><img src="assets/thumbnails/BPB-fco2Sjc_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:-113.8%;--ty:37.9%;--rot:4.5deg;--sc:0.97;--delay:0.121s;--z:5;"><img src="assets/thumbnails/BQwsA7qWv4A_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:-69.9%;--ty:35.3%;--rot:-6.7deg;--sc:0.99;--delay:0.081s;--z:6;"><img src="assets/thumbnails/Cp49DEbONJg_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:-25.7%;--ty:30.9%;--rot:-6.2deg;--sc:1.04;--delay:0.05s;--z:8;"><img src="assets/thumbnails/Dcy2Lxr6qEY_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:20.0%;--ty:32.0%;--rot:-1.5deg;--sc:1.06;--delay:0.05s;--z:8;"><img src="assets/thumbnails/EHM_N2nli3Y_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:65.6%;--ty:33.6%;--rot:0.7deg;--sc:1.06;--delay:0.081s;--z:6;"><img src="assets/thumbnails/EHrL4F3ZGiI_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:117.6%;--ty:36.9%;--rot:-3.1deg;--sc:0.99;--delay:0.121s;--z:5;"><img src="assets/thumbnails/EMOH1XQal1M_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:-116.1%;--ty:71.1%;--rot:6.4deg;--sc:0.94;--delay:0.144s;--z:4;"><img src="assets/thumbnails/EupitF1rGKg_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:-71.6%;--ty:65.9%;--rot:-3.7deg;--sc:1.00;--delay:0.112s;--z:5;"><img src="assets/thumbnails/F3QmONP9V_4_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:-22.3%;--ty:66.1%;--rot:-6.9deg;--sc:0.99;--delay:0.093s;--z:6;"><img src="assets/thumbnails/FNh6UeEIMBg_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:22.0%;--ty:68.5%;--rot:6.3deg;--sc:1.03;--delay:0.093s;--z:6;"><img src="assets/thumbnails/G8ibiORf994_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:69.1%;--ty:68.9%;--rot:2.5deg;--sc:0.93;--delay:0.112s;--z:5;"><img src="assets/thumbnails/IF4zCr0q4z0_maxres.jpg" alt="" loading="lazy"></div>
-        <div class="cloud-item" style="--tx:118.2%;--ty:70.2%;--rot:5.2deg;--sc:1.05;--delay:0.144s;--z:4;"><img src="assets/thumbnails/IPtSD5UuCkA_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:13.3%;--ty:-2.1%;--rot:4.2deg;--sc:0.84;--delay:0.016s;"><img src="assets/thumbnails/-YmMGpobo6w_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-19.9%;--ty:7.6%;--rot:0.2deg;--sc:0.83;--delay:0.031s;"><img src="assets/thumbnails/1Tue0WxpmrM_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-0.6%;--ty:-21.9%;--rot:-2.1deg;--sc:1.07;--delay:0.04s;"><img src="assets/thumbnails/1dePqOPCHg0_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:21.5%;--ty:19.1%;--rot:12.5deg;--sc:0.99;--delay:0.066s;"><img src="assets/thumbnails/2FI9REQkRDE_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-39.8%;--ty:-7.3%;--rot:10.0deg;--sc:0.91;--delay:0.076s;"><img src="assets/thumbnails/2LYYFtMKBZU_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:38.2%;--ty:-16.7%;--rot:8.9deg;--sc:0.87;--delay:0.107s;"><img src="assets/thumbnails/3azoSmnTTdI_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-12.7%;--ty:29.7%;--rot:1.3deg;--sc:0.84;--delay:0.11s;"><img src="assets/thumbnails/4H067trfeRI_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-28.7%;--ty:-29.0%;--rot:-2.0deg;--sc:0.91;--delay:0.144s;"><img src="assets/thumbnails/4ScUKVjYsJw_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:56.8%;--ty:11.2%;--rot:8.2deg;--sc:1.03;--delay:0.151s;"><img src="assets/thumbnails/4k7xVsuX2Uw_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-58.8%;--ty:14.7%;--rot:10.5deg;--sc:1.04;--delay:0.171s;"><img src="assets/thumbnails/5jOfMSRfExg_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:32.5%;--ty:-38.6%;--rot:-2.3deg;--sc:1.05;--delay:0.185s;"><img src="assets/thumbnails/5kfPrkznKwQ_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:21.1%;--ty:37.3%;--rot:4.7deg;--sc:1.05;--delay:0.215s;"><img src="assets/thumbnails/6gWymkYEQk8_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-60.8%;--ty:-23.1%;--rot:5.5deg;--sc:1.0;--delay:0.233s;"><img src="assets/thumbnails/8ojU0Nih2kE_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:74.5%;--ty:-7.7%;--rot:12.5deg;--sc:0.96;--delay:0.254s;"><img src="assets/thumbnails/9lwh21i7Dcc_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-49.2%;--ty:39.8%;--rot:4.1deg;--sc:1.12;--delay:0.277s;"><img src="assets/thumbnails/ATEXA8RaJLk_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-12.3%;--ty:-49.0%;--rot:4.7deg;--sc:0.83;--delay:0.284s;"><img src="assets/thumbnails/B-hg2boxZbE_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:62.1%;--ty:30.1%;--rot:-12.3deg;--sc:1.05;--delay:0.292s;"><img src="assets/thumbnails/BJ0OGsC-8HA_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-89.2%;--ty:1.5%;--rot:10.4deg;--sc:0.84;--delay:0.319s;"><img src="assets/thumbnails/BPB-fco2Sjc_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:64.0%;--ty:-35.2%;--rot:8.9deg;--sc:1.08;--delay:0.332s;"><img src="assets/thumbnails/BQwsA7qWv4A_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-4.9%;--ty:53.7%;--rot:10.8deg;--sc:1.11;--delay:0.347s;"><img src="assets/thumbnails/Cp49DEbONJg_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-63.1%;--ty:-44.6%;--rot:-7.5deg;--sc:0.97;--delay:0.378s;"><img src="assets/thumbnails/Dcy2Lxr6qEY_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:94.0%;--ty:4.7%;--rot:-2.3deg;--sc:0.93;--delay:0.395s;"><img src="assets/thumbnails/EHM_N2nli3Y_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-77.6%;--ty:34.7%;--rot:0.4deg;--sc:1.01;--delay:0.416s;"><img src="assets/thumbnails/EHrL4F3ZGiI_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:18.6%;--ty:-56.1%;--rot:7.8deg;--sc:1.08;--delay:0.438s;"><img src="assets/thumbnails/EMOH1XQal1M_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:50.5%;--ty:52.5%;--rot:-11.1deg;--sc:1.01;--delay:0.434s;"><img src="assets/thumbnails/EupitF1rGKg_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-103.8%;--ty:-20.7%;--rot:-9.5deg;--sc:0.92;--delay:0.452s;"><img src="assets/thumbnails/F3QmONP9V_4_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:93.5%;--ty:-28.8%;--rot:-11.2deg;--sc:0.93;--delay:0.469s;"><img src="assets/thumbnails/FNh6UeEIMBg_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-39.2%;--ty:60.5%;--rot:-9.8deg;--sc:0.9;--delay:0.496s;"><img src="assets/thumbnails/G8ibiORf994_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-38.8%;--ty:-64.4%;--rot:9.8deg;--sc:1.12;--delay:0.518s;"><img src="assets/thumbnails/IF4zCr0q4z0_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:100.2%;--ty:28.8%;--rot:-11.1deg;--sc:0.92;--delay:0.53s;"><img src="assets/thumbnails/IPtSD5UuCkA_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-108.8%;--ty:15.4%;--rot:-13.4deg;--sc:1.11;--delay:0.556s;"><img src="assets/thumbnails/Id5a4wxzx4A_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:60.5%;--ty:-58.2%;--rot:-13.2deg;--sc:0.98;--delay:0.587s;"><img src="assets/thumbnails/IlUlJ_GkE0_maxres.jpg" alt="" loading="lazy"></div>
       </div>
       <div class="lgds-teaser-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
       <div class="media-label">
@@ -834,60 +826,6 @@
     </div>
   </div>
 </div>
-
-<!-- PODCASTS & CLIPS GALLERY -->
-<section class="clips-section" id="clips">
-  <div class="section-head reveal">
-    <span class="eyebrow">Podcasts &amp; Clips</span>
-    <h2>Watch the clips. Then catch the show.</h2>
-    <p>Full episodes on YouTube, with the best moments cut down for TikTok and short-form.</p>
-  </div>
-
-  <div class="carousel-title logo-title">
-    <svg class="ct-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img"><title>TikTok</title><path d="M16.6 3h-3.2v12.4a3.1 3.1 0 1 1-2.5-3.04v-3.24a6.34 6.34 0 1 0 5.7 6.3V9.7a7.6 7.6 0 0 0 4.4 1.4V7.9a4.4 4.4 0 0 1-4.4-4.4V3Z"/></svg>
-    <svg class="ct-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" role="img"><title>Instagram</title><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg>
-    <svg class="ct-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img"><title>Shorts</title><rect x="6" y="2" width="12" height="20" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10.3 8.3v7.4l6.2-3.7-6.2-3.7Z"/></svg>
-    <span>Clips</span>
-  </div>
-  <div class="embed-carousel-wrap">
-    <div class="carousel-controls">
-      <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous TikToks">←</button>
-      <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next TikToks">→</button>
-    </div>
-    <div class="embed-carousel">
-      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7565826006045445393" data-video-id="7565826006045445393" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7490818157410536759" data-video-id="7490818157410536759" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7581037676082498823" data-video-id="7581037676082498823" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7461824260433054982" data-video-id="7461824260433054982" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7613354413452709127" data-video-id="7613354413452709127" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7562769676053269781" data-video-id="7562769676053269781" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7474461302245657911" data-video-id="7474461302245657911" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7588101313523698961" data-video-id="7588101313523698961" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7607749201706913025" data-video-id="7607749201706913025" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7627381202441227541" data-video-id="7627381202441227541" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-      <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7529467586854128902" data-video-id="7529467586854128902" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
-    </div>
-  </div>
-
-  <div class="carousel-title logo-title">
-    <svg class="ct-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img"><title>YouTube</title><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg>
-    <span>Full Episodes</span>
-  </div>
-  <div class="embed-carousel-wrap">
-    <div class="carousel-controls">
-      <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous episodes">←</button>
-      <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next episodes">→</button>
-    </div>
-    <div class="embed-carousel">
-      <div class="h-card video reveal"><div class="yt-embed" data-yt-id="6NAiNp6YUQU"><img class="yt-poster" src="assets/thumbnails/6NAiNp6YUQU_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=6NAiNp6YUQU" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Notre homme AchilleFPS nous dit TOUT sur son aventure à OD Chypre</span><span class="sub">La Gang du Show</span></div></div>
-      <div class="h-card video reveal"><div class="yt-embed" data-yt-id="8jHfza36qj0"><img class="yt-poster" src="assets/thumbnails/8jHfza36qj0_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=8jHfza36qj0" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">20 ans d’amitié avec Laurie Doucet : OD, Justin Bieber et nos vies de bars</span><span class="sub">La Gang du Show</span></div></div>
-      <div class="h-card video reveal"><div class="yt-embed" data-yt-id="y-AJIjmiMY8"><img class="yt-poster" src="assets/thumbnails/y-AJIjmiMY8_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=y-AJIjmiMY8" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Les BUCKBOYS vont EXPLOSER le Québec</span><span class="sub">La Gang du Show</span></div></div>
-      <div class="h-card video reveal"><div class="yt-embed" data-yt-id="7tRcQ3yaGOI" data-yt-start="1181"><img class="yt-poster" src="assets/thumbnails/7tRcQ3yaGOI_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=7tRcQ3yaGOI" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Rosalie Lessard sans filtre sur son parcours atypique</span><span class="sub">La Gang du Show</span></div></div>
-      <div class="h-card video reveal"><div class="yt-embed" data-yt-id="s2hfsvMmTNU"><img class="yt-poster" src="assets/thumbnails/s2hfsvMmTNU_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=s2hfsvMmTNU" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">AchilleFPS revient sur son match Lewislefou VS Oli Primeau</span><span class="sub">La Gang du Show</span></div></div>
-      <div class="h-card video reveal"><div class="yt-embed" data-yt-id="wfGyS93Pggc"><img class="yt-poster" src="assets/thumbnails/wfGyS93Pggc_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=wfGyS93Pggc" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Félix “Rouge Forêt” Bouchard ne digère PAS la défaite du Canada 🇨🇦</span><span class="sub">La Gang du Show</span></div></div>
-    </div>
-  </div>
-</section>
 
 <!-- PRODUCTION -->
 <section class="production" id="production">
