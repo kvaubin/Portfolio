@@ -178,12 +178,15 @@
   .lgds-teaser .media-label .ep-count{display:block;font-size:15px;font-weight:700;color:#fff;letter-spacing:-0.01em;text-transform:none;font-family:var(--sans);text-shadow:0 2px 12px rgba(0,0,0,0.5);}
   .lgds-teaser .media-label .explore-cta{margin-top:12px;display:block;}
   .explore-pill{
-    display:inline-flex;align-items:center;gap:7px;background:#fff;color:#0a0a0a;
-    font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:0;text-transform:none;
-    padding:10px 17px;border-radius:100px;transition:background .25s ease,color .25s ease;
+    display:inline-flex;align-items:center;gap:10px;background:#fff;color:#0a0a0a;
+    font-family:var(--sans);font-weight:700;font-size:16px;letter-spacing:-0.01em;text-transform:none;
+    padding:16px 26px;border-radius:100px;transition:background .25s ease,color .25s ease,transform .25s ease,box-shadow .25s ease;
+    box-shadow:0 10px 30px rgba(0,0,0,0.35),0 0 0 1px rgba(255,255,255,0.08);
+    animation:pillPulse 2.6s ease-in-out infinite;
   }
-  .explore-pill svg{width:13px;height:13px;transition:transform .25s ease;}
-  .lgds-teaser:hover .explore-pill{background:var(--accent);color:#fff;}
+  .explore-pill svg{width:16px;height:16px;transition:transform .25s ease;}
+  @keyframes pillPulse{0%,100%{box-shadow:0 10px 30px rgba(0,0,0,0.35),0 0 0 1px rgba(255,255,255,0.08);}50%{box-shadow:0 10px 34px rgba(41,151,255,0.45),0 0 0 1px rgba(255,255,255,0.14);}}
+  .lgds-teaser:hover .explore-pill{background:var(--accent);color:#fff;transform:scale(1.05);}
   .lgds-teaser:hover .explore-pill svg{transform:translateX(4px);}
   @media(max-width:520px){.lgds-stack{display:none;}}
   .grad-clip1{background:linear-gradient(155deg,#1c2438,#0a0a0a);}
@@ -253,6 +256,8 @@
   .overlay-body{max-width:760px;margin:0 auto;padding:80px 32px 140px;}
   .overlay-body p{font-size:19px;line-height:1.75;color:var(--ink-dim);}
   .overlay-body h4{font-size:13px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;margin:56px 0 20px;font-family:var(--mono);}
+  .overlay-body h4.logo-h4{display:flex;align-items:center;gap:10px;}
+  .overlay-body h4.logo-h4 .ct-logo{width:15px;height:15px;flex-shrink:0;color:var(--ink-faint);}
   .overlay-gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
   .overlay-gallery .g-tall{grid-column:span 2;aspect-ratio:16/8;}
   .overlay-gallery .g{aspect-ratio:4/3;border-radius:var(--radius-md);overflow:hidden;}
@@ -276,6 +281,9 @@
   .embed-carousel::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px;}
   .embed-carousel .h-card{width:min(420px,82vw);flex-basis:min(420px,82vw);}
   .carousel-title{max-width:1180px;margin:52px auto 0;padding:0 24px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);}
+  .carousel-title.logo-title{display:flex;align-items:center;gap:10px;}
+  .carousel-title.logo-title .ct-logo{width:15px;height:15px;flex-shrink:0;color:var(--ink-dim);}
+  .carousel-title.logo-title span{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;}
   .carousel-controls{display:flex;gap:8px;position:absolute;right:24px;top:-42px;}
   .carousel-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--ink);cursor:pointer;font-size:16px;transition:.2s;}
   .carousel-btn:hover{background:rgba(255,255,255,.10);border-color:var(--ink-dim);}
@@ -416,6 +424,14 @@
   .apple-points .pt-emoji{font-size:18px;line-height:1.5;flex-shrink:0;}
   .apple-inner .btn.solid{margin-top:34px;}
   .apple-tweets-wrap{max-width:1180px;margin:64px auto 0;padding:0 32px;position:relative;}
+  /* Twitter's own "dark" theme renders a dark-navy card we can't restyle from
+     the outside (it's a cross-origin iframe) — this gets us as close to true
+     black as possible: a pure-black card background so the navy corners/edges
+     the widget leaves exposed read as black, plus a filter on the iframe
+     itself to desaturate and darken the blue tint Twitter renders internally. */
+  #tweet-embeds .reel-card{background:#000;padding:2px;}
+  #tweet-embeds .twitter-tweet-rendered{filter:saturate(.55) brightness(.86) contrast(1.05);}
+  #tweet-embeds iframe{background:#000 !important;}
   @media(max-width:640px){.apple-tweets-wrap{padding:0 20px;}}
   .digi-tech span{font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);border:1px solid var(--line);padding:4px 9px;border-radius:100px;}
   .digi-body .go{margin-top:18px;display:inline-block;font-size:13.5px;font-weight:600;color:var(--accent);}
@@ -464,10 +480,22 @@
   #overlay-lgds .overlay-hero{
     height:auto;min-height:0;background:linear-gradient(155deg, var(--lgds-green-dim) 0%, #ffffff 60%);
     display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;padding:120px 32px 64px;
+    text-align:center;padding:120px 32px 64px;position:relative;overflow:hidden;
   }
   #overlay-lgds .overlay-hero::after{display:none;}
-  #overlay-lgds .overlay-hero-content{max-width:640px;}
+  .lgds-mosaic{
+    position:absolute;inset:-8%;z-index:0;
+    display:grid;grid-template-columns:repeat(9,1fr);gap:2px;
+    filter:blur(16px) saturate(1.15) brightness(1.02);
+    transform:scale(1.08);opacity:.6;
+  }
+  .lgds-mosaic img{width:100%;height:100%;object-fit:cover;display:block;}
+  .lgds-mosaic-veil{
+    position:absolute;inset:0;z-index:1;
+    background:linear-gradient(155deg, rgba(255,255,255,.72) 0%, #ffffff 68%);
+  }
+  #overlay-lgds .overlay-hero-content{max-width:640px;position:relative;z-index:2;}
+  @media(max-width:700px){.lgds-mosaic{grid-template-columns:repeat(5,1fr);}}
   #overlay-lgds .overlay-hero-content h2{font-size:clamp(28px,4vw,48px);}
   #overlay-lgds .lgds-hero-logo{width:120px;height:auto;margin:0 auto 26px;display:block;}
   #overlay-lgds .overlay-meta{justify-content:center;}
@@ -540,7 +568,7 @@
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
     <div class="nav-social-group">
-      <a class="nav-icon" href="https://twitter.com/kaubin" target="_blank" rel="noopener" aria-label="X — @kaubin" title="@kaubin on X">
+      <a class="nav-icon" href="https://twitter.com/kaubin" target="_blank" rel="noopener" aria-label="Twitter — @kaubin" title="@kaubin on Twitter">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"/></svg>
       </a>
       <a class="nav-icon" href="https://instagram.com/kevnaubin" target="_blank" rel="noopener" aria-label="Instagram — @kevnaubin" title="@kevnaubin on Instagram">
@@ -575,16 +603,13 @@
   <!-- PROJECT 01 — LA GANG DU SHOW -->
   <div class="feature-project">
     <div class="feature-copy scale-in">
-      <span class="num">01 / Featured</span>
       <h3>La Gang du Show</h3>
       <p class="lead">Podcast, video production and digital content built around La Gang du Show — from raw session footage to everything that ends up on @lagangdushow.</p>
       <div class="tag-row">
-        <span class="chip">Podcast</span>
         <span class="chip">Video production</span>
         <span class="chip">Clips</span>
         <span class="chip">Editing</span>
         <span class="chip">Social content</span>
-        <span class="chip">Creative direction</span>
       </div>
       <div class="cta-link" onclick="openOverlay('lgds')">Watch project →</div>
     </div>
@@ -610,6 +635,8 @@
 <div class="overlay" id="overlay-lgds">
   <div class="overlay-close" onclick="closeOverlay('lgds')">✕</div>
   <div class="overlay-hero">
+    <div class="lgds-mosaic" id="lgds-mosaic" aria-hidden="true"></div>
+    <div class="lgds-mosaic-veil" aria-hidden="true"></div>
     <div class="overlay-hero-content">
       <img class="lgds-hero-logo" src="assets/lgds-logo.png" alt="La Gang du Show logo">
       <span class="eyebrow">La Gang du Show</span>
@@ -644,7 +671,7 @@
       </div>
     </div>
 
-    <h4>Popular Episodes</h4>
+    <h4 class="logo-h4"><svg class="ct-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img"><title>YouTube</title><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg><span>Full Episodes</span></h4>
     <div class="embed-carousel-wrap">
       <div class="carousel-controls">
         <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous episodes">←</button>
@@ -801,7 +828,11 @@
     <p>Full episodes on YouTube, with the best moments cut down for TikTok and short-form.</p>
   </div>
 
-  <div class="carousel-title">TikTok · Clips</div>
+  <div class="carousel-title logo-title">
+    <svg class="ct-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img"><title>TikTok</title><path d="M16.6 3h-3.2v12.4a3.1 3.1 0 1 1-2.5-3.04v-3.24a6.34 6.34 0 1 0 5.7 6.3V9.7a7.6 7.6 0 0 0 4.4 1.4V7.9a4.4 4.4 0 0 1-4.4-4.4V3Z"/></svg>
+    <svg class="ct-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" role="img"><title>Instagram</title><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg>
+    <span>Clips</span>
+  </div>
   <div class="embed-carousel-wrap">
     <div class="carousel-controls">
       <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous TikToks">←</button>
@@ -822,7 +853,10 @@
     </div>
   </div>
 
-  <div class="carousel-title">YouTube · Full Episodes</div>
+  <div class="carousel-title logo-title">
+    <svg class="ct-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img"><title>YouTube</title><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg>
+    <span>Full Episodes</span>
+  </div>
   <div class="embed-carousel-wrap">
     <div class="carousel-controls">
       <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous episodes">←</button>
@@ -897,7 +931,7 @@
       <li><span class="pt-emoji">🇨🇦</span><span><b>Canadian tech angle</b> — a Québec-based Apple/tech voice, also covering Canadian telecom offers.</span></li>
       <li><span class="pt-emoji">📰</span><span><b>Picked up by tech media</b> — posts referenced by outlets including MacRumors.</span></li>
     </ul>
-    <a class="btn solid" href="https://x.com/kaubin" target="_blank" rel="noopener">Follow @kaubin on X →</a>
+    <a class="btn solid" href="https://twitter.com/kaubin" target="_blank" rel="noopener">Follow @kaubin on Twitter →</a>
   </div>
 
   <div class="embed-carousel-wrap apple-tweets-wrap">
@@ -906,14 +940,14 @@
       <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next tweets">→</button>
     </div>
     <div class="ig-grid embed-carousel" id="tweet-embeds">
-      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/kaubin/status/2090258224695910559"></a></blockquote></div>
-      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/kaubin/status/1765818163344589307"></a></blockquote></div>
-      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/kaubin/status/1755312748760629684"></a></blockquote></div>
-      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/kaubin/status/1752405548027294072"></a></blockquote></div>
-      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/kaubin/status/1749524471755485471"></a></blockquote></div>
-      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/kaubin/status/1685712788981710848"></a></blockquote></div>
-      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/kaubin/status/1649488487538630656"></a></blockquote></div>
-      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/kaubin/status/1640834861043798017"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark" data-chrome="transparent"><a href="https://twitter.com/kaubin/status/2090258224695910559"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark" data-chrome="transparent"><a href="https://twitter.com/kaubin/status/1765818163344589307"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark" data-chrome="transparent"><a href="https://twitter.com/kaubin/status/1755312748760629684"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark" data-chrome="transparent"><a href="https://twitter.com/kaubin/status/1752405548027294072"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark" data-chrome="transparent"><a href="https://twitter.com/kaubin/status/1749524471755485471"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark" data-chrome="transparent"><a href="https://twitter.com/kaubin/status/1685712788981710848"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark" data-chrome="transparent"><a href="https://twitter.com/kaubin/status/1649488487538630656"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark" data-chrome="transparent"><a href="https://twitter.com/kaubin/status/1640834861043798017"></a></blockquote></div>
     </div>
   </div>
 </section>
@@ -957,7 +991,7 @@
   <a class="btn solid reveal" href="mailto:hello@kaubin.dev">Get in touch →</a>
   <div class="contact-links reveal">
     <a href="mailto:hello@kaubin.dev">Email</a>
-    <a class="nav-icon" href="https://twitter.com/kaubin" target="_blank" rel="noopener" aria-label="X — @kaubin" title="@kaubin on X">
+    <a class="nav-icon" href="https://twitter.com/kaubin" target="_blank" rel="noopener" aria-label="Twitter — @kaubin" title="@kaubin on Twitter">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"/></svg>
     </a>
     <a class="nav-icon" href="https://instagram.com/kevnaubin" target="_blank" rel="noopener" aria-label="Instagram — @kevnaubin" title="@kevnaubin on Instagram">
@@ -989,6 +1023,127 @@
     const y = (e.clientY / window.innerHeight - 0.5) * 24;
     mesh.style.transform = `translate(${x}px, ${y}px)`;
   });
+
+  // All thumbnails from assets/thumbnails, used to build the blurred
+  // mosaic background behind the La Gang du Show project hero.
+  const lgdsThumbnails = [
+    'assets/thumbnails/-YmMGpobo6w_maxres.jpg',
+    'assets/thumbnails/1Tue0WxpmrM_maxres.jpg',
+    'assets/thumbnails/1dePqOPCHg0_maxres.jpg',
+    'assets/thumbnails/2FI9REQkRDE_maxres.jpg',
+    'assets/thumbnails/2LYYFtMKBZU_maxres.jpg',
+    'assets/thumbnails/3azoSmnTTdI_maxres.jpg',
+    'assets/thumbnails/4H067trfeRI_maxres.jpg',
+    'assets/thumbnails/4ScUKVjYsJw_maxres.jpg',
+    'assets/thumbnails/4k7xVsuX2Uw_maxres.jpg',
+    'assets/thumbnails/5jOfMSRfExg_maxres.jpg',
+    'assets/thumbnails/5kfPrkznKwQ_maxres.jpg',
+    'assets/thumbnails/6NAiNp6YUQU_maxres.jpg',
+    'assets/thumbnails/6gWymkYEQk8_maxres.jpg',
+    'assets/thumbnails/7tRcQ3yaGOI_maxres.jpg',
+    'assets/thumbnails/8jHfza36qj0_maxres.jpg',
+    'assets/thumbnails/8ojU0Nih2kE_maxres.jpg',
+    'assets/thumbnails/9lwh21i7Dcc_maxres.jpg',
+    'assets/thumbnails/ATEXA8RaJLk_maxres.jpg',
+    'assets/thumbnails/B-hg2boxZbE_maxres.jpg',
+    'assets/thumbnails/BJ0OGsC-8HA_maxres.jpg',
+    'assets/thumbnails/BPB-fco2Sjc_maxres.jpg',
+    'assets/thumbnails/BQwsA7qWv4A_maxres.jpg',
+    'assets/thumbnails/Cp49DEbONJg_maxres.jpg',
+    'assets/thumbnails/Dcy2Lxr6qEY_maxres.jpg',
+    'assets/thumbnails/EHM_N2nli3Y_maxres.jpg',
+    'assets/thumbnails/EHrL4F3ZGiI_maxres.jpg',
+    'assets/thumbnails/EMOH1XQal1M_maxres.jpg',
+    'assets/thumbnails/EupitF1rGKg_maxres.jpg',
+    'assets/thumbnails/F3QmONP9V_4_maxres.jpg',
+    'assets/thumbnails/FNh6UeEIMBg_maxres.jpg',
+    'assets/thumbnails/G8ibiORf994_maxres.jpg',
+    'assets/thumbnails/IF4zCr0q4z0_maxres.jpg',
+    'assets/thumbnails/IPtSD5UuCkA_maxres.jpg',
+    'assets/thumbnails/Id5a4wxzx4A_maxres.jpg',
+    'assets/thumbnails/IlUlJ_GkE0_maxres.jpg',
+    'assets/thumbnails/J9g7j2GqKPM_maxres.jpg',
+    'assets/thumbnails/K0mYjzQlIgg_maxres.jpg',
+    'assets/thumbnails/KMpn0we0o8g_maxres.jpg',
+    'assets/thumbnails/KZnccDjskr8_maxres.jpg',
+    'assets/thumbnails/Ktx-gL8SUOM_maxres.jpg',
+    'assets/thumbnails/NWkNWwhnvXw_maxres.jpg',
+    'assets/thumbnails/O8NqJbzmrFg_maxres.jpg',
+    'assets/thumbnails/OhX9mfgrJ1Y_maxres.jpg',
+    'assets/thumbnails/Om9e-eAQ0rc_maxres.jpg',
+    'assets/thumbnails/SLdPEg2RHxo_maxres.jpg',
+    'assets/thumbnails/SZy6VU3tB0I_maxres.jpg',
+    'assets/thumbnails/TZkTO4NfS5U_maxres.jpg',
+    'assets/thumbnails/UPKblWhTJkI_maxres.jpg',
+    'assets/thumbnails/V08AN0hCIDQ_maxres.jpg',
+    'assets/thumbnails/WpuBwkuNdZ4_maxres.jpg',
+    'assets/thumbnails/WqAuRUnHES4_maxres.jpg',
+    'assets/thumbnails/XU8eEXNcVFY_maxres.jpg',
+    'assets/thumbnails/XUqn0rghRIc_maxres.jpg',
+    'assets/thumbnails/YTmxNkPUUrs_maxres.jpg',
+    'assets/thumbnails/aGVeX9GhjPc_maxres.jpg',
+    'assets/thumbnails/an7pULTSdnw_maxres.jpg',
+    'assets/thumbnails/anQy3B-SCCM_maxres.jpg',
+    'assets/thumbnails/atW-ahGImf0_maxres.jpg',
+    'assets/thumbnails/bpfJChdzZ5c_maxres.jpg',
+    'assets/thumbnails/cS-Nanb6MXY_maxres.jpg',
+    'assets/thumbnails/c_WojLcUqVw_maxres.jpg',
+    'assets/thumbnails/dXufQn96DE4_maxres.jpg',
+    'assets/thumbnails/dhRTKKmCRtE_maxres.jpg',
+    'assets/thumbnails/e1xzyIjeIeI_maxres.jpg',
+    'assets/thumbnails/eMDlXNikBfA_maxres.jpg',
+    'assets/thumbnails/fHVsNAgzoIo_maxres.jpg',
+    'assets/thumbnails/fYunYPG8mr8_maxres.jpg',
+    'assets/thumbnails/frKPmqEfLg8_maxres.jpg',
+    'assets/thumbnails/hJo43jiU8NA_maxres.jpg',
+    'assets/thumbnails/hl-EdE1SBnk_maxres.jpg',
+    'assets/thumbnails/huZ4rVeMIHY_maxres.jpg',
+    'assets/thumbnails/ijtbbl95r3Q_maxres.jpg',
+    'assets/thumbnails/j08L6_MoQ8o_maxres.jpg',
+    'assets/thumbnails/k_5-pItMFyQ_maxres.jpg',
+    'assets/thumbnails/lTzjjxL8Cyg_maxres.jpg',
+    'assets/thumbnails/lfuIq0PtC7c_maxres.jpg',
+    'assets/thumbnails/mZmJ3VEBNLA_maxres.jpg',
+    'assets/thumbnails/meSYq4n4D5I_maxres.jpg',
+    'assets/thumbnails/mw1wfPSF8_o_maxres.jpg',
+    'assets/thumbnails/noCqZYzERW4_maxres.jpg',
+    'assets/thumbnails/o7qT_qfxd6k_maxres.jpg',
+    'assets/thumbnails/oa_gX80mIJ4_maxres.jpg',
+    'assets/thumbnails/ofM8aJYMl7E_maxres.jpg',
+    'assets/thumbnails/opMoBwbktbM_maxres.jpg',
+    'assets/thumbnails/r4Goxs4pyk_maxres.jpg',
+    'assets/thumbnails/s2hfsvMmTNU_maxres.jpg',
+    'assets/thumbnails/t6KGJM-32Rw_maxres.jpg',
+    'assets/thumbnails/tQ6wnrJqPSc_maxres.jpg',
+    'assets/thumbnails/uPGo2qK8-uA_maxres.jpg',
+    'assets/thumbnails/v5q2iwLJw74_maxres.jpg',
+    'assets/thumbnails/vBEIk3X4UFQ_maxres.jpg',
+    'assets/thumbnails/wHLfWAcGLFU_maxres.jpg',
+    'assets/thumbnails/wfGyS93Pggc_maxres.jpg',
+    'assets/thumbnails/x3BdVm7A9x8_maxres.jpg',
+    'assets/thumbnails/xLvXkqjOxg_maxres.jpg',
+    'assets/thumbnails/y-AJIjmiMY8_maxres.jpg',
+    'assets/thumbnails/yDfDqoYG9gs_maxres.jpg',
+    'assets/thumbnails/zTdmBil__cI_maxres.jpg',
+    'assets/thumbnails/zcpirhs0cRY_maxres.jpg',
+  ];
+
+  function buildLgdsMosaic(){
+    const mosaic = document.getElementById('lgds-mosaic');
+    if (!mosaic || mosaic.childElementCount) return;
+    // Shuffle so the tile order looks organic instead of alphabetical.
+    const shuffled = [...lgdsThumbnails].sort(() => Math.random() - 0.5);
+    // Enough tiles to comfortably tile the hero at any width; repeats if needed.
+    const tileCount = 45;
+    for (let i = 0; i < tileCount; i++){
+      const img = document.createElement('img');
+      img.src = shuffled[i % shuffled.length];
+      img.loading = 'lazy';
+      img.alt = '';
+      mosaic.appendChild(img);
+    }
+  }
+  buildLgdsMosaic();
 
   const igScript = document.createElement('script');
   igScript.src = '//www.instagram.com/embed.js';
