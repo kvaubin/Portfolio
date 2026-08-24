@@ -449,15 +449,20 @@
   .apple-points li b{color:var(--ink);font-weight:600;}
   .apple-points .pt-emoji{font-size:18px;line-height:1.5;flex-shrink:0;}
   .apple-inner .btn.solid{margin-top:34px;}
+  .press-mentions{margin-top:32px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .press-label{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);white-space:nowrap;}
+  .press-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .press-links a{font-size:13px;font-weight:600;color:var(--ink-dim);border:1px solid var(--line);padding:6px 14px;border-radius:100px;transition:.2s;}
+  .press-links a:hover{color:var(--ink);border-color:var(--ink-dim);background:rgba(255,255,255,0.05);}
   .apple-tweets-wrap{max-width:1180px;margin:64px auto 0;padding:0 32px;position:relative;}
   /* Twitter's own "dark" theme renders a dark-navy card we can't restyle from
      the outside (it's a cross-origin iframe) — this gets us as close to true
      black as possible: a pure-black card background so the navy corners/edges
      the widget leaves exposed read as black, plus a filter on the iframe
      itself to desaturate and darken the blue tint Twitter renders internally. */
-  #tweet-embeds .reel-card{background:#000;padding:2px;}
-  #tweet-embeds .twitter-tweet-rendered{filter:saturate(.55) brightness(.86) contrast(1.05);}
-  #tweet-embeds iframe{background:#000 !important;}
+  #tweet-embeds .reel-card{background:#000;padding:2px;height:320px;overflow:hidden;align-self:start;}
+  #tweet-embeds .twitter-tweet-rendered{filter:saturate(.55) brightness(.86) contrast(1.05);max-height:316px;}
+  #tweet-embeds iframe{background:#000 !important;max-height:316px !important;}
   @media(max-width:640px){.apple-tweets-wrap{padding:0 20px;}}
   .digi-tech span{font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);border:1px solid var(--line);padding:4px 9px;border-radius:100px;}
   .digi-body .go{margin-top:18px;display:inline-block;font-size:13.5px;font-weight:600;color:var(--accent);}
@@ -970,8 +975,24 @@
       <li><span class="pt-emoji">🍎</span><span><b>Apple / iPhone / iOS</b> — iPhone releases, iOS betas, new features, like the iOS 17.3 Apple Music collaborative playlist rollout.</span></li>
       <li><span class="pt-emoji">📱</span><span><b>Apple leaks, rumors &amp; hardware</b> — early looks like leaked iPhone 15 Pro cases and Dynamic Island observations, plus new devices and features — including posts that later got picked up by multiple tech outlets.</span></li>
       <li><span class="pt-emoji">🇨🇦</span><span><b>Canadian tech angle</b> — a Québec-based Apple/tech voice, also covering Canadian telecom offers.</span></li>
-      <li><span class="pt-emoji">📰</span><span><b>Picked up by tech media</b> — posts referenced by outlets including MacRumors.</span></li>
+      <li><span class="pt-emoji">📰</span><span><b>Picked up by tech media</b> — posts referenced by outlets including MacRumors, Cult of Mac, iPhoneAddict, iPhone Mania, and others.</span></li>
     </ul>
+
+    <div class="press-mentions">
+      <span class="press-label">As seen in</span>
+      <div class="press-links">
+        <a href="https://www.macrumors.com/2023/12/13/ios-17-3-collaborative-playlist-emoji/" target="_blank" rel="noopener">MacRumors</a>
+        <a href="https://www.cultofmac.com/news/ios-17-2-beta-features-changes" target="_blank" rel="noopener">Cult of Mac</a>
+        <a href="https://www.macworld.com/article/3217085/apples-upcoming-headphones-appear-to-be-built-for-macbook-neo-users.html" target="_blank" rel="noopener">Macworld</a>
+        <a href="https://iphoneaddict.fr/post/news-379991-ios-17-3-apple-music-reactions-emoji-disponibles-playlists-collaboratives" target="_blank" rel="noopener">iPhoneAddict</a>
+        <a href="https://iphone-mania.jp/news-317857/" target="_blank" rel="noopener">iPhone Mania</a>
+        <a href="https://imagazine.pl/2023/12/14/ios-17-3-z-funkcja-kolaboracji-w-apple-music-i-nowymi-reakcjami/" target="_blank" rel="noopener">iMagazine</a>
+        <a href="https://www.beartai.com/tech/it-news/1299172/" target="_blank" rel="noopener">Beartai</a>
+        <a href="https://www.hrgrapevine.com/us/content/article/2024-02-13-apple-employees-left-deflated-by-vision-pro-worker-gift" target="_blank" rel="noopener">HR Grapevine</a>
+        <a href="https://cincodias.elpais.com/smartlife/2021/09/07/smartphones/1631026803_154097.html" target="_blank" rel="noopener">El País</a>
+      </div>
+    </div>
+
     <a class="btn solid" href="https://twitter.com/kaubin" target="_blank" rel="noopener">Follow @kaubin on Twitter →</a>
   </div>
 
