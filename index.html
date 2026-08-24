@@ -256,7 +256,12 @@
   .overlay-meta .k{font-family:var(--mono);font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;margin-right:8px;}
   .overlay-meta .v{font-size:14px;color:var(--ink-dim);}
   .lgds-links{display:flex;align-items:center;gap:8px;}
-  .overlay-body{padding:64px 0 140px;}
+  .lgds-detail-bar{
+    max-width:1180px;margin:0 auto;padding:24px 32px;box-sizing:border-box;
+    border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  }
+  .overlay-body{padding:40px 0 80px;}
   .project-detail.detail-collapsed .overlay-body{display:none;}
   .overlay-body p{font-size:19px;line-height:1.75;color:var(--ink-dim);}
   .overlay-body h4{font-size:13px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;margin:56px auto 20px;font-family:var(--mono);max-width:1180px;padding:0 32px;box-sizing:border-box;}
@@ -582,9 +587,9 @@
         <span class="chip">Editing</span>
         <span class="chip">Social content</span>
       </div>
-      <a class="cta-link" href="#lgds-detail">Watch project →</a>
+      <a class="cta-link" href="#lgds-detail" onclick="openDetail(event)">Watch project →</a>
     </div>
-    <a class="placeholder-media lgds-teaser scale-in" href="#lgds-detail" style="cursor:pointer;">
+    <div class="placeholder-media lgds-teaser scale-in" onclick="toggleDetailFromCard()" role="button" tabindex="0" aria-controls="lgds-detail" aria-expanded="false" style="cursor:pointer;">
       <div class="lgds-stack">
         <img class="stack-img s3" src="assets/thumbnails/wfGyS93Pggc_maxres.jpg" alt="" loading="lazy">
         <img class="stack-img s2" src="assets/thumbnails/8jHfza36qj0_maxres.jpg" alt="" loading="lazy">
@@ -627,36 +632,26 @@
       <div class="lgds-teaser-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
       <div class="media-label">
         <span class="ep-count">98+ episodes, clips &amp; reels</span>
-        <span class="explore-cta"><span class="explore-pill">Open project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+        <span class="explore-cta"><span class="explore-pill" id="explore-pill-label">Open project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
       </div>
-    </a>
+    </div>
   </div>
 </section>
 
-<!-- PROJECT DETAIL: LA GANG DU SHOW (inline section, not a modal overlay) -->
+<!-- PROJECT DETAIL: LA GANG DU SHOW -->
 <section class="project-detail detail-collapsed" id="lgds-detail">
-  <div class="lgds-header" onclick="toggleDetail(this)" role="button" tabindex="0" aria-expanded="false" aria-controls="lgds-overlay-body">
-    <div class="lgds-header-top">
-      <img class="lgds-badge" src="assets/lgds-logo.png" alt="La Gang du Show logo">
-      <h2>La Gang du Show</h2>
+  <div class="lgds-detail-bar">
+    <div class="overlay-meta">
+      <div><span class="k">Role</span><span class="v">Producer · Editor</span></div>
     </div>
-    <div class="lgds-header-row">
-      <div class="overlay-meta">
-        <div><span class="k">Role</span><span class="v">Producer · Editor</span></div>
-      </div>
-      <div class="lgds-links">
-        <a class="nav-icon" href="https://www.youtube.com" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg></a>
-        <a class="nav-icon" href="https://www.patreon.com" target="_blank" rel="noopener" title="Patreon" aria-label="Patreon"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="15.4" cy="8.8" r="6.4"/><rect x="2" y="2" width="3.4" height="20"/></svg></a>
-        <a class="nav-icon" href="https://open.spotify.com" target="_blank" rel="noopener" title="Spotify" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 14.4a.6.6 0 0 1-.83.2c-2.3-1.4-5.2-1.7-8.6-.9a.6.6 0 1 1-.27-1.18c3.7-.85 6.9-.48 9.5 1.05.28.17.38.53.2.83Zm1.2-2.75a.75.75 0 0 1-1.03.25c-2.6-1.6-6.6-2.06-9.7-1.13a.75.75 0 1 1-.43-1.44c3.53-1.06 7.93-.55 10.9 1.28.36.22.47.7.26 1.04Zm.1-2.86c-3.1-1.85-8.24-2.02-11.2-1.12a.9.9 0 1 1-.52-1.72c3.42-1.03 9.1-.83 12.7 1.28a.9.9 0 1 1-.98 1.56Z"/></svg></a>
-        <a class="nav-icon" href="https://podcasts.apple.com" target="_blank" rel="noopener" title="Apple Podcasts" aria-label="Apple Podcasts"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 3.4a3.4 3.4 0 1 1 0 6.8 3.4 3.4 0 0 1 0-6.8Zm0 15.1c-2.1 0-4-.7-5.6-1.9.1-2.1 1.9-3.7 4-3.9.5-.1 1-.1 1.6-.1s1.1 0 1.6.1c2.1.2 3.9 1.8 4 3.9A9 9 0 0 1 12 20.5Z"/></svg></a>
-      </div>
+    <div class="lgds-links">
+      <a class="nav-icon" href="https://www.youtube.com" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg></a>
+      <a class="nav-icon" href="https://www.patreon.com" target="_blank" rel="noopener" title="Patreon" aria-label="Patreon"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="15.4" cy="8.8" r="6.4"/><rect x="2" y="2" width="3.4" height="20"/></svg></a>
+      <a class="nav-icon" href="https://open.spotify.com" target="_blank" rel="noopener" title="Spotify" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 14.4a.6.6 0 0 1-.83.2c-2.3-1.4-5.2-1.7-8.6-.9a.6.6 0 1 1-.27-1.18c3.7-.85 6.9-.48 9.5 1.05.28.17.38.53.2.83Zm1.2-2.75a.75.75 0 0 1-1.03.25c-2.6-1.6-6.6-2.06-9.7-1.13a.75.75 0 1 1-.43-1.44c3.53-1.06 7.93-.55 10.9 1.28.36.22.47.7.26 1.04Zm.1-2.86c-3.1-1.85-8.24-2.02-11.2-1.12a.9.9 0 1 1-.52-1.72c3.42-1.03 9.1-.83 12.7 1.28a.9.9 0 1 1-.98 1.56Z"/></svg></a>
+      <a class="nav-icon" href="https://podcasts.apple.com" target="_blank" rel="noopener" title="Apple Podcasts" aria-label="Apple Podcasts"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 3.4a3.4 3.4 0 1 1 0 6.8 3.4 3.4 0 0 1 0-6.8Zm0 15.1c-2.1 0-4-.7-5.6-1.9.1-2.1 1.9-3.7 4-3.9.5-.1 1-.1 1.6-.1s1.1 0 1.6.1c2.1.2 3.9 1.8 4 3.9A9 9 0 0 1 12 20.5Z"/></svg></a>
     </div>
   </div>
   <div class="overlay-body" id="lgds-overlay-body">
-    <div class="overlay-prose">
-      <p>Full-episode editing, short-form clip cuts, captioning, posting schedule, and the overall creative direction of how the show shows up online — the pacing, the pull-quotes, the moments that get pulled out for social.</p>
-    </div>
-
     <div class="carousel-title logo-title">
       <svg class="ct-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img"><title>TikTok</title><path d="M16.6 3h-3.2v12.4a3.1 3.1 0 1 1-2.5-3.04v-3.24a6.34 6.34 0 1 0 5.7 6.3V9.7a7.6 7.6 0 0 0 4.4 1.4V7.9a4.4 4.4 0 0 1-4.4-4.4V3Z"/></svg>
       <svg class="ct-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" role="img"><title>Instagram</title><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg>
@@ -681,150 +676,6 @@
       <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7627381202441227541" data-video-id="7627381202441227541" data-embed-from="oembed" style="max-width:325px;min-width:288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
       <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7529467586854128902" data-video-id="7529467586854128902" data-embed-from="oembed" style="max-width:325px;min-width:288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
       </div>
-    </div>
-
-    <h4 class="logo-h4"><svg class="ct-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img"><title>YouTube</title><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg><span>Full Episodes</span></h4>
-    <div class="embed-carousel-wrap">
-      <div class="carousel-controls">
-        <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous episodes">←</button>
-        <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next episodes">→</button>
-      </div>
-      <div class="embed-carousel">
-        <div class="h-card video"><div class="yt-embed" data-yt-id="6NAiNp6YUQU"><img class="yt-poster" src="assets/thumbnails/6NAiNp6YUQU_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=6NAiNp6YUQU" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Notre homme AchilleFPS nous dit TOUT sur son aventure à OD Chypre</span><span class="sub">La Gang du Show</span></div></div>
-        <div class="h-card video"><div class="yt-embed" data-yt-id="8jHfza36qj0"><img class="yt-poster" src="assets/thumbnails/8jHfza36qj0_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=8jHfza36qj0" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">20 ans d'amitié avec Laurie Doucet : OD, Justin Bieber et nos vies de bars</span><span class="sub">La Gang du Show</span></div></div>
-        <div class="h-card video"><div class="yt-embed" data-yt-id="y-AJIjmiMY8"><img class="yt-poster" src="assets/thumbnails/y-AJIjmiMY8_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=y-AJIjmiMY8" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Les BUCKBOYS vont EXPLOSER le Québec</span><span class="sub">La Gang du Show</span></div></div>
-        <div class="h-card video"><div class="yt-embed" data-yt-id="7tRcQ3yaGOI" data-yt-start="1181"><img class="yt-poster" src="assets/thumbnails/7tRcQ3yaGOI_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=7tRcQ3yaGOI" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Rosalie Lessard sans filtre sur son parcours atypique</span><span class="sub">La Gang du Show</span></div></div>
-        <div class="h-card video"><div class="yt-embed" data-yt-id="s2hfsvMmTNU"><img class="yt-poster" src="assets/thumbnails/s2hfsvMmTNU_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=s2hfsvMmTNU" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">AchilleFPS revient sur son match Lewislefou VS Oli Primeau</span><span class="sub">La Gang du Show</span></div></div>
-        <div class="h-card video"><div class="yt-embed" data-yt-id="wfGyS93Pggc"><img class="yt-poster" src="assets/thumbnails/wfGyS93Pggc_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=wfGyS93Pggc" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Félix "Rouge Forêt" Bouchard ne digère PAS la défaite du Canada 🇨🇦</span><span class="sub">La Gang du Show</span></div></div>
-      </div>
-    </div>
-
-    <div class="overlay-prose">
-      <h4>Logo &amp; Graphic Design</h4>
-      <p>Beyond editing, I designed the show's current logo and the graphics used across sponsorships and cross-promotion — plus a short animated logo reveal used as a video opener.</p>
-      <div class="design-grid">
-        <div class="design-tile"><img src="assets/lgds-logo.png" alt="La Gang du Show logo redesign" loading="lazy"></div>
-        <div class="design-tile"><img src="assets/lgds-patreon-crossover.png" alt="La Gang du Show x Patreon crossover graphic" loading="lazy"></div>
-        <div class="design-tile video-tile">
-          <video src="assets/lgds-logo-anim.webm" autoplay loop muted playsinline></video>
-        </div>
-      </div>
-      <div class="design-video-row">
-        <div class="design-video-tile">
-          <video src="assets/lgds-subscribe-overlay.webm" autoplay loop muted playsinline></video>
-        </div>
-        <div class="design-video-tile">
-          <video src="assets/lgds-unfollow-overlay.webm" autoplay loop muted playsinline></video>
-        </div>
-      </div>
-    </div>
-
-    <h4>Thumbnails</h4>
-    <div class="thumb-grid-wrap" id="thumb-grid-wrap">
-        <div class="thumb-grid">
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/s2hfsvMmTNU_maxres.jpg')"><img src="assets/thumbnails/s2hfsvMmTNU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/2LYYFtMKBZU_maxres.jpg')"><img src="assets/thumbnails/2LYYFtMKBZU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/WqAuRUnHES4_maxres.jpg')"><img src="assets/thumbnails/WqAuRUnHES4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/wfGyS93Pggc_maxres.jpg')"><img src="assets/thumbnails/wfGyS93Pggc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/anQy3B-SCCM_maxres.jpg')"><img src="assets/thumbnails/anQy3B-SCCM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/UPKblWhTJkI_maxres.jpg')"><img src="assets/thumbnails/UPKblWhTJkI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/O8NqJbzmrFg_maxres.jpg')"><img src="assets/thumbnails/O8NqJbzmrFg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/7tRcQ3yaGOI_maxres.jpg')"><img src="assets/thumbnails/7tRcQ3yaGOI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/6NAiNp6YUQU_maxres.jpg')"><img src="assets/thumbnails/6NAiNp6YUQU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/EMOH1XQal1M_maxres.jpg')"><img src="assets/thumbnails/EMOH1XQal1M_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/EHM_N2nli3Y_maxres.jpg')"><img src="assets/thumbnails/EHM_N2nli3Y_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/2FI9REQkRDE_maxres.jpg')"><img src="assets/thumbnails/2FI9REQkRDE_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/B-hg2boxZbE_maxres.jpg')"><img src="assets/thumbnails/B-hg2boxZbE_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/8jHfza36qj0_maxres.jpg')"><img src="assets/thumbnails/8jHfza36qj0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/bpfJChdzZ5c_maxres.jpg')"><img src="assets/thumbnails/bpfJChdzZ5c_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/o7qT_qfxd6k_maxres.jpg')"><img src="assets/thumbnails/o7qT_qfxd6k_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/XUqn0rghRIc_maxres.jpg')"><img src="assets/thumbnails/XUqn0rghRIc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/4H067trfeRI_maxres.jpg')"><img src="assets/thumbnails/4H067trfeRI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/an7pULTSdnw_maxres.jpg')"><img src="assets/thumbnails/an7pULTSdnw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/mZmJ3VEBNLA_maxres.jpg')"><img src="assets/thumbnails/mZmJ3VEBNLA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/Cp49DEbONJg_maxres.jpg')"><img src="assets/thumbnails/Cp49DEbONJg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/lTzjjxL8Cyg_maxres.jpg')"><img src="assets/thumbnails/lTzjjxL8Cyg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/opMoBwbktbM_maxres.jpg')"><img src="assets/thumbnails/opMoBwbktbM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/y-AJIjmiMY8_maxres.jpg')"><img src="assets/thumbnails/y-AJIjmiMY8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/KMpn0we0o8g_maxres.jpg')"><img src="assets/thumbnails/KMpn0we0o8g_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/fHVsNAgzoIo_maxres.jpg')"><img src="assets/thumbnails/fHVsNAgzoIo_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/5kfPrkznKwQ_maxres.jpg')"><img src="assets/thumbnails/5kfPrkznKwQ_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/OhX9mfgrJ1Y_maxres.jpg')"><img src="assets/thumbnails/OhX9mfgrJ1Y_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/BQwsA7qWv4A_maxres.jpg')"><img src="assets/thumbnails/BQwsA7qWv4A_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/k_5-pItMFyQ_maxres.jpg')"><img src="assets/thumbnails/k_5-pItMFyQ_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/K0mYjzQlIgg_maxres.jpg')"><img src="assets/thumbnails/K0mYjzQlIgg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/yDfDqoYG9gs_maxres.jpg')"><img src="assets/thumbnails/yDfDqoYG9gs_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/Id5a4wxzx4A_maxres.jpg')"><img src="assets/thumbnails/Id5a4wxzx4A_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/j08L6_MoQ8o_maxres.jpg')"><img src="assets/thumbnails/j08L6_MoQ8o_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/EHrL4F3ZGiI_maxres.jpg')"><img src="assets/thumbnails/EHrL4F3ZGiI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/Dcy2Lxr6qEY_maxres.jpg')"><img src="assets/thumbnails/Dcy2Lxr6qEY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/hJo43jiU8NA_maxres.jpg')"><img src="assets/thumbnails/hJo43jiU8NA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/dXufQn96DE4_maxres.jpg')"><img src="assets/thumbnails/dXufQn96DE4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/EupitF1rGKg_maxres.jpg')"><img src="assets/thumbnails/EupitF1rGKg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/frKPmqEfLg8_maxres.jpg')"><img src="assets/thumbnails/frKPmqEfLg8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/4ScUKVjYsJw_maxres.jpg')"><img src="assets/thumbnails/4ScUKVjYsJw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/hl-EdE1SBnk_maxres.jpg')"><img src="assets/thumbnails/hl-EdE1SBnk_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/G8ibiORf994_maxres.jpg')"><img src="assets/thumbnails/G8ibiORf994_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/xLvXkqjOxg_maxres.jpg')"><img src="assets/thumbnails/xLvXkqjOxg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/TZkTO4NfS5U_maxres.jpg')"><img src="assets/thumbnails/TZkTO4NfS5U_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/e1xzyIjeIeI_maxres.jpg')"><img src="assets/thumbnails/e1xzyIjeIeI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/oa_gX80mIJ4_maxres.jpg')"><img src="assets/thumbnails/oa_gX80mIJ4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/SLdPEg2RHxo_maxres.jpg')"><img src="assets/thumbnails/SLdPEg2RHxo_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/FNh6UeEIMBg_maxres.jpg')"><img src="assets/thumbnails/FNh6UeEIMBg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/4k7xVsuX2Uw_maxres.jpg')"><img src="assets/thumbnails/4k7xVsuX2Uw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/F3QmONP9V_4_maxres.jpg')"><img src="assets/thumbnails/F3QmONP9V_4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/atW-ahGImf0_maxres.jpg')"><img src="assets/thumbnails/atW-ahGImf0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/IlUlJ_GkE0_maxres.jpg')"><img src="assets/thumbnails/IlUlJ_GkE0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/3azoSmnTTdI_maxres.jpg')"><img src="assets/thumbnails/3azoSmnTTdI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/vBEIk3X4UFQ_maxres.jpg')"><img src="assets/thumbnails/vBEIk3X4UFQ_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/YTmxNkPUUrs_maxres.jpg')"><img src="assets/thumbnails/YTmxNkPUUrs_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/noCqZYzERW4_maxres.jpg')"><img src="assets/thumbnails/noCqZYzERW4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/mw1wfPSF8_o_maxres.jpg')"><img src="assets/thumbnails/mw1wfPSF8_o_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/8ojU0Nih2kE_maxres.jpg')"><img src="assets/thumbnails/8ojU0Nih2kE_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/zTdmBil__cI_maxres.jpg')"><img src="assets/thumbnails/zTdmBil__cI_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/IF4zCr0q4z0_maxres.jpg')"><img src="assets/thumbnails/IF4zCr0q4z0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/eMDlXNikBfA_maxres.jpg')"><img src="assets/thumbnails/eMDlXNikBfA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/6gWymkYEQk8_maxres.jpg')"><img src="assets/thumbnails/6gWymkYEQk8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/1Tue0WxpmrM_maxres.jpg')"><img src="assets/thumbnails/1Tue0WxpmrM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/zcpirhs0cRY_maxres.jpg')"><img src="assets/thumbnails/zcpirhs0cRY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/c_WojLcUqVw_maxres.jpg')"><img src="assets/thumbnails/c_WojLcUqVw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/BPB-fco2Sjc_maxres.jpg')"><img src="assets/thumbnails/BPB-fco2Sjc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/NWkNWwhnvXw_maxres.jpg')"><img src="assets/thumbnails/NWkNWwhnvXw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/wHLfWAcGLFU_maxres.jpg')"><img src="assets/thumbnails/wHLfWAcGLFU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/SZy6VU3tB0I_maxres.jpg')"><img src="assets/thumbnails/SZy6VU3tB0I_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/ijtbbl95r3Q_maxres.jpg')"><img src="assets/thumbnails/ijtbbl95r3Q_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/9lwh21i7Dcc_maxres.jpg')"><img src="assets/thumbnails/9lwh21i7Dcc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/ATEXA8RaJLk_maxres.jpg')"><img src="assets/thumbnails/ATEXA8RaJLk_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/uPGo2qK8-uA_maxres.jpg')"><img src="assets/thumbnails/uPGo2qK8-uA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/1dePqOPCHg0_maxres.jpg')"><img src="assets/thumbnails/1dePqOPCHg0_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/t6KGJM-32Rw_maxres.jpg')"><img src="assets/thumbnails/t6KGJM-32Rw_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/BJ0OGsC-8HA_maxres.jpg')"><img src="assets/thumbnails/BJ0OGsC-8HA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/KZnccDjskr8_maxres.jpg')"><img src="assets/thumbnails/KZnccDjskr8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/lfuIq0PtC7c_maxres.jpg')"><img src="assets/thumbnails/lfuIq0PtC7c_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/cS-Nanb6MXY_maxres.jpg')"><img src="assets/thumbnails/cS-Nanb6MXY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/IPtSD5UuCkA_maxres.jpg')"><img src="assets/thumbnails/IPtSD5UuCkA_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/-YmMGpobo6w_maxres.jpg')"><img src="assets/thumbnails/-YmMGpobo6w_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/v5q2iwLJw74_maxres.jpg')"><img src="assets/thumbnails/v5q2iwLJw74_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/ofM8aJYMl7E_maxres.jpg')"><img src="assets/thumbnails/ofM8aJYMl7E_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/Ktx-gL8SUOM_maxres.jpg')"><img src="assets/thumbnails/Ktx-gL8SUOM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/J9g7j2GqKPM_maxres.jpg')"><img src="assets/thumbnails/J9g7j2GqKPM_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/meSYq4n4D5I_maxres.jpg')"><img src="assets/thumbnails/meSYq4n4D5I_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/V08AN0hCIDQ_maxres.jpg')"><img src="assets/thumbnails/V08AN0hCIDQ_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/dhRTKKmCRtE_maxres.jpg')"><img src="assets/thumbnails/dhRTKKmCRtE_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/tQ6wnrJqPSc_maxres.jpg')"><img src="assets/thumbnails/tQ6wnrJqPSc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/r4Goxs4pyk_maxres.jpg')"><img src="assets/thumbnails/r4Goxs4pyk_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/x3BdVm7A9x8_maxres.jpg')"><img src="assets/thumbnails/x3BdVm7A9x8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/XU8eEXNcVFY_maxres.jpg')"><img src="assets/thumbnails/XU8eEXNcVFY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/aGVeX9GhjPc_maxres.jpg')"><img src="assets/thumbnails/aGVeX9GhjPc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/WpuBwkuNdZ4_maxres.jpg')"><img src="assets/thumbnails/WpuBwkuNdZ4_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/huZ4rVeMIHY_maxres.jpg')"><img src="assets/thumbnails/huZ4rVeMIHY_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/fYunYPG8mr8_maxres.jpg')"><img src="assets/thumbnails/fYunYPG8mr8_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/5jOfMSRfExg_maxres.jpg')"><img src="assets/thumbnails/5jOfMSRfExg_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-      <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/Om9e-eAQ0rc_maxres.jpg')"><img src="assets/thumbnails/Om9e-eAQ0rc_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
-    </div>
-    </div>
-    <button class="thumb-expand-btn" id="thumb-expand-btn" onclick="toggleThumbs(this)">Show all thumbnails</button>
-
     </div>
   </div>
 </section>
@@ -1024,17 +875,36 @@
     carousel.scrollBy({left: direction * amount, behavior:'smooth'});
   }
 
-  function toggleDetail(header){
-    const section = header.closest('.project-detail');
-    if (!section) return;
+  function toggleDetailFromCard(){
+    const section = document.getElementById('lgds-detail');
+    const card = document.querySelector('.lgds-teaser');
+    const pill = document.getElementById('explore-pill-label');
     const collapsed = section.classList.toggle('detail-collapsed');
-    header.setAttribute('aria-expanded', String(!collapsed));
+    if (card) card.setAttribute('aria-expanded', String(!collapsed));
+    if (pill) {
+      pill.innerHTML = collapsed
+        ? 'Open project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+        : 'Close project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>';
+    }
+    if (!collapsed) {
+      setTimeout(() => section.scrollIntoView({behavior:'smooth', block:'start'}), 40);
+    }
   }
 
-  // keyboard support for the lgds header
-  document.querySelector('.lgds-header').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleDetail(e.currentTarget); }
-  });
+  function openDetail(e){
+    e.preventDefault();
+    const section = document.getElementById('lgds-detail');
+    if (section.classList.contains('detail-collapsed')) {
+      toggleDetailFromCard();
+    } else {
+      section.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  }
+
+  function toggleDetail(header){
+    // kept for keyboard handler compatibility
+    toggleDetailFromCard();
+  }
 
   function reprocessTikTok(){
     // TikTok's embed.js scans the DOM once on load. If it ran before this
@@ -1076,6 +946,11 @@
   setThumbRowCap();
   window.addEventListener('resize', setThumbRowCap);
   window.addEventListener('load', setThumbRowCap);
+
+  // keyboard support for the lgds teaser card
+  document.querySelector('.lgds-teaser').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleDetailFromCard(); }
+  });
 
   function openLightbox(src){
     const lb = document.getElementById('lightbox');
