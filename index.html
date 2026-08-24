@@ -104,11 +104,13 @@
     opacity:0;animation:fadeUp .9s ease forwards .48s;
   }
   .view-work{
-    margin-top:46px;display:inline-flex;flex-direction:column;align-items:center;gap:10px;
+    position:absolute;left:50%;bottom:44px;transform:translateX(-50%);z-index:2;
+    display:inline-flex;flex-direction:column;align-items:center;gap:10px;
     font-size:13px;color:var(--ink-dim);
     opacity:0;animation:fadeUp .9s ease forwards .65s;
   }
   .view-work .arrow{animation:bounce 2s ease-in-out infinite;font-size:16px;}
+  @media(max-height:700px){.view-work{bottom:26px;}}
   @keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
   @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 
@@ -125,7 +127,7 @@
   .section-head.left{text-align:left;margin:0;max-width:640px;}
 
   /* ---------- SELECTED WORK ---------- */
-  .work{background:var(--bg);padding:180px 0 60px;}
+  .work{background:var(--bg);padding:110px 0 60px;}
 
   .placeholder-media{
     position:relative;overflow:hidden;border-radius:var(--radius-lg);
@@ -137,15 +139,42 @@
 
   .grad-lgds{background:radial-gradient(120% 140% at 20% 0%, #3a2a1c 0%, #17110c 45%, #0a0a0a 100%);}
   .lgds-teaser{
-    background:linear-gradient(155deg, var(--lgds-green-dim) 0%, #ffffff 65%);
-    display:flex;align-items:center;justify-content:center;
+    background:#0a0a0a;
+    box-shadow:
+      16px 16px 0 -8px #161616,
+      16px 16px 0 -7px rgba(255,255,255,0.09),
+      31px 31px 0 -16px #121212,
+      31px 31px 0 -15px rgba(255,255,255,0.05);
+    transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s ease;
   }
-  .lgds-teaser::after{display:none;}
-  .lgds-teaser-logo{max-width:38%;max-height:38%;object-fit:contain;}
+  .lgds-teaser:hover{transform:translate(-6px,-6px);}
+  .lgds-teaser-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+  .lgds-teaser:hover .lgds-teaser-thumb{transform:scale(1.045);}
+  .lgds-teaser-badge{
+    position:absolute;top:18px;left:18px;z-index:2;display:flex;align-items:center;gap:8px;
+    background:rgba(8,8,9,0.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    padding:5px 14px 5px 5px;border-radius:100px;border:1px solid rgba(255,255,255,0.14);
+  }
+  .lgds-teaser-badge img{width:22px;height:22px;object-fit:contain;border-radius:50%;background:#fff;padding:3px;display:block;}
+  .lgds-teaser-badge span{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:#fff;font-weight:600;}
+  .lgds-teaser-play{
+    position:absolute;top:18px;right:18px;z-index:2;width:40px;height:40px;border-radius:50%;
+    background:rgba(8,8,9,0.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;
+    color:#fff;transition:.25s;
+  }
+  .lgds-teaser-play svg{width:15px;height:15px;margin-left:2px;}
+  .lgds-teaser:hover .lgds-teaser-play{background:var(--accent);border-color:var(--accent);}
   .lgds-teaser .media-label{
-    position:absolute;left:0;right:0;bottom:0;z-index:1;
-    color:#0a0a0a;background:linear-gradient(to top, rgba(255,255,255,0.92), transparent);
+    position:absolute;left:0;right:0;bottom:0;z-index:1;padding:24px 26px;
   }
+  .lgds-teaser .media-label .ep-count{display:block;font-size:15px;font-weight:700;color:#fff;letter-spacing:-0.01em;text-transform:none;font-family:var(--sans);}
+  .lgds-teaser .media-label .explore-cta{
+    margin-top:5px;display:flex;align-items:center;gap:6px;
+    font-family:var(--sans);font-size:12.5px;font-weight:500;color:rgba(255,255,255,0.75);text-transform:none;letter-spacing:0;
+  }
+  .lgds-teaser .media-label .explore-cta svg{width:12px;height:12px;transition:transform .25s ease;}
+  .lgds-teaser:hover .media-label .explore-cta svg{transform:translateX(4px);}
   .grad-clip1{background:linear-gradient(155deg,#1c2438,#0a0a0a);}
   .grad-clip2{background:linear-gradient(155deg,#2a1830,#0a0a0a);}
   .grad-clip3{background:linear-gradient(155deg,#0f2a24,#0a0a0a);}
@@ -245,11 +274,10 @@
     border:1px solid var(--line);min-height:580px;padding:8px;
   }
   .tiktok-card blockquote{margin:0 !important;min-width:0 !important;width:100% !important;}
-  .embed-carousel.tiktok-white .tiktok-card{background:#fff;}
   /* Merged Reels & Clips carousel (Instagram Reels + TikTok, interleaved) */
   .ig-grid.mixed-grid{align-items:stretch;}
-  .ig-grid.mixed-grid .reel-card,
-  .ig-grid.mixed-grid .tiktok-card{background:#fff;min-height:580px;display:flex;flex-direction:column;justify-content:center;}
+  .ig-grid.mixed-grid .reel-card{background:#fff;min-height:580px;display:flex;flex-direction:column;justify-content:center;}
+  .ig-grid.mixed-grid .tiktok-card{background:#080808;min-height:580px;display:flex;flex-direction:column;justify-content:center;}
   .embed-kind{
     font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
     color:var(--ink-faint);padding:2px 4px 10px;
@@ -288,7 +316,7 @@
   .design-tile img{width:100%;height:100%;object-fit:cover;display:block;}
   .design-tile.video-tile{background:#0a0a0b;}
   .design-tile.video-tile video{width:100%;height:100%;object-fit:contain;}
-  .overlay-foot{max-width:760px;margin:70px auto 140px;padding:0 32px;display:flex;gap:16px;flex-wrap:wrap;}
+  .overlay-foot{max-width:760px;margin:60px auto 90px;padding:0 32px;display:flex;gap:16px;flex-wrap:wrap;}
   .btn{
     font-size:14.5px;font-weight:600;padding:13px 24px;border-radius:100px;
     border:1px solid var(--line);transition:.2s;display:inline-flex;align-items:center;gap:8px;
@@ -319,8 +347,26 @@
   .h-card .sub{font-size:13px;color:var(--ink-dim);margin-top:4px;}
   .h-card.video{aspect-ratio:auto;background:var(--surface-2);border:1px solid var(--line);display:flex;flex-direction:column;}
   .h-card.video::after{display:none;}
-  .h-card.video .yt-embed{position:relative;width:100%;aspect-ratio:16/9;background:#000;}
+  .h-card.video .yt-embed{position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden;}
   .h-card.video .yt-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .yt-embed .yt-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+  .yt-embed::before{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.4), transparent 42%);pointer-events:none;z-index:1;}
+  .yt-embed.yt-loaded::before{display:none;}
+  .yt-play-btn{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;
+    width:58px;height:58px;border-radius:50%;border:none;cursor:pointer;
+    background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    display:flex;align-items:center;justify-content:center;color:#fff;transition:.2s;
+  }
+  .yt-play-btn svg{width:22px;height:22px;margin-left:3px;}
+  .yt-play-btn:hover{background:var(--accent);transform:translate(-50%,-50%) scale(1.08);}
+  .yt-watch-link{
+    position:absolute;bottom:10px;right:10px;z-index:2;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;
+    color:#fff;background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    padding:6px 11px;border-radius:100px;border:1px solid rgba(255,255,255,0.16);transition:.2s;
+  }
+  .yt-watch-link:hover{background:rgba(0,0,0,0.85);border-color:rgba(255,255,255,0.3);}
   .h-card.video .h-meta{position:static;height:auto;padding:16px 18px 20px;}
 
   /* ---------- PRODUCTION ---------- */
@@ -345,10 +391,10 @@
   .digi-body p{margin-top:10px;font-size:14.5px;color:var(--ink-dim);line-height:1.55;}
   .digi-tech{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;}
 
-  /* ---------- APPLE & TECH — white section, scoped to itself ---------- */
+  /* ---------- APPLE & TECH ---------- */
   .apple-section{
-    background:#ffffff;color:#0a0a0a;padding:150px 0 100px;
-    --ink:#0a0a0a;--ink-dim:#4a4a4a;--ink-faint:#767676;--surface-2:#f2f2f4;--line:rgba(10,10,10,0.1);--accent:#0071e3;
+    background:var(--bg);padding:150px 0 100px;
+    --accent:#0071e3;
   }
   .apple-inner{max-width:720px;margin:0 auto;padding:0 32px;text-align:center;}
   .apple-inner .eyebrow{color:var(--accent);font-size:13px;font-weight:600;letter-spacing:.02em;display:block;margin-bottom:16px;}
@@ -358,12 +404,8 @@
   .apple-points li{display:flex;gap:14px;align-items:flex-start;font-size:15px;line-height:1.55;color:var(--ink-dim);}
   .apple-points li b{color:var(--ink);font-weight:600;}
   .apple-points .pt-emoji{font-size:18px;line-height:1.5;flex-shrink:0;}
-  .apple-inner .btn.solid{margin-top:34px;display:inline-block;background:#0a0a0a;color:#fff;border:1px solid #0a0a0a;padding:13px 26px;border-radius:100px;font-size:14px;font-weight:600;transition:.2s;}
-  .apple-inner .btn.solid:hover{background:#2a2a2a;}
+  .apple-inner .btn.solid{margin-top:34px;}
   .apple-tweets-wrap{max-width:1180px;margin:64px auto 0;padding:0 32px;position:relative;}
-  .apple-tweets-wrap .carousel-btn{background:rgba(10,10,10,0.04);border-color:var(--line);color:var(--ink);}
-  .apple-tweets-wrap .carousel-btn:hover{background:rgba(10,10,10,0.08);border-color:var(--ink-faint);}
-  .apple-section .reel-card{background:#fff;}
   @media(max-width:640px){.apple-tweets-wrap{padding:0 20px;}}
   .digi-tech span{font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);border:1px solid var(--line);padding:4px 9px;border-radius:100px;}
   .digi-body .go{margin-top:18px;display:inline-block;font-size:13.5px;font-weight:600;color:var(--accent);}
@@ -393,8 +435,10 @@
   .contact h2{font-size:clamp(44px,8vw,96px);font-weight:700;letter-spacing:-0.035em;line-height:0.98;}
   .contact p.sub{margin-top:22px;font-size:clamp(17px,2vw,21px);color:var(--ink-dim);}
   .contact .btn.solid{margin-top:44px;padding:18px 34px;font-size:16px;}
-  .contact-links{margin-top:60px;display:flex;justify-content:center;gap:28px;flex-wrap:wrap;font-size:14px;color:var(--ink-dim);}
+  .contact-links{margin-top:60px;display:flex;justify-content:center;align-items:center;gap:22px;flex-wrap:wrap;font-size:14px;color:var(--ink-dim);}
   .contact-links a:hover{color:var(--ink);}
+  .contact-links .nav-icon{width:44px;height:44px;}
+  .contact-links .nav-icon svg{width:19px;height:19px;}
 
   footer{padding:50px 24px;text-align:center;font-size:12px;color:var(--ink-faint);font-family:var(--mono);border-top:1px solid var(--line);}
 
@@ -504,8 +548,8 @@
     <h1>Kevin Aubin</h1>
     <div class="tagline">I create things for the internet.</div>
     <p class="desc">Digital creator, producer, designer and developer — making websites, videos, podcasts, clips, and digital experiences.</p>
-    <a href="#work" class="view-work">View my work <span class="arrow">↓</span></a>
   </div>
+  <a href="#work" class="view-work">View my work <span class="arrow">↓</span></a>
 </section>
 
 <!-- SELECTED WORK -->
@@ -516,7 +560,7 @@
     <p>A collection of projects, productions, ideas and experiments.</p>
   </div>
 
-  <div style="height:100px"></div>
+  <div style="height:56px"></div>
 
   <!-- PROJECT 01 — LA GANG DU SHOW -->
   <div class="feature-project">
@@ -535,8 +579,15 @@
       <div class="cta-link" onclick="openOverlay('lgds')">Watch project →</div>
     </div>
     <div class="placeholder-media lgds-teaser scale-in" onclick="openOverlay('lgds')" style="cursor:pointer;">
-      <img class="lgds-teaser-logo" src="assets/lgds-logo.png" alt="La Gang du Show logo">
-      <div class="media-label">La Gang du Show — Season archive</div>
+      <img class="lgds-teaser-thumb" src="assets/thumbnails/s2hfsvMmTNU_maxres.jpg" alt="La Gang du Show — episode thumbnail">
+      <div class="lgds-teaser-badge"><img src="assets/lgds-logo.png" alt="">
+        <span>La Gang du Show</span>
+      </div>
+      <div class="lgds-teaser-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="media-label">
+        <span class="ep-count">98+ episodes, clips &amp; reels</span>
+        <span class="explore-cta">Explore the full archive <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
     </div>
   </div>
 </section>
@@ -586,12 +637,12 @@
         <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next episodes">→</button>
       </div>
       <div class="embed-carousel">
-        <div class="h-card video"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/6NAiNp6YUQU" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Notre homme AchilleFPS nous dit TOUT sur son aventure à OD Chypre</span><span class="sub">La Gang du Show</span></div></div>
-        <div class="h-card video"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/8jHfza36qj0" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">20 ans d'amitié avec Laurie Doucet : OD, Justin Bieber et nos vies de bars</span><span class="sub">La Gang du Show</span></div></div>
-        <div class="h-card video"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/y-AJIjmiMY8" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Les BUCKBOYS vont EXPLOSER le Québec</span><span class="sub">La Gang du Show</span></div></div>
-        <div class="h-card video"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/7tRcQ3yaGOI?start=1181" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Rosalie Lessard sans filtre sur son parcours atypique</span><span class="sub">La Gang du Show</span></div></div>
-        <div class="h-card video"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/s2hfsvMmTNU" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">AchilleFPS revient sur son match Lewislefou VS Oli Primeau</span><span class="sub">La Gang du Show</span></div></div>
-        <div class="h-card video"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/wfGyS93Pggc" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Félix "Rouge Forêt" Bouchard ne digère PAS la défaite du Canada 🇨🇦</span><span class="sub">La Gang du Show</span></div></div>
+        <div class="h-card video"><div class="yt-embed" data-yt-id="6NAiNp6YUQU"><img class="yt-poster" src="assets/thumbnails/6NAiNp6YUQU_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=6NAiNp6YUQU" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Notre homme AchilleFPS nous dit TOUT sur son aventure à OD Chypre</span><span class="sub">La Gang du Show</span></div></div>
+        <div class="h-card video"><div class="yt-embed" data-yt-id="8jHfza36qj0"><img class="yt-poster" src="assets/thumbnails/8jHfza36qj0_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=8jHfza36qj0" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">20 ans d'amitié avec Laurie Doucet : OD, Justin Bieber et nos vies de bars</span><span class="sub">La Gang du Show</span></div></div>
+        <div class="h-card video"><div class="yt-embed" data-yt-id="y-AJIjmiMY8"><img class="yt-poster" src="assets/thumbnails/y-AJIjmiMY8_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=y-AJIjmiMY8" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Les BUCKBOYS vont EXPLOSER le Québec</span><span class="sub">La Gang du Show</span></div></div>
+        <div class="h-card video"><div class="yt-embed" data-yt-id="7tRcQ3yaGOI" data-yt-start="1181"><img class="yt-poster" src="assets/thumbnails/7tRcQ3yaGOI_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=7tRcQ3yaGOI" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Rosalie Lessard sans filtre sur son parcours atypique</span><span class="sub">La Gang du Show</span></div></div>
+        <div class="h-card video"><div class="yt-embed" data-yt-id="s2hfsvMmTNU"><img class="yt-poster" src="assets/thumbnails/s2hfsvMmTNU_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=s2hfsvMmTNU" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">AchilleFPS revient sur son match Lewislefou VS Oli Primeau</span><span class="sub">La Gang du Show</span></div></div>
+        <div class="h-card video"><div class="yt-embed" data-yt-id="wfGyS93Pggc"><img class="yt-poster" src="assets/thumbnails/wfGyS93Pggc_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=wfGyS93Pggc" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Félix "Rouge Forêt" Bouchard ne digère PAS la défaite du Canada 🇨🇦</span><span class="sub">La Gang du Show</span></div></div>
       </div>
     </div>
 
@@ -727,7 +778,7 @@
     </div>
   </div>
   <div class="overlay-foot">
-    <a class="btn solid" href="https://instagram.com/lagangdushow" target="_blank" rel="noopener">Watch on Instagram</a>
+    <a class="btn solid" href="https://www.youtube.com" target="_blank" rel="noopener">Watch on YouTube</a>
     <a class="btn" href="#" onclick="closeOverlay('lgds');return false;">Back to work</a>
   </div>
 </div>
@@ -736,7 +787,7 @@
 <section class="clips-section" id="clips">
   <div class="section-head reveal">
     <span class="eyebrow">Podcasts &amp; Clips</span>
-    <h2>Watch the show. Then catch the clips.</h2>
+    <h2>Watch the clips. Then catch the show.</h2>
     <p>Full episodes on YouTube, with the best moments cut down for TikTok and short-form.</p>
   </div>
 
@@ -747,12 +798,12 @@
       <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next episodes">→</button>
     </div>
     <div class="embed-carousel">
-      <div class="h-card video reveal"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/6NAiNp6YUQU" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Notre homme AchilleFPS nous dit TOUT sur son aventure à OD Chypre</span><span class="sub">La Gang du Show</span></div></div>
-      <div class="h-card video reveal"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/8jHfza36qj0" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">20 ans d’amitié avec Laurie Doucet : OD, Justin Bieber et nos vies de bars</span><span class="sub">La Gang du Show</span></div></div>
-      <div class="h-card video reveal"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/y-AJIjmiMY8" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Les BUCKBOYS vont EXPLOSER le Québec</span><span class="sub">La Gang du Show</span></div></div>
-      <div class="h-card video reveal"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/7tRcQ3yaGOI?start=1181" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Rosalie Lessard sans filtre sur son parcours atypique</span><span class="sub">La Gang du Show</span></div></div>
-      <div class="h-card video reveal"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/s2hfsvMmTNU" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">AchilleFPS revient sur son match Lewislefou VS Oli Primeau</span><span class="sub">La Gang du Show</span></div></div>
-      <div class="h-card video reveal"><div class="yt-embed"><iframe src="https://www.youtube.com/embed/wfGyS93Pggc" title="La Gang du Show — Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Félix “Rouge Forêt” Bouchard ne digère PAS la défaite du Canada 🇨🇦</span><span class="sub">La Gang du Show</span></div></div>
+      <div class="h-card video reveal"><div class="yt-embed" data-yt-id="6NAiNp6YUQU"><img class="yt-poster" src="assets/thumbnails/6NAiNp6YUQU_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=6NAiNp6YUQU" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Notre homme AchilleFPS nous dit TOUT sur son aventure à OD Chypre</span><span class="sub">La Gang du Show</span></div></div>
+      <div class="h-card video reveal"><div class="yt-embed" data-yt-id="8jHfza36qj0"><img class="yt-poster" src="assets/thumbnails/8jHfza36qj0_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=8jHfza36qj0" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">20 ans d’amitié avec Laurie Doucet : OD, Justin Bieber et nos vies de bars</span><span class="sub">La Gang du Show</span></div></div>
+      <div class="h-card video reveal"><div class="yt-embed" data-yt-id="y-AJIjmiMY8"><img class="yt-poster" src="assets/thumbnails/y-AJIjmiMY8_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=y-AJIjmiMY8" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Les BUCKBOYS vont EXPLOSER le Québec</span><span class="sub">La Gang du Show</span></div></div>
+      <div class="h-card video reveal"><div class="yt-embed" data-yt-id="7tRcQ3yaGOI" data-yt-start="1181"><img class="yt-poster" src="assets/thumbnails/7tRcQ3yaGOI_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=7tRcQ3yaGOI" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Rosalie Lessard sans filtre sur son parcours atypique</span><span class="sub">La Gang du Show</span></div></div>
+      <div class="h-card video reveal"><div class="yt-embed" data-yt-id="s2hfsvMmTNU"><img class="yt-poster" src="assets/thumbnails/s2hfsvMmTNU_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=s2hfsvMmTNU" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">AchilleFPS revient sur son match Lewislefou VS Oli Primeau</span><span class="sub">La Gang du Show</span></div></div>
+      <div class="h-card video reveal"><div class="yt-embed" data-yt-id="wfGyS93Pggc"><img class="yt-poster" src="assets/thumbnails/wfGyS93Pggc_maxres.jpg" alt="" loading="lazy"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><a class="yt-watch-link" href="https://www.youtube.com/watch?v=wfGyS93Pggc" target="_blank" rel="noopener" onclick="event.stopPropagation()">Watch on YouTube ↗</a></div><div class="h-meta"><span class="kind">Episode</span><span class="name">Félix “Rouge Forêt” Bouchard ne digère PAS la défaite du Canada 🇨🇦</span><span class="sub">La Gang du Show</span></div></div>
     </div>
   </div>
 
@@ -762,7 +813,7 @@
       <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous TikToks">←</button>
       <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next TikToks">→</button>
     </div>
-    <div class="embed-carousel tiktok-white">
+    <div class="embed-carousel">
       <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7565826006045445393" data-video-id="7565826006045445393" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
       <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7490818157410536759" data-video-id="7490818157410536759" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
       <div class="tiktok-card reveal"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7581037676082498823" data-video-id="7581037676082498823" data-embed-from="oembed" style="max-width: 325px;min-width: 288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
@@ -845,14 +896,14 @@
       <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next tweets">→</button>
     </div>
     <div class="ig-grid embed-carousel" id="tweet-embeds">
-      <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/2090258224695910559"></a></blockquote></div>
-      <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1765818163344589307"></a></blockquote></div>
-      <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1755312748760629684"></a></blockquote></div>
-      <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1752405548027294072"></a></blockquote></div>
-      <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1749524471755485471"></a></blockquote></div>
-      <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1685712788981710848"></a></blockquote></div>
-      <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1649488487538630656"></a></blockquote></div>
-      <div class="reel-card"><blockquote class="twitter-tweet"><a href="https://x.com/kaubin/status/1640834861043798017"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/kaubin/status/2090258224695910559"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/kaubin/status/1765818163344589307"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/kaubin/status/1755312748760629684"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/kaubin/status/1752405548027294072"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/kaubin/status/1749524471755485471"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/kaubin/status/1685712788981710848"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/kaubin/status/1649488487538630656"></a></blockquote></div>
+      <div class="reel-card"><blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/kaubin/status/1640834861043798017"></a></blockquote></div>
     </div>
   </div>
 </section>
@@ -896,8 +947,12 @@
   <a class="btn solid reveal" href="mailto:hello@kaubin.dev">Get in touch →</a>
   <div class="contact-links reveal">
     <a href="mailto:hello@kaubin.dev">Email</a>
-    <a href="https://twitter.com/kaubin" target="_blank" rel="noopener">X — @kaubin</a>
-    <a href="https://instagram.com/lagangdushow" target="_blank" rel="noopener">Instagram — @lagangdushow</a>
+    <a class="nav-icon" href="https://twitter.com/kaubin" target="_blank" rel="noopener" aria-label="X — @kaubin" title="@kaubin on X">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"/></svg>
+    </a>
+    <a class="nav-icon" href="https://instagram.com/kevnaubin" target="_blank" rel="noopener" aria-label="Instagram — @kevnaubin" title="@kevnaubin on Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg>
+    </a>
   </div>
 </section>
 
@@ -940,6 +995,22 @@
   ttScript.async = true;
   document.body.appendChild(ttScript);
   window.addEventListener('load', () => setTimeout(reprocessTikTok, 1500));
+
+  function loadYouTube(btn){
+    const wrap = btn.closest('.yt-embed');
+    if (!wrap || wrap.classList.contains('yt-loaded')) return;
+    const id = wrap.dataset.ytId;
+    const start = wrap.dataset.ytStart ? `&start=${wrap.dataset.ytStart}` : '';
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1${start}`;
+    iframe.title = 'YouTube video player';
+    iframe.loading = 'lazy';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    wrap.innerHTML = '';
+    wrap.appendChild(iframe);
+    wrap.classList.add('yt-loaded');
+  }
 
   function scrollCarousel(button, direction){
     const wrap = button.closest('.embed-carousel-wrap');
