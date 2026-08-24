@@ -154,16 +154,32 @@
   .lgds-teaser:hover .stack-img.s2{transform:rotate(-7deg) translate(8%,9%) scale(0.985);}
   .lgds-teaser-thumb{
     position:relative;z-index:3;width:100%;height:100%;object-fit:cover;
-    border-radius:var(--radius-lg);display:block;transition:transform .5s ease;
+    border-radius:var(--radius-lg);display:block;transition:transform .5s ease, opacity .45s ease;
   }
-  .lgds-teaser:hover .lgds-teaser-thumb{transform:scale(1.03);}
-  .lgds-teaser-badge{
-    position:absolute;top:18px;left:18px;z-index:5;display:flex;align-items:center;gap:8px;
-    background:rgba(8,8,9,0.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-    padding:5px 14px 5px 5px;border-radius:100px;border:1px solid rgba(255,255,255,0.14);
+  .lgds-teaser:hover .lgds-teaser-thumb{transform:scale(1.03);opacity:0;}
+  .lgds-thumbcloud{position:absolute;inset:0;z-index:4;overflow:visible;pointer-events:none;}
+  .cloud-item{
+    position:absolute;top:50%;left:50%;width:17%;aspect-ratio:16/9;
+    transform:translate(-50%,-50%) scale(.14) rotate(0deg);
+    opacity:0;transition:transform .8s cubic-bezier(.2,.8,.2,1), opacity .5s ease;
+    transition-delay:0s;
   }
-  .lgds-teaser-badge img{width:22px;height:22px;object-fit:contain;border-radius:50%;background:#fff;padding:3px;display:block;}
-  .lgds-teaser-badge span{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:#fff;font-weight:600;}
+  .lgds-teaser:hover .cloud-item{
+    opacity:1;
+    transform:translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(var(--sc,1)) rotate(var(--rot,0deg));
+    transition-delay:var(--delay,0s);
+  }
+  .cloud-item img{
+    width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;
+    border:1px solid rgba(255,255,255,0.16);box-shadow:0 10px 24px rgba(0,0,0,0.5);
+    animation:cloudBob 3.4s ease-in-out infinite;animation-play-state:paused;
+  }
+  .lgds-teaser:hover .cloud-item img{animation-play-state:running;}
+  @keyframes cloudBob{
+    0%,100%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(-5px) rotate(1.4deg);}
+  }
+  @media(max-width:520px){.lgds-thumbcloud{display:none;}.lgds-teaser:hover .lgds-teaser-thumb{opacity:1;}}
   .lgds-teaser-play{
     position:absolute;top:18px;right:18px;z-index:5;width:44px;height:44px;border-radius:50%;
     background:rgba(8,8,9,0.65);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
@@ -591,8 +607,39 @@
         <img class="stack-img s2" src="assets/thumbnails/8jHfza36qj0_maxres.jpg" alt="" loading="lazy">
       </div>
       <img class="lgds-teaser-thumb" src="assets/thumbnails/s2hfsvMmTNU_maxres.jpg" alt="La Gang du Show — episode thumbnail">
-      <div class="lgds-teaser-badge"><img src="assets/lgds-logo.png" alt="">
-        <span>La Gang du Show</span>
+      <div class="lgds-thumbcloud">
+        <div class="cloud-item" style="--tx:13.3%;--ty:-2.1%;--rot:4.2deg;--sc:0.84;--delay:0.016s;"><img src="assets/thumbnails/-YmMGpobo6w_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-19.9%;--ty:7.6%;--rot:0.2deg;--sc:0.83;--delay:0.031s;"><img src="assets/thumbnails/1Tue0WxpmrM_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-0.6%;--ty:-21.9%;--rot:-2.1deg;--sc:1.07;--delay:0.04s;"><img src="assets/thumbnails/1dePqOPCHg0_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:21.5%;--ty:19.1%;--rot:12.5deg;--sc:0.99;--delay:0.066s;"><img src="assets/thumbnails/2FI9REQkRDE_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-39.8%;--ty:-7.3%;--rot:10.0deg;--sc:0.91;--delay:0.076s;"><img src="assets/thumbnails/2LYYFtMKBZU_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:38.2%;--ty:-16.7%;--rot:8.9deg;--sc:0.87;--delay:0.107s;"><img src="assets/thumbnails/3azoSmnTTdI_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-12.7%;--ty:29.7%;--rot:1.3deg;--sc:0.84;--delay:0.11s;"><img src="assets/thumbnails/4H067trfeRI_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-28.7%;--ty:-29.0%;--rot:-2.0deg;--sc:0.91;--delay:0.144s;"><img src="assets/thumbnails/4ScUKVjYsJw_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:56.8%;--ty:11.2%;--rot:8.2deg;--sc:1.03;--delay:0.151s;"><img src="assets/thumbnails/4k7xVsuX2Uw_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-58.8%;--ty:14.7%;--rot:10.5deg;--sc:1.04;--delay:0.171s;"><img src="assets/thumbnails/5jOfMSRfExg_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:32.5%;--ty:-38.6%;--rot:-2.3deg;--sc:1.05;--delay:0.185s;"><img src="assets/thumbnails/5kfPrkznKwQ_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:21.1%;--ty:37.3%;--rot:4.7deg;--sc:1.05;--delay:0.215s;"><img src="assets/thumbnails/6gWymkYEQk8_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-60.8%;--ty:-23.1%;--rot:5.5deg;--sc:1.0;--delay:0.233s;"><img src="assets/thumbnails/8ojU0Nih2kE_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:74.5%;--ty:-7.7%;--rot:12.5deg;--sc:0.96;--delay:0.254s;"><img src="assets/thumbnails/9lwh21i7Dcc_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-49.2%;--ty:39.8%;--rot:4.1deg;--sc:1.12;--delay:0.277s;"><img src="assets/thumbnails/ATEXA8RaJLk_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-12.3%;--ty:-49.0%;--rot:4.7deg;--sc:0.83;--delay:0.284s;"><img src="assets/thumbnails/B-hg2boxZbE_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:62.1%;--ty:30.1%;--rot:-12.3deg;--sc:1.05;--delay:0.292s;"><img src="assets/thumbnails/BJ0OGsC-8HA_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-89.2%;--ty:1.5%;--rot:10.4deg;--sc:0.84;--delay:0.319s;"><img src="assets/thumbnails/BPB-fco2Sjc_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:64.0%;--ty:-35.2%;--rot:8.9deg;--sc:1.08;--delay:0.332s;"><img src="assets/thumbnails/BQwsA7qWv4A_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-4.9%;--ty:53.7%;--rot:10.8deg;--sc:1.11;--delay:0.347s;"><img src="assets/thumbnails/Cp49DEbONJg_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-63.1%;--ty:-44.6%;--rot:-7.5deg;--sc:0.97;--delay:0.378s;"><img src="assets/thumbnails/Dcy2Lxr6qEY_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:94.0%;--ty:4.7%;--rot:-2.3deg;--sc:0.93;--delay:0.395s;"><img src="assets/thumbnails/EHM_N2nli3Y_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-77.6%;--ty:34.7%;--rot:0.4deg;--sc:1.01;--delay:0.416s;"><img src="assets/thumbnails/EHrL4F3ZGiI_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:18.6%;--ty:-56.1%;--rot:7.8deg;--sc:1.08;--delay:0.438s;"><img src="assets/thumbnails/EMOH1XQal1M_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:50.5%;--ty:52.5%;--rot:-11.1deg;--sc:1.01;--delay:0.434s;"><img src="assets/thumbnails/EupitF1rGKg_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-103.8%;--ty:-20.7%;--rot:-9.5deg;--sc:0.92;--delay:0.452s;"><img src="assets/thumbnails/F3QmONP9V_4_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:93.5%;--ty:-28.8%;--rot:-11.2deg;--sc:0.93;--delay:0.469s;"><img src="assets/thumbnails/FNh6UeEIMBg_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-39.2%;--ty:60.5%;--rot:-9.8deg;--sc:0.9;--delay:0.496s;"><img src="assets/thumbnails/G8ibiORf994_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-38.8%;--ty:-64.4%;--rot:9.8deg;--sc:1.12;--delay:0.518s;"><img src="assets/thumbnails/IF4zCr0q4z0_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:100.2%;--ty:28.8%;--rot:-11.1deg;--sc:0.92;--delay:0.53s;"><img src="assets/thumbnails/IPtSD5UuCkA_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:-108.8%;--ty:15.4%;--rot:-13.4deg;--sc:1.11;--delay:0.556s;"><img src="assets/thumbnails/Id5a4wxzx4A_maxres.jpg" alt="" loading="lazy"></div>
+        <div class="cloud-item" style="--tx:60.5%;--ty:-58.2%;--rot:-13.2deg;--sc:0.98;--delay:0.587s;"><img src="assets/thumbnails/IlUlJ_GkE0_maxres.jpg" alt="" loading="lazy"></div>
       </div>
       <div class="lgds-teaser-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
       <div class="media-label">
