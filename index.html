@@ -247,29 +247,21 @@
     cursor:pointer;transition:background .2s;
   }
   .overlay-close:hover{background:rgba(255,255,255,0.16);}
-  .overlay-hero{
-    height:78vh;min-height:460px;position:relative;display:flex;align-items:flex-end;
-    padding:0 40px 60px;
-  }
-  .overlay-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.85), transparent 60%);}
-  .overlay-hero-content{position:relative;z-index:1;max-width:900px;}
-  .overlay-hero-content .eyebrow{color:var(--accent);}
-  .overlay-hero-content h2{font-size:clamp(38px,6vw,76px);font-weight:700;letter-spacing:-0.03em;line-height:1;}
-  .overlay-meta{display:flex;gap:36px;margin-top:22px;flex-wrap:wrap;align-items:flex-start;}
+  .lgds-header{max-width:1180px;margin:0 auto;padding:88px 32px 36px;box-sizing:border-box;border-bottom:1px solid var(--line);}
+  .lgds-header-top{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+  .lgds-header-top .eyebrow{margin-bottom:0;}
+  .lgds-badge{width:36px;height:36px;border-radius:9px;object-fit:contain;background:#fff;padding:5px;box-sizing:border-box;flex-shrink:0;}
+  .lgds-header h2{font-size:clamp(32px,5vw,58px);font-weight:700;letter-spacing:-0.03em;line-height:1.04;max-width:680px;}
+  .lgds-header-row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:22px 40px;margin-top:30px;}
+  .overlay-meta{display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start;}
   .overlay-meta div span{display:block;}
   .overlay-meta .k{font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;font-family:var(--mono);}
   .overlay-meta .v{font-size:15px;margin-top:4px;font-weight:500;}
-  .platform-row{margin-top:26px;display:flex;flex-direction:column;align-items:center;gap:8px;}
-  .platform-row .k{font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;font-family:var(--mono);}
-  .platform-icons{display:flex;gap:14px;margin-top:2px;}
-  .platform-icons a{
-    width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-    background:rgba(255,255,255,0.06);border:1px solid var(--line);color:var(--ink);transition:.2s;
-  }
-  .platform-icons a:hover{background:rgba(255,255,255,0.12);border-color:var(--ink-dim);transform:translateY(-2px);}
-  .platform-icons svg{width:19px;height:19px;fill:currentColor;}
-  .platform-row .handle{font-size:14px;color:var(--ink-dim);margin-top:2px;font-weight:500;}
-  .overlay-body{padding:80px 0 140px;}
+  .lgds-links{display:flex;flex-wrap:wrap;align-items:center;gap:18px;}
+  .lgds-links a{font-size:13px;color:var(--ink-dim);padding-bottom:2px;border-bottom:1px solid transparent;transition:color .2s,border-color .2s;}
+  .lgds-links a:hover{color:var(--ink);border-color:var(--ink-dim);}
+  .lgds-links .handle{font-size:13px;color:var(--ink-faint);font-family:var(--mono);}
+  .overlay-body{padding:64px 0 140px;}
   .overlay-body p{font-size:19px;line-height:1.75;color:var(--ink-dim);}
   .overlay-body h4{font-size:13px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;margin:56px auto 20px;font-family:var(--mono);max-width:1180px;padding:0 32px;box-sizing:border-box;}
   .overlay-body h4.logo-h4{display:flex;align-items:center;gap:10px;}
@@ -479,18 +471,6 @@
   footer{padding:50px 24px;text-align:center;font-size:12px;color:var(--ink-faint);font-family:var(--mono);border-top:1px solid var(--line);}
 
   /* ---------- LA GANG DU SHOW — layout tweaks only; uses the default black theme ---------- */
-  #overlay-lgds .overlay-hero{
-    height:auto;min-height:0;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;padding:120px 32px 64px;
-  }
-  #overlay-lgds .overlay-hero-content{max-width:640px;}
-  #overlay-lgds .overlay-hero-content h2{font-size:clamp(28px,4vw,48px);}
-  #overlay-lgds .lgds-hero-logo{
-    width:96px;height:96px;object-fit:contain;margin:0 auto 26px;display:block;
-    background:#fff;border-radius:50%;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,0.35);
-  }
-  #overlay-lgds .overlay-meta{justify-content:center;}
   #overlay-lgds .thumb-placeholder{
     aspect-ratio:16/9;border:1.5px dashed var(--line);border-radius:var(--radius-md);
     display:flex;align-items:center;justify-content:center;background:var(--surface-2);
@@ -641,24 +621,23 @@
 <!-- PROJECT DETAIL OVERLAY: LA GANG DU SHOW -->
 <div class="overlay" id="overlay-lgds">
   <div class="overlay-close" onclick="closeOverlay('lgds')">✕</div>
-  <div class="overlay-hero">
-    <div class="overlay-hero-content">
-      <img class="lgds-hero-logo" src="assets/lgds-logo.png" alt="La Gang du Show logo">
+  <div class="lgds-header">
+    <div class="lgds-header-top">
+      <img class="lgds-badge" src="assets/lgds-logo.png" alt="La Gang du Show logo">
       <span class="eyebrow">La Gang du Show</span>
-      <h2>Production,<br>and everything after.</h2>
+    </div>
+    <h2>Production, and everything after.</h2>
+    <div class="lgds-header-row">
       <div class="overlay-meta">
         <div><span class="k">Role</span><span class="v">Producer · Editor</span></div>
         <div><span class="k">Footage</span><span class="v">@jemcee</span></div>
       </div>
-      <div class="platform-row">
-        <span class="k">Listen &amp; watch</span>
-        <div class="platform-icons">
-          <a href="https://www.youtube.com" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg></a>
-          <a href="https://www.patreon.com" target="_blank" rel="noopener" title="Patreon" aria-label="Patreon"><svg viewBox="0 0 24 24"><circle cx="15.4" cy="8.8" r="6.4"/><rect x="2" y="2" width="3.4" height="20"/></svg></a>
-          <a href="https://open.spotify.com" target="_blank" rel="noopener" title="Spotify" aria-label="Spotify"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 14.4a.6.6 0 0 1-.83.2c-2.3-1.4-5.2-1.7-8.6-.9a.6.6 0 1 1-.27-1.18c3.7-.85 6.9-.48 9.5 1.05.28.17.38.53.2.83Zm1.2-2.75a.75.75 0 0 1-1.03.25c-2.6-1.6-6.6-2.06-9.7-1.13a.75.75 0 1 1-.43-1.44c3.53-1.06 7.93-.55 10.9 1.28.36.22.47.7.26 1.04Zm.1-2.86c-3.1-1.85-8.24-2.02-11.2-1.12a.9.9 0 1 1-.52-1.72c3.42-1.03 9.1-.83 12.7 1.28a.9.9 0 1 1-.98 1.56Z"/></svg></a>
-          <a href="https://podcasts.apple.com" target="_blank" rel="noopener" title="Apple Podcasts" aria-label="Apple Podcasts"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 3.4a3.4 3.4 0 1 1 0 6.8 3.4 3.4 0 0 1 0-6.8Zm0 15.1c-2.1 0-4-.7-5.6-1.9.1-2.1 1.9-3.7 4-3.9.5-.1 1-.1 1.6-.1s1.1 0 1.6.1c2.1.2 3.9 1.8 4 3.9A9 9 0 0 1 12 20.5Z"/></svg></a>
-        </div>
-        <span class="v handle">@lagangdushow</span>
+      <div class="lgds-links">
+        <a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.patreon.com" target="_blank" rel="noopener">Patreon</a>
+        <a href="https://open.spotify.com" target="_blank" rel="noopener">Spotify</a>
+        <a href="https://podcasts.apple.com" target="_blank" rel="noopener">Apple Podcasts</a>
+        <span class="handle">@lagangdushow</span>
       </div>
     </div>
   </div>
