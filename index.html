@@ -1133,6 +1133,16 @@
     carousel.scrollBy({left: direction * amount, behavior:'smooth'});
   }
 
+  function initEpisodeCarouselOffset(){
+    document.querySelectorAll('.embed-carousel-2row').forEach(carousel => {
+      const rowA = carousel.querySelector('.ep-row-a');
+      if (!rowA) return;
+      const offset = parseFloat(getComputedStyle(rowA).marginLeft) || 0;
+      carousel.scrollLeft = offset;
+    });
+  }
+  window.addEventListener('load', initEpisodeCarouselOffset);
+
   function toggleDetailFromCard(){
     const section = document.getElementById('lgds-detail');
     const card = document.querySelector('.lgds-teaser');
