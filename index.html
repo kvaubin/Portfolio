@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kevin Aubin — I create things for the internet.</title>
+<title>Kevin Aubin</title>
 <style>
   :root{
     --bg:#000000;
@@ -103,11 +103,20 @@
     max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6;font-weight:400;
     opacity:0;animation:fadeUp .9s ease forwards .48s;
   }
+  .hero-pills{
+    margin-top:24px;display:flex;flex-wrap:wrap;justify-content:center;gap:9px;
+    opacity:0;animation:fadeUp .9s ease forwards .58s;
+  }
+  .hero-pill{
+    font-size:12.5px;color:var(--ink-dim);border:1px solid var(--line);
+    padding:7px 15px;border-radius:100px;background:rgba(255,255,255,0.03);
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  }
   .view-work{
     position:absolute;left:0;right:0;bottom:44px;margin:0 auto;width:max-content;z-index:2;
     display:inline-flex;flex-direction:column;align-items:center;gap:10px;
     font-size:13px;color:var(--ink-dim);
-    opacity:0;animation:fadeUp .9s ease forwards .65s;
+    opacity:0;animation:fadeUp .9s ease forwards .74s;
   }
   .view-work .arrow{animation:bounce 2s ease-in-out infinite;font-size:16px;}
   @media(max-height:700px){.view-work{bottom:26px;}}
@@ -598,8 +607,14 @@
   <div class="grain"></div>
   <div class="hero-inner">
     <h1>Kevin Aubin</h1>
-    <div class="tagline">I create things for the internet.</div>
-    <p class="desc">Digital creator, producer, designer and developer — making websites, videos, podcasts, clips, and digital experiences.</p>
+    <div class="hero-pills">
+      <span class="hero-pill">Video Editing</span>
+      <span class="hero-pill">Podcast Production</span>
+      <span class="hero-pill">Social Content &amp; Thumbnails</span>
+      <span class="hero-pill">Graphic Design</span>
+      <span class="hero-pill">Event Posters</span>
+      <span class="hero-pill">Web Design &amp; Dev</span>
+    </div>
   </div>
   <a href="#work" class="view-work">View my work <span class="arrow">↓</span></a>
 </section>
