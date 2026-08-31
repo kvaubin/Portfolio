@@ -207,8 +207,20 @@ function hydrateEpisodeCards() {
       return;
     }
 
-    const name = card?.querySelector('.h-meta .name');
-    if (name) name.textContent = title;
+    const episodeMatch = title.match(/(?:\||\[)\s*(?:(?:La\s+)?Gang\s*)?#(\d+)/i);
+    const cleanTitle = title.replace(/\s*(?:\||\[)\s*(?:(?:La\s+)?Gang\s*)?#\d+.*$/i, '').trim();
+    const meta = card?.querySelector('.h-meta');
+    const name = meta?.querySelector('.name');
+    if (name) name.textContent = cleanTitle;
+    if (meta && episodeMatch) {
+      let number = meta.querySelector('.episode-number');
+      if (!number) {
+        number = document.createElement('span');
+        number.className = 'episode-number';
+        meta.prepend(number);
+      }
+      number.textContent = `#${episodeMatch[1]}`;
+    }
 
     const openVideo = () => window.open(
       'https://www.youtube.com/watch?v=' + id,
@@ -238,7 +250,7 @@ function hydrateEpisodeCards() {
     }
     const fileId = id.replace(/^_/, '');
     poster.src = 'assets/thumbnails/' + fileId + '_maxres.jpg';
-    poster.alt = title;
+    poster.alt = cleanTitle;
     poster.onerror = () => {
       poster.onerror = null;
       poster.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';

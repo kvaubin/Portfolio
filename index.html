@@ -24,7 +24,8 @@
     --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
     --mono:var(--sans);
   }
-  *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;scrollbar-width:none;-ms-overflow-style:none;}
+  *::-webkit-scrollbar{display:none;width:0;height:0;}
   html{scroll-behavior:smooth;scroll-padding-top:56px;}
   body{
     background:var(--bg);color:var(--ink);font-family:var(--sans);
@@ -137,7 +138,8 @@
   .section-head.center{text-align:center;max-width:680px;}
 
   /* ---------- SELECTED WORK ---------- */
-  .work{background:var(--bg);padding:72px 0 60px;}
+  .work{background:var(--bg);padding:72px 0 60px;transition:padding-bottom .55s cubic-bezier(.16,1,.3,1);}
+  body:has(.project-detail:not(.detail-collapsed)) .work{padding-bottom:0;z-index:30;}
 
   .placeholder-media{
     position:relative;overflow:hidden;border-radius:var(--radius-lg);
@@ -228,6 +230,29 @@
   .lgds-teaser:hover .explore-pill svg{transform:translateY(2px);}
   .lgds-teaser:hover .explore-pill.is-open svg{transform:rotate(180deg);}
   @keyframes pillPulse{0%,100%{box-shadow:0 10px 30px rgba(0,0,0,0.35),0 0 0 1px rgba(255,255,255,0.08);}50%{box-shadow:0 10px 34px rgba(41,151,255,0.45),0 0 0 1px rgba(255,255,255,0.14);}}
+  .explore-pill:not(.is-open){
+    animation:openPillGlow 1.8s ease-in-out infinite;
+    box-shadow:0 12px 38px rgba(0,0,0,.42),0 0 34px rgba(255,255,255,.68),0 0 70px rgba(41,151,255,.62),0 0 0 2px rgba(255,255,255,.42);
+  }
+  @keyframes openPillGlow{
+    0%,100%{box-shadow:0 12px 38px rgba(0,0,0,.42),0 0 26px rgba(255,255,255,.58),0 0 54px rgba(41,151,255,.48),0 0 0 2px rgba(255,255,255,.36);}
+    50%{box-shadow:0 14px 44px rgba(0,0,0,.46),0 0 44px rgba(255,255,255,.92),0 0 92px rgba(41,151,255,.82),0 0 0 3px rgba(255,255,255,.58);}
+  }
+  .lgds-teaser .explore-pill.is-open,.lgds-teaser:hover .explore-pill.is-open{
+    animation:none;background:#d41136;color:#fff;box-shadow:0 12px 34px rgba(212,17,54,.36),0 0 0 1px rgba(255,255,255,.2);
+  }
+  .lgds-teaser[aria-expanded="true"]:not(.legacy-stack) .cloud-item{
+    opacity:1;
+    transform:translate(calc(-50% + var(--burst-x)),calc(-50% + var(--burst-y))) scale(var(--burst-scale,.82)) rotate(var(--burst-rot,0deg));
+    filter:brightness(var(--burst-light,.92)) saturate(.9);
+    transition-delay:var(--burst-delay,0s);
+  }
+  .lgds-teaser[aria-expanded="true"] .stack-img.s3{transform:rotate(10deg) translate(-9%,11%) scale(.96);}
+  .lgds-teaser[aria-expanded="true"] .stack-img.s2{transform:rotate(-9deg) translate(10%,10%) scale(.98);}
+  .lgds-teaser[aria-expanded="true"] .stack-img.s4{transform:rotate(16deg) translate(-15%,15%) scale(.93);}
+  .lgds-teaser[aria-expanded="true"] .stack-img.s5{transform:rotate(-15deg) translate(16%,14%) scale(.94);}
+  .lgds-teaser[aria-expanded="true"] .stack-img.s6{transform:rotate(23deg) translate(-22%,18%) scale(.9);}
+  .lgds-teaser[aria-expanded="true"] .stack-img.s7{transform:rotate(-22deg) translate(23%,17%) scale(.91);}
   @media(max-width:520px){.lgds-stack{display:none;}}
   .grad-clip1{background:linear-gradient(155deg,#1c2438,#0a0a0a);}
   .grad-clip2{background:linear-gradient(155deg,#2a1830,#0a0a0a);}
@@ -258,7 +283,11 @@
   .cta-link:hover{border-color:var(--accent);gap:12px;}
 
   /* ---------- PROJECT DETAIL SECTION ---------- */
-  .project-detail{background:var(--bg);}
+  .project-detail{background:var(--bg);z-index:1;}
+  .project-detail:not(.detail-collapsed)::before{
+    content:"";position:absolute;z-index:20;left:0;right:0;top:-120px;height:170px;
+    pointer-events:none;background:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.38) 38%,#000 82%);
+  }
   .lgds-header{
     max-width:1180px;margin:0 auto;padding:72px 32px;box-sizing:border-box;
     border-bottom:1px solid var(--line);cursor:pointer;user-select:none;transition:background .2s ease;
@@ -285,20 +314,27 @@
     overflow:hidden;
     max-height:0;
     opacity:0;
-    transform:translateY(-12px);
-    transition:max-height .7s cubic-bezier(.2,.7,.2,1), opacity .45s ease .1s, transform .45s ease .1s;
-    border-top:1px solid transparent;
+    transform:translateY(-24px) scale(.985);
+    transform-origin:top center;
+    transition:opacity .3s ease,transform .48s cubic-bezier(.16,1,.3,1);
+    border-top:0;
   }
   .project-detail:not(.detail-collapsed) .overlay-body{
     max-height:20000px;
     opacity:1;
-    transform:translateY(0);
-    border-top-color:var(--line);
-    padding:40px 0 100px;
+    transform:translateY(0) scale(1);
+    padding:28px 0 100px;
+    animation:projectExpand .72s cubic-bezier(.16,1,.3,1) both;
   }
-  .project-detail.detail-collapsed .overlay-body{display:block;}
+  @keyframes projectExpand{
+    0%{opacity:0;transform:translateY(-28px) scale(.98);}
+    100%{opacity:1;transform:translateY(0) scale(1);}
+  }
+  .project-detail.detail-collapsed .overlay-body{display:block;content-visibility:hidden;}
+  .project-detail:not(.detail-collapsed) .overlay-body{content-visibility:visible;}
   .overlay-body p{font-size:19px;line-height:1.75;color:var(--ink-dim);}
   .overlay-body h4{font-size:13px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;margin:56px 0 20px;font-family:var(--mono);padding:0 24px;box-sizing:border-box;}
+  .overlay-body>h4:first-child{scroll-margin-top:32px;}
   .overlay-body h4.logo-h4{display:flex;align-items:center;gap:10px;}
   .overlay-body h4.logo-h4 .ct-logo{width:15px;height:15px;flex-shrink:0;color:var(--ink-faint);}
   .overlay-prose{max-width:760px;margin:0 auto;padding:0 32px;box-sizing:border-box;}
@@ -331,13 +367,14 @@
   .embed-carousel-2row::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px;}
   .ep-row{display:flex;gap:20px;width:max-content;}
   .ep-row+.ep-row{margin-top:20px;}
-  .ep-row .h-card{width:min(220px,58vw);flex:0 0 min(220px,58vw);scroll-snap-align:start;cursor:pointer;}
-  .ep-row .h-card .h-meta{padding:12px 14px 16px;}
-  .ep-row .h-card .name{font-size:14.5px;margin-top:0;}
-  .ep-row .h-card .sub{font-size:11.5px;margin-top:3px;}
+  .ep-row .h-card{width:min(190px,54vw);flex:0 0 min(190px,54vw);scroll-snap-align:start;cursor:pointer;}
+  .ep-row .h-card .h-meta{padding:10px 12px 12px;}
+  .ep-row .h-card .name{font-size:12.5px;line-height:1.35;margin-top:0;}
+  .ep-row .h-card .sub{display:none;}
+  .ep-row .h-card .episode-number{display:block;margin-bottom:5px;font-size:9px;font-weight:600;line-height:1;letter-spacing:.07em;color:rgba(255,255,255,.34);}
   .ep-row-a{margin-left:130px;}
   @media(max-width:700px){
-    .ep-row .h-card{width:min(170px,54vw);flex-basis:min(170px,54vw);}
+    .ep-row .h-card{width:min(155px,50vw);flex-basis:min(155px,50vw);}
     .ep-row-a{margin-left:90px;}
     .ep-row+.ep-row{margin-top:14px;}
   }
@@ -387,8 +424,8 @@
   }
   @media(max-width:700px){.carousel-controls{display:none;}.carousel-title{margin-top:38px;}}
   .design-row{display:flex;gap:14px;overflow-x:auto;padding:0 24px 20px;scroll-snap-type:x mandatory;}
-  .design-row::-webkit-scrollbar{height:5px;}
-  .design-row::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px;}
+  .design-row{scrollbar-width:none;-ms-overflow-style:none;}
+  .design-row::-webkit-scrollbar{display:none;width:0;height:0;}
   .design-tile{flex:0 0 220px;scroll-snap-align:start;border-radius:var(--radius-md);overflow:hidden;background:var(--surface-2);border:1px solid var(--line);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;}
   .design-tile img{width:100%;height:100%;object-fit:cover;display:block;}
   .design-tile.contain img{object-fit:contain;}
@@ -445,6 +482,7 @@
   }
   .yt-watch-link:hover{background:rgba(0,0,0,0.85);border-color:rgba(255,255,255,0.3);}
   .h-card.video .h-meta{position:static;height:auto;padding:16px 18px 20px;}
+  .ep-row .h-card.video .h-meta{padding:10px 12px 12px;}
 
   /* ---------- PRODUCTION ---------- */
   .production{background:var(--bg);padding:170px 0;}
@@ -532,14 +570,16 @@
   .thumb-grid-wrap{position:relative;overflow:hidden;transition:max-height .6s cubic-bezier(.2,.7,.2,1);}
   .thumb-grid-wrap.expanded{max-height:20000px !important;}
   .thumb-grid-wrap:not(.expanded)::after{
-    content:"";position:absolute;left:0;right:0;bottom:0;height:160px;
+    content:"";position:absolute;left:0;right:0;bottom:0;height:100px;
     background:linear-gradient(to top, var(--bg), transparent);pointer-events:none;
   }
   .thumb-expand-btn{
-    display:flex;align-items:center;gap:8px;margin:28px auto 0;padding:12px 26px;
-    border-radius:100px;border:1px solid var(--line);background:transparent;color:var(--ink);
-    font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;transition:.2s;
+    display:flex;position:relative;align-items:center;gap:6px;margin:8px auto 0;padding:7px 15px;
+    border-radius:100px;border:1px solid var(--line);background:rgba(255,255,255,.045);color:var(--ink);
+    font-family:var(--sans);font-size:11.5px;font-weight:600;cursor:pointer;transition:.2s;
   }
+  .thumb-grid-wrap.expanded+.thumb-expand-btn{margin:8px auto 0;}
+  .thumb-expand-btn+h4{margin-top:38px;}
   .thumb-expand-btn:hover{border-color:var(--ink-dim);background:rgba(255,255,255,0.06);}
   .thumb-tile{
     aspect-ratio:16/9;border-radius:var(--radius-md);overflow:hidden;background:var(--surface-2);
@@ -706,6 +746,14 @@
     -webkit-text-fill-color:currentColor!important;
     animation:none!important;
   }
+  .overlay-body>h4:first-child,.overlay-body h4.logo-h4,.carousel-title.logo-title{
+    font-family:var(--sans);font-size:15px;font-weight:650;letter-spacing:-.01em;text-transform:none;
+  }
+  .overlay-body h4.logo-h4 span,.carousel-title.logo-title span{
+    font-family:var(--sans);font-size:15px;letter-spacing:-.01em;text-transform:none;
+  }
+  .carousel-title.clip-title .tiktok-icon{color:#25f4ee;filter:drop-shadow(1px 1px 0 #fe2c55);}
+  .carousel-title.clip-title .instagram-icon{color:#e1306c;}
   .h-card .yt-play-btn,.h-card .yt-watch-link{display:none!important;}
   .h-card .yt-embed{cursor:pointer;}
   .h-card .yt-poster{transition:transform .35s ease,filter .35s ease;}
@@ -780,6 +828,23 @@
   @media(prefers-reduced-motion:reduce){.press-links a::before{animation:none;}}
   @media(max-width:620px){.press-links a{padding:7px 13px!important;}.press-name{font-size:12px;}}
   .overlay-body h4.logo-h4 .ct-logo{color:#ff0033!important;}
+  #lgds-detail .overlay-body>h4,
+  #lgds-detail .carousel-title,
+  #lgds-detail .carousel-title span,
+  #lgds-detail .overlay-body h4 span{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;font-size:16px;font-weight:480;letter-spacing:-.018em;text-transform:none;
+  }
+  #lgds-detail .overlay-body>h4,
+  #lgds-detail .carousel-title{
+    display:flex!important;align-items:center;width:auto!important;max-width:none;margin-right:24px;color:rgba(255,255,255,.88)!important;
+  }
+  #lgds-detail .overlay-body>h4::after,
+  #lgds-detail .carousel-title::after{
+    content:"";height:1px;flex:1;margin-left:16px;background:linear-gradient(90deg,rgba(255,255,255,.22),rgba(255,255,255,0));
+  }
+  #lgds-detail .carousel-title .ct-logo,
+  #lgds-detail .overlay-body h4 .ct-logo{width:14px;height:14px;}
+  #lgds-detail .design-description{font-size:11px;line-height:1.3;padding:0 24px;margin:4px 0 13px;max-width:460px;}
   @media(max-width:620px){.hero-cta{margin-top:48px;padding:16px 24px;font-size:15px;}.work>.section-head h2,.production>.section-head h2{font-size:64px;}}
   @media(max-width:900px){.prod-cell{grid-template-columns:1fr;}.prod-cell p,.prod-tags{grid-column:1;}}
   .overlay-body h4:not(.logo-h4),
@@ -823,13 +888,13 @@
   <div class="feature-project">
     <div class="feature-copy scale-in">
       <h3>La Gang du Show</h3>
-      <p class="lead">Receiving raw files, assembling full episodes for streaming, cutting clips for social, designing thumbnails, and handling the full post-production and content pipeline for @lagangdushow.</p>
+      <p class="lead">Receiving raw files, assembling full episodes for streaming, cutting clips for social, thumbnails, and everything that ends on @lagangdushow.</p>
       <div class="tag-row">
-        <span class="chip">Post-production</span>
-        <span class="chip">Editing</span>
-        <span class="chip">Clips</span>
-        <span class="chip">Thumbnails</span>
-        <span class="chip">Distribution</span>
+        <span class="chip">Podcast post-production</span>
+        <span class="chip">Video editing</span>
+        <span class="chip">Social clips</span>
+        <span class="chip">YouTube thumbnails</span>
+        <span class="chip">Social posting</span>
       </div>
     </div>
     <div class="placeholder-media lgds-teaser scale-in" onclick="toggleDetailFromCard()" role="button" tabindex="0" aria-controls="lgds-detail" aria-expanded="false" style="cursor:pointer;">
@@ -886,30 +951,29 @@
 <!-- PROJECT DETAIL: LA GANG DU SHOW -->
 <section class="project-detail detail-collapsed" id="lgds-detail">
   <div class="overlay-body" id="lgds-overlay-body">
-    <h4>Logo &amp; Graphic Design</h4>
-    <p style="font-size:15px;color:var(--ink-dim);line-height:1.6;padding:0 24px;margin-bottom:20px;max-width:680px;">Beyond editing, I designed the show's current logo and the graphics used across sponsorships and cross-promotion, plus a short animated logo reveal used as a video opener.</p>
+    <h4>Brand &amp; Graphic Design</h4>
+    <p class="design-description" style="color:var(--ink-dim);">I designed the show's current logo and graphics used across all platforms.</p>
     <div class="design-row">
       <div class="design-tile"><img src="assets/lgds-logo.png" alt="La Gang du Show logo redesign" loading="lazy"></div>
       <div class="design-tile"><img src="assets/lgds-patreon-crossover.png" alt="La Gang du Show x Patreon crossover graphic" loading="lazy"></div>
       <div class="design-tile video-tile contain">
-        <video src="assets/lgds-logo-anim.webm" autoplay loop muted playsinline></video>
+        <video data-src="assets/lgds-logo-anim.webm" preload="none" loop muted playsinline></video>
       </div>
       <div class="design-tile video-tile">
-        <video src="assets/lgds-subscribe-overlay.webm" autoplay loop muted playsinline></video>
+        <video data-src="assets/lgds-subscribe-overlay.webm" preload="none" loop muted playsinline></video>
       </div>
       <div class="design-tile video-tile">
-        <video src="assets/lgds-unfollow-overlay.webm" autoplay loop muted playsinline></video>
+        <video data-src="assets/lgds-unfollow-overlay.webm" preload="none" loop muted playsinline></video>
       </div>
       <div class="design-tile"><img src="assets/lgds-gang-end.png" alt="La Gang du Show vertical end screen" loading="lazy"></div>
       <div class="design-tile contain"><img src="assets/lgds-wordmark-wide.png" alt="La Gang du Show wide wordmark" loading="lazy"></div>
       <div class="design-tile"><img src="assets/lgds-patreon-endscreen.png" alt="La Gang du Show Patreon and YouTube end screen" loading="lazy"></div>
     </div>
 
-    <div class="carousel-title logo-title">
-      <svg class="ct-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" role="img"><title>YouTube Shorts</title><rect x="4" y="2" width="16" height="20" rx="4.5"/><path d="M10 8.5v7l5.5-3.5L10 8.5Z" fill="currentColor" stroke="none"/></svg>
-      <svg class="ct-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img"><title>TikTok</title><path d="M16.6 3h-3.2v12.4a3.1 3.1 0 1 1-2.5-3.04v-3.24a6.34 6.34 0 1 0 5.7 6.3V9.7a7.6 7.6 0 0 0 4.4 1.4V7.9a4.4 4.4 0 0 1-4.4-4.4V3Z"/></svg>
-      <svg class="ct-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" role="img"><title>Instagram</title><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg>
-      <span>Clips</span>
+    <div class="carousel-title logo-title clip-title">
+      <svg class="ct-logo tiktok-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img"><title>TikTok</title><path d="M16.6 3h-3.2v12.4a3.1 3.1 0 1 1-2.5-3.04v-3.24a6.34 6.34 0 1 0 5.7 6.3V9.7a7.6 7.6 0 0 0 4.4 1.4V7.9a4.4 4.4 0 0 1-4.4-4.4V3Z"/></svg>
+      <svg class="ct-logo instagram-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" role="img"><title>Instagram</title><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg>
+      <span>Social Clips</span>
     </div>
     <div class="embed-carousel-wrap">
       <div class="carousel-controls">
@@ -933,10 +997,16 @@
       <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7613860432507325703" data-video-id="7613860432507325703"><section><a target="_blank" href="https://www.tiktok.com/@lagangdushow/video/7613860432507325703">@lagangdushow</a></section></blockquote></div>
       <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7629673762178206997" data-video-id="7629673762178206997"><section><a target="_blank" href="https://www.tiktok.com/@lagangdushow/video/7629673762178206997">@lagangdushow</a></section></blockquote></div>
       <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7614739375104199944" data-video-id="7614739375104199944"><section><a target="_blank" href="https://www.tiktok.com/@lagangdushow/video/7614739375104199944">@lagangdushow</a></section></blockquote></div>
+      <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7565824776921533712" data-video-id="7565824776921533712"><section><a target="_blank" href="https://www.tiktok.com/@lagangdushow/video/7565824776921533712">@lagangdushow</a></section></blockquote></div>
+      <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7566468229611212050" data-video-id="7566468229611212050"><section><a target="_blank" href="https://www.tiktok.com/@lagangdushow/video/7566468229611212050">@lagangdushow</a></section></blockquote></div>
+      <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7538323805974859064" data-video-id="7538323805974859064"><section><a target="_blank" href="https://www.tiktok.com/@lagangdushow/video/7538323805974859064">@lagangdushow</a></section></blockquote></div>
+      <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7529469257244069126" data-video-id="7529469257244069126"><section><a target="_blank" href="https://www.tiktok.com/@lagangdushow/video/7529469257244069126">@lagangdushow</a></section></blockquote></div>
+      <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7520904478116056325" data-video-id="7520904478116056325"><section><a target="_blank" href="https://www.tiktok.com/@lagangdushow/video/7520904478116056325">@lagangdushow</a></section></blockquote></div>
+      <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7566464909643484424" data-video-id="7566464909643484424"><section><a target="_blank" href="https://www.tiktok.com/@lagangdushow/video/7566464909643484424">@lagangdushow</a></section></blockquote></div>
       </div>
     </div>
 
-    <h4 class="logo-h4"><svg class="ct-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img"><title>YouTube</title><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg><span>Full Episodes</span></h4>
+    <h4 class="logo-h4"><svg class="ct-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img"><title>YouTube</title><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg><span>Full Episode Editing</span></h4>
     <div class="embed-carousel-wrap">
       <div class="carousel-controls">
         <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous episodes">←</button>
@@ -1050,7 +1120,7 @@
       </div>
     </div>
 
-    <h4 class="logo-h4"><svg class="ct-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img"><title>YouTube</title><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg><span>Thumbnails</span></h4>
+    <h4 class="logo-h4"><svg class="ct-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img"><title>YouTube</title><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg><span>YouTube Thumbnail Design</span></h4>
     <div class="thumb-grid-wrap" id="thumb-grid-wrap">
       <div class="thumb-grid">
       <div class="thumb-tile" onclick="openLightbox('assets/thumbnails/s2hfsvMmTNU_maxres.jpg')"><img src="assets/thumbnails/s2hfsvMmTNU_maxres.jpg" alt="La Gang du Show thumbnail" loading="lazy"></div>
@@ -1164,7 +1234,7 @@
       <a class="x-follow" href="https://twitter.com/kaubin" target="_blank" rel="noopener">View on Twitter ↗</a>
     </div>
     <span class="eyebrow">Apple &amp; Tech</span>
-    <p class="lead">I track iOS betas and bugs, new iOS changes, Apple Music updates, iPhone leaks, upcoming products, hardware details and the small things Apple does not always mention.</p>
+    <p class="lead">I track Apple betas, new iOS changes, Apple Music updates, upcoming and unreleased Apple products, hardware details and the small things Apple does not always mention.</p>
 
     <div class="press-mentions">
       <span class="press-label">As seen in</span>
@@ -1204,12 +1274,12 @@
   <img id="lightbox-img" src="" alt="Enlarged thumbnail">
 </div>
 
-<script src="episode-metadata.js"></script>
+<script src="episode-metadata.js?v=3"></script>
 <script>
   function placeThumbnailsBeforeEpisodes(){
     const titles = [...document.querySelectorAll('#lgds-overlay-body h4.logo-h4')];
-    const episodesTitle = titles.find(title => title.querySelector('span')?.textContent.trim() === 'Full Episodes');
-    const thumbnailsTitle = titles.find(title => title.querySelector('span')?.textContent.trim() === 'Thumbnails');
+    const episodesTitle = titles.find(title => title.querySelector('span')?.textContent.trim() === 'Full Episode Editing');
+    const thumbnailsTitle = titles.find(title => title.querySelector('span')?.textContent.trim() === 'YouTube Thumbnail Design');
     const episodesCarousel = episodesTitle?.nextElementSibling;
     if (episodesTitle && episodesCarousel && thumbnailsTitle) {
       thumbnailsTitle.before(episodesTitle, episodesCarousel);
@@ -1255,50 +1325,97 @@
   }
   initWideThumbnailBurst();
 
+  let destroyDesignCarousel = null;
+  function initDesignCarousel(){
+    if (destroyDesignCarousel) return;
+    const row = document.querySelector('.design-row');
+    if (!row) return;
+    const videos = [...row.querySelectorAll('video[data-src]')];
+    videos.forEach(video => {
+      video.src = video.dataset.src;
+      video.load();
+      video.play().catch(() => {});
+    });
+    destroyDesignCarousel = () => {
+      row.scrollLeft = 0;
+      videos.forEach(video => {
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+      });
+      destroyDesignCarousel = null;
+    };
+  }
+
+  let destroyTikTokCarousel = null;
   function initTikTokCarousel(){
+    if (destroyTikTokCarousel) return;
     const carousel = document.querySelector('.tiktok-card')?.closest('.embed-carousel');
     if (!carousel) return;
     const cards = [...carousel.querySelectorAll('.tiktok-card')];
     cards.forEach((card, index) => {
       const source = card.querySelector('.tiktok-embed');
-      const videoId = source?.dataset.videoId;
+      const videoId = source?.dataset.videoId || card.dataset.videoId;
+      if (!videoId) return;
+      card.dataset.videoId = videoId;
+      const placeholder = document.createElement('div');
+      placeholder.className = 'tiktok-player-placeholder';
+      placeholder.setAttribute('aria-hidden', 'true');
+      card.replaceChildren(placeholder);
+    });
+    const loadCard = (card, index) => {
+      if (!card || card.querySelector('iframe')) return;
+      const videoId = card.dataset.videoId;
       if (!videoId) return;
       const player = document.createElement('iframe');
       player.src = `https://www.tiktok.com/player/v1/${videoId}?autoplay=1&muted=1&loop=1&controls=1&description=0&music_info=0&rel=0`;
       player.title = `TikTok clip ${index + 1}`;
       player.allow = 'autoplay; fullscreen';
       player.allowFullscreen = true;
-      player.loading = index === 0 ? 'eager' : 'lazy';
+      player.loading = 'eager';
       card.replaceChildren(player);
-    });
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    };
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let current = 0;
     let timer;
+    cards.forEach((card,index) => loadCard(card,index));
     const advance = () => {
-      current = (current + 1) % cards.length;
+      current = (current + 2) % cards.length;
       const card = cards[current];
       carousel.scrollTo({left:card.offsetLeft - (carousel.clientWidth - card.offsetWidth) / 2,behavior:'smooth'});
     };
-    const start = () => { clearInterval(timer); timer = setInterval(advance, 3800); };
+    const start = () => { clearInterval(timer); timer = setInterval(advance, 4000); };
     const stop = () => clearInterval(timer);
-    carousel.addEventListener('mouseenter', stop);
-    carousel.addEventListener('mouseleave', start);
-    carousel.addEventListener('touchstart', stop, {passive:true});
-    carousel.addEventListener('touchend', start, {passive:true});
-    start();
+    if (!reducedMotion) {
+      carousel.addEventListener('mouseenter', stop);
+      carousel.addEventListener('mouseleave', start);
+      carousel.addEventListener('touchstart', stop, {passive:true});
+      carousel.addEventListener('touchend', start, {passive:true});
+      start();
+    }
+    destroyTikTokCarousel = () => {
+      stop();
+      carousel.removeEventListener('mouseenter', stop);
+      carousel.removeEventListener('mouseleave', start);
+      carousel.removeEventListener('touchstart', stop);
+      carousel.removeEventListener('touchend', start);
+      cards.forEach(card => {
+        const videoId = card.dataset.videoId;
+        const placeholder = document.createElement('div');
+        placeholder.className = 'tiktok-player-placeholder';
+        placeholder.setAttribute('aria-hidden', 'true');
+        placeholder.dataset.videoId = videoId || '';
+        card.replaceChildren(placeholder);
+      });
+      carousel.scrollLeft = 0;
+      destroyTikTokCarousel = null;
+    };
   }
-  initTikTokCarousel();
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal, .scale-in').forEach(el => io.observe(el));
-
-  const igScript = document.createElement('script');
-  igScript.src = '//www.instagram.com/embed.js';
-  igScript.async = true;
-  document.body.appendChild(igScript);
 
   function loadYouTube(btn){
     const wrap = btn.closest('.yt-embed');
@@ -1334,6 +1451,7 @@
   }
   window.addEventListener('load', initEpisodeCarouselOffset);
 
+  let projectLoadTimer;
   function toggleDetailFromCard(){
     const section = document.getElementById('lgds-detail');
     const card = document.querySelector('.lgds-teaser');
@@ -1346,12 +1464,29 @@
       if (textNode && textNode.nodeType === 3) textNode.textContent = collapsed ? 'Open project ' : 'Close project ';
     }
     if (!collapsed) {
+      clearTimeout(projectLoadTimer);
+      projectLoadTimer = setTimeout(() => {
+        if (section.classList.contains('detail-collapsed')) return;
+        initDesignCarousel();
+        initTikTokCarousel();
+      }, 850);
       if (card && !card.classList.contains('legacy-stack')) {
         card.classList.add('burst-active');
         setTimeout(() => card.classList.remove('burst-active'), 1900);
       }
-      setTimeout(() => section.scrollIntoView({behavior:'smooth', block:'start'}), 700);
+      setTimeout(() => {
+        if (section.classList.contains('detail-collapsed')) return;
+        const firstContent = section.querySelector('.overlay-body h4');
+        firstContent?.scrollIntoView({
+          behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+          block:'start'
+        });
+      }, 150);
+    } else if (destroyTikTokCarousel) {
+      destroyTikTokCarousel();
     }
+    if (collapsed) clearTimeout(projectLoadTimer);
+    if (collapsed && destroyDesignCarousel) destroyDesignCarousel();
   }
 
   function openDetail(e){
