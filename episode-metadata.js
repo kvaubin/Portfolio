@@ -215,11 +215,14 @@ function hydrateEpisodeCards() {
       '_blank',
       'noopener,noreferrer'
     );
-    embed.setAttribute('role', 'link');
-    embed.setAttribute('tabindex', '0');
-    embed.setAttribute('aria-label', 'Watch on YouTube: ' + title);
-    embed.addEventListener('click', openVideo);
-    embed.addEventListener('keydown', (event) => {
+    card.setAttribute('role', 'link');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', 'Watch on YouTube: ' + title);
+    card.addEventListener('click', (event) => {
+      if (event.target.closest('a,button')) return;
+      openVideo();
+    });
+    card.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
         openVideo();
@@ -266,6 +269,7 @@ function hydrateEpisodeCards() {
     topRow.replaceChildren(...cards.slice(0, splitAt));
     bottomRow.replaceChildren(...cards.slice(splitAt));
   }
+
 }
 
 document.addEventListener('DOMContentLoaded', hydrateEpisodeCards);

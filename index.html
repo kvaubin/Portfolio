@@ -152,7 +152,7 @@
     background:transparent;overflow:visible;border:1px solid var(--line);
   }
   .lgds-teaser::after{border-radius:var(--radius-lg);z-index:4;}
-  .lgds-stack{position:absolute;inset:0;z-index:0;}
+  .lgds-stack{position:absolute;inset:0;z-index:3;}
   .stack-img{
     position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
     border-radius:var(--radius-lg);border:1px solid rgba(255,255,255,0.08);
@@ -171,28 +171,32 @@
   .lgds-teaser:hover .stack-img.s6{transform:rotate(23deg) translate(-22%,18%) scale(0.90);}
   .lgds-teaser:hover .stack-img.s7{transform:rotate(-22deg) translate(23%,17%) scale(0.91);}
   .lgds-teaser-thumb{
-    position:relative;z-index:3;width:100%;height:100%;object-fit:cover;
+    position:relative;z-index:4;width:100%;height:100%;object-fit:cover;
     border-radius:var(--radius-lg);display:block;transition:transform .5s ease, opacity .45s ease;
   }
   .lgds-teaser:hover .lgds-teaser-thumb{transform:scale(1.03);opacity:0;}
-  .lgds-thumbcloud{position:absolute;inset:0;z-index:4;overflow:visible;pointer-events:none;}
+  .lgds-thumbcloud{position:absolute;inset:0;z-index:1;overflow:visible;pointer-events:none;}
   .cloud-item{
     position:absolute;top:50%;left:50%;width:17%;aspect-ratio:16/9;
     transform:translate(-50%,-50%) scale(.14) rotate(0deg);
-    opacity:0;transition:transform .8s cubic-bezier(.2,.8,.2,1), opacity .5s ease;
+    opacity:0;transition:transform .95s cubic-bezier(.16,1,.3,1),opacity .36s ease,filter .68s ease;
     transition-delay:0s;
   }
-  .lgds-teaser:hover .cloud-item{
+  .lgds-teaser:not(.legacy-stack) .cloud-item{width:clamp(125px,28%,190px);}
+  .lgds-teaser:not(.legacy-stack):is(:hover,.burst-active) .cloud-item{
     opacity:1;
-    transform:translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(var(--sc,1)) rotate(var(--rot,0deg));
-    transition-delay:var(--delay,0s);
+    transform:translate(calc(-50% + var(--burst-x)),calc(-50% + var(--burst-y))) scale(var(--burst-scale,.82)) rotate(var(--burst-rot,0deg));
+    transition-delay:var(--burst-delay,0s);
+    filter:brightness(var(--burst-light,1));
   }
+  /* Preserved original burst: add legacy-stack to .lgds-teaser to restore it. */
+  .lgds-teaser.legacy-stack:hover .cloud-item{opacity:1;transform:translate(calc(-50% + var(--tx)),calc(-50% + var(--ty))) scale(var(--sc,1)) rotate(var(--rot,0deg));transition-duration:.8s;transition-delay:var(--delay,0s);}
   .cloud-item img{
     width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;
     border:1px solid rgba(255,255,255,0.16);box-shadow:0 10px 24px rgba(0,0,0,0.5);
     animation:cloudBob 3.4s ease-in-out infinite;animation-play-state:paused;
   }
-  .lgds-teaser:hover .cloud-item img{animation-play-state:running;}
+  .lgds-teaser:is(:hover,.burst-active) .cloud-item img{animation-play-state:running;}
   @keyframes cloudBob{
     0%,100%{transform:translateY(0) rotate(0deg);}
     50%{transform:translateY(-5px) rotate(1.4deg);}
@@ -207,10 +211,10 @@
   .lgds-teaser-play svg{width:16px;height:16px;margin-left:2px;}
   .lgds-teaser:hover .lgds-teaser-play{background:var(--accent);border-color:var(--accent);transform:scale(1.08);}
   .lgds-teaser .media-label{
-    position:absolute;left:0;right:0;bottom:0;z-index:5;padding:24px 26px;
+    position:absolute;inset:0;z-index:5;padding:0;pointer-events:none;
   }
-  .lgds-teaser .media-label .ep-count{display:block;font-size:15px;font-weight:700;color:#fff;letter-spacing:-0.01em;text-transform:none;font-family:var(--sans);text-shadow:0 2px 12px rgba(0,0,0,0.5);}
-  .lgds-teaser .media-label .explore-cta{margin-top:12px;display:block;}
+  .lgds-teaser .media-label .ep-count{display:block;position:absolute;left:50%;bottom:22px;transform:translateX(-50%);width:max-content;max-width:88%;text-align:center;font-size:15px;font-weight:700;color:#fff;letter-spacing:-0.01em;text-transform:none;font-family:var(--sans);text-shadow:0 2px 12px rgba(0,0,0,0.7);}
+  .lgds-teaser .media-label .explore-cta{display:block;position:absolute;left:50%;top:72%;transform:translate(-50%,-50%);white-space:nowrap;}
   .explore-pill{
     display:inline-flex;align-items:center;gap:10px;background:#fff;color:#0a0a0a;
     font-family:var(--sans);font-weight:700;font-size:17px;letter-spacing:-0.01em;text-transform:none;
@@ -241,6 +245,7 @@
   }
   @media(max-width:960px){.feature-project{grid-template-columns:1fr;gap:36px;}}
   .feature-copy .num{font-family:var(--mono);font-size:13px;color:var(--ink-faint);}
+  .feature-copy{position:relative;z-index:6;}
   .feature-copy h3{font-size:clamp(32px,4.5vw,54px);font-weight:700;letter-spacing:-0.03em;margin-top:14px;}
   .feature-copy p.lead{margin-top:18px;font-size:17px;color:var(--ink-dim);line-height:1.65;max-width:460px;}
   .tag-row{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px;}
@@ -326,7 +331,7 @@
   .embed-carousel-2row::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px;}
   .ep-row{display:flex;gap:20px;width:max-content;}
   .ep-row+.ep-row{margin-top:20px;}
-  .ep-row .h-card{width:min(220px,58vw);flex:0 0 min(220px,58vw);scroll-snap-align:start;}
+  .ep-row .h-card{width:min(220px,58vw);flex:0 0 min(220px,58vw);scroll-snap-align:start;cursor:pointer;}
   .ep-row .h-card .h-meta{padding:12px 14px 16px;}
   .ep-row .h-card .name{font-size:14.5px;margin-top:0;}
   .ep-row .h-card .sub{font-size:11.5px;margin-top:3px;}
@@ -345,11 +350,14 @@
   .carousel-btn:hover{background:rgba(255,255,255,.10);border-color:var(--ink-dim);}
   .tiktok-card{
     position:relative;
-    flex:0 0 min(325px,78vw);scroll-snap-align:start;
-    border-radius:var(--radius-lg);overflow:hidden;background:#fff;
-    border:1px solid var(--line);min-height:580px;padding:8px;
+    flex:0 0 264px;max-width:calc(100vw - 48px);scroll-snap-align:center;
+    border-radius:24px;overflow:hidden;background:#090909;
+    border:1px solid rgba(255,255,255,.14);height:469px;min-height:469px;padding:0;
+    box-shadow:0 18px 45px rgba(0,0,0,.32);
   }
-  .tiktok-card blockquote{margin:0 !important;min-width:0 !important;width:100% !important;}
+  .tiktok-card iframe{display:block;width:100%;height:100%;border:0;background:#090909;}
+  .tiktok-card:hover{border-color:rgba(255,255,255,.28);}
+  .tiktok-card:first-child{margin-left:0;}
   /* Custom dark Instagram Reel cards (link out — Instagram's own embed iframe
      can't be recolored since it's cross-origin, so we don't use it here) */
   .ig-reel-card{flex:0 0 min(240px,68vw);scroll-snap-align:start;}
@@ -589,8 +597,8 @@
   .sticker-wheel{width:clamp(96px,11vw,180px);right:7vw;bottom:8%;animation:wheelFloat 7s ease-in-out infinite;filter:drop-shadow(0 18px 24px rgba(0,0,0,.6));}
   .hero-profile{position:absolute;z-index:6;right:7vw;top:16%;width:154px;padding:9px 9px 13px;background:#f2f0e9;color:#111;transform:rotate(5deg);box-shadow:0 18px 45px rgba(0,0,0,.48);transition:transform .35s ease;}
   .hero-profile:hover{transform:rotate(1deg) scale(1.04);}
-  .hero-profile img{width:100%;aspect-ratio:1;object-fit:cover;filter:grayscale(1);transition:filter .35s ease;}
-  .hero-profile:hover img{filter:grayscale(0);}
+  .hero-profile img{width:100%;aspect-ratio:1;object-fit:cover;filter:grayscale(0);transition:filter .35s ease;}
+  .hero-profile:hover img{filter:grayscale(1);}
   .hero-profile p{margin-top:9px;font-size:11px;font-weight:700;line-height:1.25;}
   .hero-unlock{position:absolute;left:6vw;bottom:7%;z-index:6;width:clamp(220px,25vw,390px);transform:rotate(-4deg);transition:transform .35s ease;}
   .hero-unlock:hover{transform:rotate(-1deg) translateX(12px);}
@@ -653,6 +661,7 @@
   .production,.apple-section,.about{background:#000;}
   .prod-grid{display:block;max-width:1080px;margin-top:66px;background:none;border-radius:0;}
   .prod-cell{display:grid;grid-template-columns:54px minmax(230px,.72fr) 1fr;column-gap:34px;align-items:start;min-height:0;padding:38px 0;border:0;border-top:1px solid rgba(255,255,255,.15);border-radius:0;background:none;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;overflow:visible;}
+  .prod-cell:first-child{border-top:0;}
   .prod-cell:last-child{border-bottom:1px solid rgba(255,255,255,.15);}
   .prod-cell::before{display:none;}
   .prod-cell .idx{margin-top:7px;color:var(--ink-faint);}
@@ -714,14 +723,14 @@
     color:#000!important;background:#fff!important;transform:translateY(-2px);
   }
   .explore-pill{
-    gap:13px;padding:18px 28px;border:1px solid rgba(255,255,255,.24);
-    border-radius:999px;background:rgba(255,255,255,.06);color:#fff;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
+    gap:13px;padding:19px 32px;border:1px solid rgba(255,255,255,.72);
+    border-radius:999px;background:#fff;color:#080808;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 18px 48px rgba(0,0,0,.55),0 0 0 8px rgba(0,0,0,.18);
     backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-    font-size:17px;font-weight:650;letter-spacing:-.01em;animation:none;
+    font-size:18px;font-weight:750;letter-spacing:-.015em;text-transform:none;animation:pillPulse 2.2s ease-in-out infinite;
   }
   .lgds-teaser:hover .explore-pill{background:rgba(255,255,255,.13);color:#fff;transform:translateY(-3px);}
-  .apple-inner{max-width:720px;text-align:left;}
+  .apple-inner{max-width:980px;text-align:left;}
   .x-profile-head{display:flex;align-items:center;gap:18px;padding-bottom:24px;border-bottom:1px solid var(--line);}
   .x-profile-head .apple-avatar{width:88px;height:88px;margin:0;border-radius:50%;transform:none;box-shadow:none;}
   .x-profile-name h2{font-size:24px;letter-spacing:-.02em;line-height:1.1;}
@@ -729,7 +738,7 @@
   .x-follow{margin-left:auto;padding:10px 16px;border-radius:999px;background:#fff;color:#000;font-size:12px;font-weight:700;white-space:nowrap;transition:transform .2s ease,opacity .2s ease;}
   .x-follow:hover{transform:translateY(-2px);opacity:.88;}
   .apple-inner>.eyebrow{margin-top:28px;}
-  .apple-inner .lead{max-width:600px;}
+  .apple-inner .lead{max-width:760px;}
   @media(max-width:560px){.x-profile-head{align-items:flex-start;flex-wrap:wrap;}.x-profile-head .apple-avatar{width:72px;height:72px;}.x-follow{margin-left:0;}.x-profile-name{flex:1;min-width:130px;}}
   .contact{position:relative;min-height:82svh;padding:120px 24px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#000;isolation:isolate;}
   .contact-inner{position:relative;z-index:3;text-align:center;}
@@ -753,6 +762,25 @@
     .hero-stage:has(.hero-cta:hover) .hero-unlock{transform:translate(-20px,14px) rotate(-7deg);}
     .hero-stage:has(.hero-cta:hover) .sticker-wheel{transform:translate(18px,14px) rotate(28deg);}
   }
+  .hero-cta{margin-top:58px;padding:18px 29px;font-size:17px;}
+  .hero-profile{padding-bottom:9px;transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .4s ease;}
+  .hero-unlock{transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .4s ease;}
+  .hero-sticker{transition:transform .65s cubic-bezier(.2,.8,.2,1),opacity .4s ease,filter .4s ease;}
+  .work>.section-head,.production>.section-head{max-width:1180px;}
+  .work>.section-head{padding-bottom:64px!important;}
+  .work>.section-head h2,.production>.section-head h2{font-size:clamp(68px,9vw,126px);font-weight:320;letter-spacing:-.07em;line-height:.86;}
+  .press-links{gap:8px;}
+  .press-links a{display:flex;align-items:center;justify-content:center;position:relative;isolation:isolate;width:auto;min-width:0;height:auto;padding:7px 14px!important;border:1px solid rgba(255,255,255,.15)!important;border-radius:999px!important;background:rgba(255,255,255,.055)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.08);}
+  .press-links a::before{content:"";position:absolute;z-index:1;inset:-2px;border-radius:inherit;padding:2px;background:linear-gradient(90deg,#ff9f0a,#ff6b8a,#bf5af2,#7d7aff,#64d2ff,#5ac8fa,#bf5af2,#ff9f0a);background-size:300% 100%;filter:drop-shadow(0 0 5px rgba(125,122,255,.42));opacity:0;pointer-events:none;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:pressPillFlow 3.6s ease-in-out infinite;transition:opacity .25s ease;}
+  .press-links a:hover::before,.press-links a:focus-visible::before,.press-links a:active::before{opacity:1;}
+  .press-links a:hover{background:rgba(255,255,255,.11)!important;border-color:rgba(255,255,255,.3)!important;transform:translateY(-3px);}
+  .press-name{color:#b8b8bd;font-size:12.5px;font-weight:650;line-height:1;letter-spacing:0;text-align:center;white-space:nowrap;transition:color .2s ease,transform .2s ease;}
+  .press-links a:hover .press-name{color:#fff;transform:scale(1.04);}
+  @keyframes pressPillFlow{to{background-position:300% 0;}}
+  @media(prefers-reduced-motion:reduce){.press-links a::before{animation:none;}}
+  @media(max-width:620px){.press-links a{padding:7px 13px!important;}.press-name{font-size:12px;}}
+  .overlay-body h4.logo-h4 .ct-logo{color:#ff0033!important;}
+  @media(max-width:620px){.hero-cta{margin-top:48px;padding:16px 24px;font-size:15px;}.work>.section-head h2,.production>.section-head h2{font-size:64px;}}
   @media(max-width:900px){.prod-cell{grid-template-columns:1fr;}.prod-cell p,.prod-tags{grid-column:1;}}
   .overlay-body h4:not(.logo-h4),
   .overlay-body h4.logo-h4 span,
@@ -774,7 +802,6 @@
     <img class="hero-sticker sticker-skull" src="assets/apple-skull.png" alt="Rainbow Apple skull decal">
     <div class="hero-profile">
       <img src="assets/kevin-profile.jpg" alt="Kevin Aubin">
-      <p>@kevnaubin</p>
     </div>
     <div class="hero-title">
       <h1>Kevin Aubin</h1>
@@ -796,7 +823,7 @@
   <div class="feature-project">
     <div class="feature-copy scale-in">
       <h3>La Gang du Show</h3>
-      <p class="lead">Receiving raw files, assembling full episodes for streaming, cutting clips for social, designing thumbnails — handling the full post-production and content pipeline for @lagangdushow.</p>
+      <p class="lead">Receiving raw files, assembling full episodes for streaming, cutting clips for social, designing thumbnails, and handling the full post-production and content pipeline for @lagangdushow.</p>
       <div class="tag-row">
         <span class="chip">Post-production</span>
         <span class="chip">Editing</span>
@@ -814,7 +841,7 @@
         <img class="stack-img s3" src="assets/thumbnails/wfGyS93Pggc_maxres.jpg" alt="" loading="lazy">
         <img class="stack-img s2" src="assets/thumbnails/8jHfza36qj0_maxres.jpg" alt="" loading="lazy">
       </div>
-      <img class="lgds-teaser-thumb" src="assets/thumbnails/s2hfsvMmTNU_maxres.jpg" alt="La Gang du Show — episode thumbnail">
+      <img class="lgds-teaser-thumb" src="assets/thumbnails/s2hfsvMmTNU_maxres.jpg" alt="La Gang du Show episode thumbnail">
       <div class="lgds-thumbcloud">
         <div class="cloud-item" style="--tx:13.3%;--ty:-2.1%;--rot:4.2deg;--sc:0.84;--delay:0.016s;"><img src="assets/thumbnails/-YmMGpobo6w_maxres.jpg" alt="" loading="lazy"></div>
         <div class="cloud-item" style="--tx:-19.9%;--ty:7.6%;--rot:0.2deg;--sc:0.83;--delay:0.031s;"><img src="assets/thumbnails/1Tue0WxpmrM_maxres.jpg" alt="" loading="lazy"></div>
@@ -860,7 +887,7 @@
 <section class="project-detail detail-collapsed" id="lgds-detail">
   <div class="overlay-body" id="lgds-overlay-body">
     <h4>Logo &amp; Graphic Design</h4>
-    <p style="font-size:15px;color:var(--ink-dim);line-height:1.6;padding:0 24px;margin-bottom:20px;max-width:680px;">Beyond editing, I designed the show's current logo and the graphics used across sponsorships and cross-promotion — plus a short animated logo reveal used as a video opener.</p>
+    <p style="font-size:15px;color:var(--ink-dim);line-height:1.6;padding:0 24px;margin-bottom:20px;max-width:680px;">Beyond editing, I designed the show's current logo and the graphics used across sponsorships and cross-promotion, plus a short animated logo reveal used as a video opener.</p>
     <div class="design-row">
       <div class="design-tile"><img src="assets/lgds-logo.png" alt="La Gang du Show logo redesign" loading="lazy"></div>
       <div class="design-tile"><img src="assets/lgds-patreon-crossover.png" alt="La Gang du Show x Patreon crossover graphic" loading="lazy"></div>
@@ -901,6 +928,11 @@
       <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7607749201706913025" data-video-id="7607749201706913025" data-embed-from="oembed" style="max-width:325px;min-width:288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
       <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7627381202441227541" data-video-id="7627381202441227541" data-embed-from="oembed" style="max-width:325px;min-width:288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
       <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7529467586854128902" data-video-id="7529467586854128902" data-embed-from="oembed" style="max-width:325px;min-width:288px;"><section><a target="_blank" title="@lagangdushow" href="https://www.tiktok.com/@lagangdushow?refer=embed">@lagangdushow</a></section></blockquote></div>
+      <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7612236755382717703" data-video-id="7612236755382717703"><section><a target="_blank" href="https://www.tiktok.com/@lagangdushow/video/7612236755382717703">@lagangdushow</a></section></blockquote></div>
+      <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7626993602027162898" data-video-id="7626993602027162898"><section><a target="_blank" href="https://www.tiktok.com/@lagangdushow/video/7626993602027162898">@lagangdushow</a></section></blockquote></div>
+      <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7613860432507325703" data-video-id="7613860432507325703"><section><a target="_blank" href="https://www.tiktok.com/@lagangdushow/video/7613860432507325703">@lagangdushow</a></section></blockquote></div>
+      <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7629673762178206997" data-video-id="7629673762178206997"><section><a target="_blank" href="https://www.tiktok.com/@lagangdushow/video/7629673762178206997">@lagangdushow</a></section></blockquote></div>
+      <div class="tiktok-card"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lagangdushow/video/7614739375104199944" data-video-id="7614739375104199944"><section><a target="_blank" href="https://www.tiktok.com/@lagangdushow/video/7614739375104199944">@lagangdushow</a></section></blockquote></div>
       </div>
     </div>
 
@@ -1111,9 +1143,7 @@
 <!-- PRODUCTION -->
 <section class="production" id="production">
   <div class="section-head center reveal" style="margin:0 auto;text-align:center;padding-bottom:20px;">
-    <span class="eyebrow">Services</span>
     <h2>What I do</h2>
-    <p>Editing, design and publishing support for podcasts, creators, events and online projects.</p>
   </div>
   <div class="prod-grid">
     <div class="prod-cell reveal"><h3>Podcast post-production</h3><p>Audio and video cleanup, pacing, multicam assembly, exports and delivery after recording.</p><div class="prod-tags"><span>Audio</span><span>Video</span><span>Publishing</span></div></div>
@@ -1131,23 +1161,23 @@
     <div class="x-profile-head">
       <img class="apple-avatar" src="assets/apple-skull.png" alt="Rainbow Apple skull, @kaubin profile picture">
       <div class="x-profile-name"><h2>Kevin Aubin</h2><p class="x-handle">@kaubin</p></div>
-      <a class="x-follow" href="https://twitter.com/kaubin" target="_blank" rel="noopener">View on X ↗</a>
+      <a class="x-follow" href="https://twitter.com/kaubin" target="_blank" rel="noopener">View on Twitter ↗</a>
     </div>
     <span class="eyebrow">Apple &amp; Tech</span>
-    <p class="lead">I find and document iOS bugs, track beta changes, and share Apple news and product details.</p>
+    <p class="lead">I track iOS betas and bugs, new iOS changes, Apple Music updates, iPhone leaks, upcoming products, hardware details and the small things Apple does not always mention.</p>
 
     <div class="press-mentions">
       <span class="press-label">As seen in</span>
       <div class="press-links">
-        <a href="https://www.macrumors.com/2023/12/13/ios-17-3-collaborative-playlist-emoji/" target="_blank" rel="noopener">MacRumors</a>
-        <a href="https://www.cultofmac.com/news/ios-17-2-beta-features-changes" target="_blank" rel="noopener">Cult of Mac</a>
-        <a href="https://www.macworld.com/article/3217085/apples-upcoming-headphones-appear-to-be-built-for-macbook-neo-users.html" target="_blank" rel="noopener">Macworld</a>
-        <a href="https://iphoneaddict.fr/post/news-379991-ios-17-3-apple-music-reactions-emoji-disponibles-playlists-collaboratives" target="_blank" rel="noopener">iPhoneAddict</a>
-        <a href="https://iphone-mania.jp/news-317857/" target="_blank" rel="noopener">iPhone Mania</a>
-        <a href="https://imagazine.pl/2023/12/14/ios-17-3-z-funkcja-kolaboracji-w-apple-music-i-nowymi-reakcjami/" target="_blank" rel="noopener">iMagazine</a>
-        <a href="https://www.beartai.com/tech/it-news/1299172/" target="_blank" rel="noopener">Beartai</a>
-        <a href="https://www.hrgrapevine.com/us/content/article/2024-02-13-apple-employees-left-deflated-by-vision-pro-worker-gift" target="_blank" rel="noopener">HR Grapevine</a>
-        <a href="https://cincodias.elpais.com/smartlife/2021/09/07/smartphones/1631026803_154097.html" target="_blank" rel="noopener">El País</a>
+        <a href="https://www.macrumors.com/2023/12/13/ios-17-3-collaborative-playlist-emoji/" target="_blank" rel="noopener"><span class="press-name">MacRumors</span></a>
+        <a href="https://www.cultofmac.com/news/ios-17-2-beta-features-changes" target="_blank" rel="noopener"><span class="press-name">Cult of Mac</span></a>
+        <a href="https://www.macworld.com/article/3217085/apples-upcoming-headphones-appear-to-be-built-for-macbook-neo-users.html" target="_blank" rel="noopener"><span class="press-name">Macworld</span></a>
+        <a href="https://iphoneaddict.fr/post/news-379991-ios-17-3-apple-music-reactions-emoji-disponibles-playlists-collaboratives" target="_blank" rel="noopener"><span class="press-name">iPhoneAddict</span></a>
+        <a href="https://iphone-mania.jp/news-317857/" target="_blank" rel="noopener"><span class="press-name">iPhone Mania</span></a>
+        <a href="https://imagazine.pl/2023/12/14/ios-17-3-z-funkcja-kolaboracji-w-apple-music-i-nowymi-reakcjami/" target="_blank" rel="noopener"><span class="press-name">iMagazine</span></a>
+        <a href="https://www.beartai.com/tech/it-news/1299172/" target="_blank" rel="noopener"><span class="press-name">beartai</span></a>
+        <a href="https://www.hrgrapevine.com/us/content/article/2024-02-13-apple-employees-left-deflated-by-vision-pro-worker-gift" target="_blank" rel="noopener"><span class="press-name">HR Grapevine</span></a>
+        <a href="https://cincodias.elpais.com/smartlife/2021/09/07/smartphones/1631026803_154097.html" target="_blank" rel="noopener"><span class="press-name">EL PAÍS</span></a>
       </div>
     </div>
   </div>
@@ -1163,13 +1193,11 @@
     <p class="sub reveal">Podcast, design or web project?</p>
     <a class="btn solid reveal" href="mailto:kaubin@icloud.com">kaubin@icloud.com</a>
     <div class="contact-links reveal">
-      <a href="https://twitter.com/kaubin" target="_blank" rel="noopener">Twitter</a>
-      <a href="https://instagram.com/kevnaubin" target="_blank" rel="noopener">Instagram</a>
+      <a class="nav-icon" href="https://twitter.com/kaubin" target="_blank" rel="noopener" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.95 4.57c-.88.39-1.83.65-2.82.77a4.92 4.92 0 0 0 2.16-2.72 9.86 9.86 0 0 1-3.12 1.19 4.92 4.92 0 0 0-8.51 3.36c0 .39.04.76.13 1.12A13.96 13.96 0 0 1 1.64 3.15a4.9 4.9 0 0 0 1.52 6.56 4.87 4.87 0 0 1-2.23-.62v.06a4.92 4.92 0 0 0 3.95 4.82 4.93 4.93 0 0 1-2.22.08 4.92 4.92 0 0 0 4.6 3.42A9.87 9.87 0 0 1 0 19.5a13.9 13.9 0 0 0 7.55 2.21c9.06 0 14.01-7.5 14.01-14.01 0-.21 0-.43-.01-.64a10 10 0 0 0 2.4-2.55Z"/></svg></a>
+      <a class="nav-icon" href="https://instagram.com/kevnaubin" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r=".7" fill="currentColor" stroke="none"/></svg></a>
     </div>
   </div>
 </section>
-
-<footer>Kevin Aubin · © 2026</footer>
 
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
@@ -1178,6 +1206,90 @@
 
 <script src="episode-metadata.js"></script>
 <script>
+  function placeThumbnailsBeforeEpisodes(){
+    const titles = [...document.querySelectorAll('#lgds-overlay-body h4.logo-h4')];
+    const episodesTitle = titles.find(title => title.querySelector('span')?.textContent.trim() === 'Full Episodes');
+    const thumbnailsTitle = titles.find(title => title.querySelector('span')?.textContent.trim() === 'Thumbnails');
+    const episodesCarousel = episodesTitle?.nextElementSibling;
+    if (episodesTitle && episodesCarousel && thumbnailsTitle) {
+      thumbnailsTitle.before(episodesTitle, episodesCarousel);
+      episodesTitle.before(thumbnailsTitle, document.getElementById('thumb-grid-wrap'), document.getElementById('thumb-expand-btn'));
+    }
+  }
+  placeThumbnailsBeforeEpisodes();
+
+  function initWideThumbnailBurst(){
+    const cloud = document.querySelector('.lgds-thumbcloud');
+    const existingSources = new Set([...cloud.querySelectorAll('img')].map(img => img.getAttribute('src')));
+    const extraSources = [...document.querySelectorAll('#thumb-grid-wrap .thumb-tile img')]
+      .map(img => img.getAttribute('src'))
+      .filter(src => src && !existingSources.has(src))
+      .slice(0,20);
+    extraSources.forEach(src => {
+      const item = document.createElement('div');
+      item.className = 'cloud-item cloud-item-extra';
+      const image = document.createElement('img');
+      image.src = src;
+      image.alt = '';
+      image.loading = 'lazy';
+      item.appendChild(image);
+      cloud.appendChild(item);
+    });
+    const items = [...document.querySelectorAll('.lgds-thumbcloud .cloud-item')].filter(item => item.querySelector('img'));
+    const total = items.length;
+    items.forEach((item,index) => {
+      const lane = index % 3;
+      const angle = (index / total) * Math.PI * 2 - Math.PI / 2 + lane * .075;
+      const radiusX = 16 + lane * 6 + (index % 2) * 2;
+      const radiusY = 10 + lane * 5 + ((index + 1) % 2) * 2;
+      const horizontalPosition = Math.cos(angle) * radiusX;
+      const containedX = horizontalPosition < 0 ? horizontalPosition * .55 : horizontalPosition;
+      item.style.setProperty('--burst-x',`${containedX}vw`);
+      item.style.setProperty('--burst-y',`${Math.sin(angle) * radiusY}vh`);
+      item.style.setProperty('--burst-rot',`${Math.sin(angle * 2) * 22 + (index % 5 - 2) * 4}deg`);
+      item.style.setProperty('--burst-scale',`${.86 + lane * .07 + (index % 4) * .02}`);
+      item.style.setProperty('--burst-delay',`${index * .013}s`);
+      item.style.setProperty('--burst-light',`${.76 + lane * .11}`);
+      item.style.zIndex = String(10 + lane * 10);
+    });
+  }
+  initWideThumbnailBurst();
+
+  function initTikTokCarousel(){
+    const carousel = document.querySelector('.tiktok-card')?.closest('.embed-carousel');
+    if (!carousel) return;
+    const cards = [...carousel.querySelectorAll('.tiktok-card')];
+    cards.forEach((card, index) => {
+      const source = card.querySelector('.tiktok-embed');
+      const videoId = source?.dataset.videoId;
+      if (!videoId) return;
+      const player = document.createElement('iframe');
+      player.src = `https://www.tiktok.com/player/v1/${videoId}?autoplay=1&muted=1&loop=1&controls=1&description=0&music_info=0&rel=0`;
+      player.title = `TikTok clip ${index + 1}`;
+      player.allow = 'autoplay; fullscreen';
+      player.allowFullscreen = true;
+      player.loading = index === 0 ? 'eager' : 'lazy';
+      card.replaceChildren(player);
+    });
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let current = 0;
+    let timer;
+    const advance = () => {
+      current = (current + 1) % cards.length;
+      const card = cards[current];
+      carousel.scrollTo({left:card.offsetLeft - (carousel.clientWidth - card.offsetWidth) / 2,behavior:'smooth'});
+    };
+    const start = () => { clearInterval(timer); timer = setInterval(advance, 3800); };
+    const stop = () => clearInterval(timer);
+    carousel.addEventListener('mouseenter', stop);
+    carousel.addEventListener('mouseleave', start);
+    carousel.addEventListener('touchstart', stop, {passive:true});
+    carousel.addEventListener('touchend', start, {passive:true});
+    start();
+  }
+  initTikTokCarousel();
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
@@ -1187,12 +1299,6 @@
   igScript.src = '//www.instagram.com/embed.js';
   igScript.async = true;
   document.body.appendChild(igScript);
-
-  const ttScript = document.createElement('script');
-  ttScript.src = 'https://www.tiktok.com/embed.js';
-  ttScript.async = true;
-  document.body.appendChild(ttScript);
-  window.addEventListener('load', () => setTimeout(reprocessTikTok, 1500));
 
   function loadYouTube(btn){
     const wrap = btn.closest('.yt-embed');
@@ -1240,7 +1346,11 @@
       if (textNode && textNode.nodeType === 3) textNode.textContent = collapsed ? 'Open project ' : 'Close project ';
     }
     if (!collapsed) {
-      setTimeout(() => section.scrollIntoView({behavior:'smooth', block:'start'}), 40);
+      if (card && !card.classList.contains('legacy-stack')) {
+        card.classList.add('burst-active');
+        setTimeout(() => card.classList.remove('burst-active'), 1900);
+      }
+      setTimeout(() => section.scrollIntoView({behavior:'smooth', block:'start'}), 700);
     }
   }
 
