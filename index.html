@@ -832,18 +832,23 @@
   #lgds-detail .carousel-title,
   #lgds-detail .carousel-title span,
   #lgds-detail .overlay-body h4 span{
-    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;font-size:16px;font-weight:480;letter-spacing:-.018em;text-transform:none;
+    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;
   }
   #lgds-detail .overlay-body>h4,
   #lgds-detail .carousel-title{
-    display:flex!important;align-items:center;width:auto!important;max-width:none;margin-right:24px;color:rgba(255,255,255,.88)!important;
+    display:flex!important;align-items:center;justify-content:flex-start;gap:7px;width:auto!important;max-width:none;margin-left:24px;margin-right:24px;padding:0!important;border:0;border-radius:0;background:none!important;box-shadow:none;text-align:left;color:rgba(255,255,255,.58)!important;
   }
   #lgds-detail .overlay-body>h4::after,
   #lgds-detail .carousel-title::after{
-    content:"";height:1px;flex:1;margin-left:16px;background:linear-gradient(90deg,rgba(255,255,255,.22),rgba(255,255,255,0));
+    content:none;
   }
   #lgds-detail .carousel-title .ct-logo,
-  #lgds-detail .overlay-body h4 .ct-logo{width:14px;height:14px;}
+  #lgds-detail .overlay-body h4 .ct-logo{width:12px;height:12px;}
+  #lgds-detail .overlay-body>h4,
+  #lgds-detail .carousel-title{margin-top:30px!important;margin-bottom:12px!important;}
+  #lgds-detail h4 + .design-row,
+  #lgds-detail h4 + .thumb-grid-wrap{margin-top:30px;}
+  #lgds-detail .category-description{margin:0 24px 15px;padding:0;max-width:620px;font-size:11px;line-height:1.4;color:var(--ink-dim);text-align:left;}
   #lgds-detail .design-description{font-size:11px;line-height:1.3;padding:0 24px;margin:4px 0 13px;max-width:460px;}
   @media(max-width:620px){.hero-cta{margin-top:48px;padding:16px 24px;font-size:15px;}.work>.section-head h2,.production>.section-head h2{font-size:64px;}}
   @media(max-width:900px){.prod-cell{grid-template-columns:1fr;}.prod-cell p,.prod-tags{grid-column:1;}}
@@ -857,6 +862,78 @@
     -webkit-text-fill-color:var(--ink-faint)!important;
     animation:none!important;
   }
+
+  /* Fabienne Laferriere project */
+  .fab-project{margin-top:130px;padding-top:70px;border-top:1px solid rgba(255,255,255,.1);}
+  .fab-teaser{background:#b94e73;border:1px solid rgba(255,255,255,.15);cursor:pointer;isolation:isolate;}
+  .fab-teaser::after{z-index:4;background:linear-gradient(to top,rgba(35,5,16,.68),transparent 58%);}
+  .fab-teaser-art{position:absolute;inset:0;overflow:hidden;border-radius:inherit;}
+  .fab-teaser-wide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.16,1,.3,1),filter .45s ease;}
+  .fab-teaser-poster{position:absolute;z-index:2;right:4%;top:0;width:34%;height:100%;object-fit:contain;border-radius:12px;filter:drop-shadow(0 24px 34px rgba(30,0,10,.58));transform:rotate(3deg);transition:transform .65s cubic-bezier(.16,1,.3,1);}
+  .fab-teaser:hover .fab-teaser-wide,.fab-teaser[aria-expanded="true"] .fab-teaser-wide{transform:scale(1.045);filter:brightness(.76);}
+  .fab-teaser:hover .fab-teaser-poster,.fab-teaser[aria-expanded="true"] .fab-teaser-poster{transform:translate(-18px,-6px) rotate(-2deg) scale(1.05);}
+  .fab-teaser-cloud{position:absolute;inset:0;z-index:3;pointer-events:none;}
+  .fab-cloud-item{position:absolute;left:50%;top:50%;width:clamp(90px,22%,145px);aspect-ratio:1;overflow:hidden;border-radius:14px;opacity:0;box-shadow:0 18px 45px rgba(24,0,10,.48);transform:translate(-50%,-50%) scale(.65) rotate(0);transition:transform .58s cubic-bezier(.16,1,.3,1),opacity .28s ease;transition-delay:var(--delay,0s);}
+  .fab-cloud-item img{display:block;width:100%;height:100%;object-fit:cover;}
+  .fab-cloud-item.is-tall{aspect-ratio:1/2.45;width:clamp(64px,13%,90px);}
+  .fab-cloud-item.is-wide{aspect-ratio:1.55/1;width:clamp(120px,27%,185px);}
+  .fab-cloud-item.is-logo img{object-fit:contain;background:#54283f;padding:8px;}
+  .fab-teaser:is(:hover,[aria-expanded="true"]) .fab-cloud-item{opacity:.96;transform:translate(calc(-50% + var(--tx)),calc(-50% + var(--ty))) scale(var(--sc,1)) rotate(var(--rot,0deg));}
+  .fab-teaser .media-label{position:absolute;inset:0;z-index:5;padding:0;}
+  .fab-teaser .ep-count{position:absolute;left:24px;bottom:22px;color:#fff;font-family:var(--sans);font-size:14px;font-weight:650;text-transform:none;letter-spacing:-.01em;}
+  .fab-teaser .explore-cta{position:absolute;left:50%;top:68%;transform:translate(-50%,-50%);}
+  .fab-teaser .explore-pill.is-open{background:#d7193f;color:#fff;border-color:#ff536f;}
+  #fabienne-detail .fab-category-title{max-width:700px;margin:34px auto 0;padding:0 24px;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.58);}
+  .fab-section{max-width:1050px;margin:0 auto;padding:24px 32px 0;}
+  .fab-promo-grid{display:grid;grid-template-columns:minmax(250px,.58fr) minmax(0,1.42fr);gap:16px;height:clamp(560px,60vw,800px);}
+  .fab-promo-cards{display:grid;grid-template-rows:1fr 1fr;gap:16px;min-height:0;}
+  .fab-promo-cards.single-card{display:flex;align-items:center;}
+  .fab-promo-cards.single-card .fab-promo-card{width:100%;height:48%;}
+  .fab-art-card{overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:20px;background:#111;box-shadow:0 22px 60px rgba(0,0,0,.24);}
+  .fab-art-card img{display:block;width:100%;height:100%;object-fit:contain;}
+  .fab-promo-card{padding:14px;background:rgba(255,255,255,.035);}
+  .fab-promo-card img{object-fit:contain;transform:none;}
+  #fabienne-detail .fab-web-title{margin-top:62px;}
+  .fab-web-grid{display:grid;grid-template-columns:.44fr .56fr;gap:16px;height:clamp(250px,30vw,420px);}
+  .fab-web-grid .fab-art-card img{object-fit:contain;}
+  .fab-logo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,280px));justify-content:center;gap:16px;}
+  .fab-logo-card{aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:30px;background:#562b40;}
+  .fab-logo-card img{object-fit:contain;transform:none;}
+  .fab-backdrop-card{grid-column:1/-1;aspect-ratio:1.25;}
+  .fab-backdrop-card img{object-fit:cover;}
+  .fab-project-end{padding-bottom:110px;}
+  .fab-campaign-collage{display:grid;grid-template-columns:minmax(230px,290px) minmax(0,1fr);gap:26px;max-width:800px;align-items:center;padding:22px 24px 100px;}
+  .fab-collage-side{min-width:0;display:grid;gap:12px;align-content:center;}
+  .fab-poster-group{align-self:stretch;display:grid;grid-template-rows:auto minmax(0,1fr);gap:9px;}
+  .fab-carousel-viewport{overflow:hidden;border-radius:18px;}
+  .fab-carousel-track{display:flex;transition:transform .48s cubic-bezier(.16,1,.3,1);will-change:transform;}
+  .fab-carousel-slide{flex:0 0 100%;min-width:0;padding:2px;display:grid;gap:18px;align-content:center;}
+  .fab-carousel-nav{display:flex;align-items:center;justify-content:flex-end;gap:8px;}
+  .fab-carousel-btn{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.055);color:#fff;font:500 17px/1 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;cursor:pointer;transition:background .2s ease,transform .2s ease;}
+  .fab-carousel-btn:hover{background:rgba(255,255,255,.12);transform:scale(1.05);}
+  .fab-carousel-count{margin-right:auto;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,.42);}
+  .fab-collage-group{display:grid;gap:9px;}
+  .fab-collage-label{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:8px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.52);}
+  .fab-collage-piece{min-width:0;min-height:0;overflow:hidden;background:transparent;border:0;border-radius:0;box-shadow:none;cursor:zoom-in;transition:opacity .2s ease,transform .25s ease;}
+  .fab-collage-piece:hover{opacity:.86;transform:translateY(-3px);}
+  .fab-collage-piece:focus-visible{outline:2px solid rgba(255,255,255,.8);outline-offset:4px;}
+  .fab-collage-piece img{display:block;width:100%;height:100%;object-fit:contain;}
+  .fab-collage-poster img,.fab-collage-launch img{height:auto;}
+  .fab-collage-poster{position:relative;align-self:stretch;}
+  .fab-collage-poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:left top;}
+  .fab-collage-logos{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:310px;align-items:center;}
+  .fab-collage-logo{width:100%;aspect-ratio:1;border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:7%;background:rgba(255,255,255,.045);}
+  .fab-cover-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .fab-cover-card{aspect-ratio:1;border-radius:16px;overflow:hidden;background:#191919;}
+  .fab-cover-card img{width:100%;height:100%;object-fit:cover;}
+  .fab-single-covers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:800px;padding-top:12px;padding-bottom:100px;}
+  #fabienne-detail:not(.detail-collapsed) .fab-collage-piece{animation:fabImageIn .72s cubic-bezier(.16,1,.3,1) both;}
+  #fabienne-detail:not(.detail-collapsed) .fab-collage-launch{animation-delay:.07s;}
+  #fabienne-detail:not(.detail-collapsed) .fab-collage-logo:nth-child(2){animation-delay:.14s;}
+  #fabienne-detail:not(.detail-collapsed) .fab-art-card{animation:fabImageIn .72s cubic-bezier(.16,1,.3,1) both;}
+  #fabienne-detail:not(.detail-collapsed) .fab-promo-cards .fab-art-card:nth-child(2),#fabienne-detail:not(.detail-collapsed) .fab-web-grid .fab-art-card:nth-child(2){animation-delay:.1s;}
+  @keyframes fabImageIn{from{opacity:0;transform:translateY(30px) scale(.975);}to{opacity:1;transform:none;}}
+  @media(max-width:760px){.fab-project{margin-top:90px;padding-top:50px;}.fab-teaser-poster{width:36%;right:3%;}.fab-cloud-item{width:88px}.fab-cloud-item:nth-child(n+7){display:none;}#fabienne-detail .fab-category-title{padding:0 18px;}.fab-section{padding:22px 18px 0;}.fab-campaign-collage{grid-template-columns:minmax(130px,34%) 1fr;gap:14px;padding:18px 18px 70px;}.fab-collage-side{gap:10px;}.fab-collage-logos,.fab-cover-grid{gap:8px;}.fab-collage-logo,.fab-cover-card{border-radius:12px;}.fab-collage-logo{padding:8%;}.fab-single-covers{grid-template-columns:repeat(2,1fr);gap:8px;padding-bottom:80px;}}
 </style>
 </head>
 <body>
@@ -890,11 +967,10 @@
       <h3>La Gang du Show</h3>
       <p class="lead">Receiving raw files, assembling full episodes for streaming, cutting clips for social, thumbnails, and everything that ends on @lagangdushow.</p>
       <div class="tag-row">
-        <span class="chip">Podcast post-production</span>
-        <span class="chip">Video editing</span>
-        <span class="chip">Social clips</span>
-        <span class="chip">YouTube thumbnails</span>
-        <span class="chip">Social posting</span>
+        <span class="chip">Podcast</span>
+        <span class="chip">Editing</span>
+        <span class="chip">Design</span>
+        <span class="chip">Social media</span>
       </div>
     </div>
     <div class="placeholder-media lgds-teaser scale-in" onclick="toggleDetailFromCard()" role="button" tabindex="0" aria-controls="lgds-detail" aria-expanded="false" style="cursor:pointer;">
@@ -946,13 +1022,46 @@
       </div>
     </div>
   </div>
+
+  <!-- PROJECT 02 — FABIENNE LAFERRIERE -->
+  <div class="feature-project fab-project">
+    <div class="feature-copy scale-in">
+      <h3>Fabienne Laferrière</h3>
+      <p class="lead">Graphic design for launches, events and promotional campaigns, from logos and flyers to posters and album artwork.</p>
+      <div class="tag-row">
+        <span class="chip">Graphic design</span>
+        <span class="chip">Branding</span>
+        <span class="chip">Promotion</span>
+        <span class="chip">Print</span>
+      </div>
+    </div>
+    <div class="placeholder-media fab-teaser scale-in" onclick="toggleFabienneDetail()" role="button" tabindex="0" aria-controls="fabienne-detail" aria-expanded="false">
+      <div class="fab-teaser-art">
+        <img class="fab-teaser-wide" src="assets/fabienne-launch-horizontal.jpg" alt="Fabienne Laferrière beverage launch promotional design" loading="lazy">
+        <img class="fab-teaser-poster" src="assets/fabienne-launch-poster.jpg" alt="Tall Fabe beverage launch poster" loading="lazy">
+      </div>
+      <div class="fab-teaser-cloud" aria-hidden="true">
+        <div class="fab-cloud-item" style="--tx:-190px;--ty:-88px;--rot:-10deg;--sc:.92;--delay:.02s"><img src="assets/fabienne-probleme-cover-photo.jpeg" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item" style="--tx:188px;--ty:-92px;--rot:9deg;--sc:.9;--delay:.05s"><img src="assets/fabienne-probleme-cover-smoke.jpg" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item" style="--tx:-205px;--ty:78px;--rot:7deg;--sc:.82;--delay:.08s"><img src="assets/fabienne-probleme-cover-grey.jpg" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item" style="--tx:208px;--ty:82px;--rot:-8deg;--sc:.84;--delay:.11s"><img src="assets/fabienne-probleme-cover-black.jpg" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item is-tall" style="--tx:-118px;--ty:-22px;--rot:-5deg;--sc:.88;--delay:.14s"><img src="assets/fabienne-launch-poster.jpg" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item is-wide" style="--tx:105px;--ty:-10px;--rot:4deg;--sc:.9;--delay:.17s"><img src="assets/fabienne-launch-horizontal.jpg" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item is-logo" style="--tx:-92px;--ty:112px;--rot:-4deg;--sc:.7;--delay:.2s"><img src="assets/fabienne-logo-glitter.png" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item is-logo" style="--tx:92px;--ty:116px;--rot:5deg;--sc:.7;--delay:.23s"><img src="assets/fabienne-logo-clean.png" alt="" loading="lazy"></div>
+      </div>
+      <div class="media-label">
+        <span class="ep-count">Launch campaign &amp; promotional design</span>
+        <span class="explore-cta"><span class="explore-pill" id="fabienne-pill-label">Open project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></span>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- PROJECT DETAIL: LA GANG DU SHOW -->
 <section class="project-detail detail-collapsed" id="lgds-detail">
   <div class="overlay-body" id="lgds-overlay-body">
-    <h4>Brand &amp; Graphic Design</h4>
-    <p class="design-description" style="color:var(--ink-dim);">I designed the show's current logo and graphics used across all platforms.</p>
+    <h4>Logo &amp; Show Graphics</h4>
     <div class="design-row">
       <div class="design-tile"><img src="assets/lgds-logo.png" alt="La Gang du Show logo redesign" loading="lazy"></div>
       <div class="design-tile"><img src="assets/lgds-patreon-crossover.png" alt="La Gang du Show x Patreon crossover graphic" loading="lazy"></div>
@@ -1210,6 +1319,53 @@
   </div>
 </section>
 
+<!-- PROJECT DETAIL: FABIENNE LAFERRIERE -->
+<section class="project-detail detail-collapsed" id="fabienne-detail">
+  <div class="overlay-body">
+    <h4 class="fab-category-title">Problème Single Cover</h4>
+    <div class="fab-section fab-single-covers" aria-label="Problème single cover designs">
+      <figure class="fab-collage-piece fab-cover-card" role="button" tabindex="0" aria-label="Open Problème portrait cover" onclick="openLightbox('assets/fabienne-probleme-cover-photo.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('assets/fabienne-probleme-cover-photo.jpeg')}"><img data-src="assets/fabienne-probleme-cover-photo.jpeg" alt="Problème single cover featuring Fabe"></figure>
+      <figure class="fab-collage-piece fab-cover-card" role="button" tabindex="0" aria-label="Open Problème smoke cover" onclick="openLightbox('assets/fabienne-probleme-cover-smoke.jpg')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('assets/fabienne-probleme-cover-smoke.jpg')}"><img data-src="assets/fabienne-probleme-cover-smoke.jpg" alt="Problème single cover with dark smoke texture"></figure>
+      <figure class="fab-collage-piece fab-cover-card" role="button" tabindex="0" aria-label="Open Problème grey cover" onclick="openLightbox('assets/fabienne-probleme-cover-grey.jpg')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('assets/fabienne-probleme-cover-grey.jpg')}"><img data-src="assets/fabienne-probleme-cover-grey.jpg" alt="Problème single cover in grey"></figure>
+      <figure class="fab-collage-piece fab-cover-card" role="button" tabindex="0" aria-label="Open Problème black cover" onclick="openLightbox('assets/fabienne-probleme-cover-black.jpg')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('assets/fabienne-probleme-cover-black.jpg')}"><img data-src="assets/fabienne-probleme-cover-black.jpg" alt="Problème single cover in black"></figure>
+    </div>
+    <h4 class="fab-category-title">Fabe Drink Campaign</h4>
+    <div class="fab-section fab-campaign-collage" aria-label="Fabe drink promotional campaign">
+      <div class="fab-poster-group">
+        <p class="fab-collage-label">Event Banner</p>
+        <figure class="fab-collage-piece fab-collage-poster" role="button" tabindex="0" aria-label="Open tall Fabe event banner" onclick="openLightbox('assets/fabienne-launch-poster.jpg')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('assets/fabienne-launch-poster.jpg')}">
+          <img data-src="assets/fabienne-launch-poster.jpg" alt="Tall Fabe beverage event banner">
+        </figure>
+      </div>
+      <div class="fab-collage-side">
+        <div class="fab-carousel-viewport">
+          <div class="fab-carousel-track" id="fab-carousel-track">
+            <div class="fab-carousel-slide">
+              <div class="fab-collage-group">
+                <p class="fab-collage-label">Launch Card</p>
+                <figure class="fab-collage-piece fab-collage-launch" role="button" tabindex="0" aria-label="Open horizontal launch artwork" onclick="openLightbox('assets/fabienne-launch-horizontal.jpg')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('assets/fabienne-launch-horizontal.jpg')}">
+                  <img data-src="assets/fabienne-launch-horizontal.jpg" alt="Horizontal promotional flyer for the Fabienne Laferrière beverage launch">
+                </figure>
+              </div>
+              <div class="fab-collage-group">
+                <p class="fab-collage-label">Logo</p>
+                <div class="fab-collage-logos">
+                  <figure class="fab-collage-piece fab-collage-logo" role="button" tabindex="0" aria-label="Open glitter Fabe logo" onclick="openLightbox('assets/fabienne-logo-glitter.png')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('assets/fabienne-logo-glitter.png')}">
+                    <img data-src="assets/fabienne-logo-glitter.png" alt="Fabe glitter logo">
+                  </figure>
+                  <figure class="fab-collage-piece fab-collage-logo" role="button" tabindex="0" aria-label="Open clean Fabe logo" onclick="openLightbox('assets/fabienne-logo-clean.png')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('assets/fabienne-logo-clean.png')}">
+                    <img data-src="assets/fabienne-logo-clean.png" alt="Fabe clean pink logo">
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PRODUCTION -->
 <section class="production" id="production">
   <div class="section-head center reveal" style="margin:0 auto;text-align:center;padding-bottom:20px;">
@@ -1281,9 +1437,20 @@
     const episodesTitle = titles.find(title => title.querySelector('span')?.textContent.trim() === 'Full Episode Editing');
     const thumbnailsTitle = titles.find(title => title.querySelector('span')?.textContent.trim() === 'YouTube Thumbnail Design');
     const episodesCarousel = episodesTitle?.nextElementSibling;
-    if (episodesTitle && episodesCarousel && thumbnailsTitle) {
-      thumbnailsTitle.before(episodesTitle, episodesCarousel);
-      episodesTitle.before(thumbnailsTitle, document.getElementById('thumb-grid-wrap'), document.getElementById('thumb-expand-btn'));
+    const thumbnailGrid = document.getElementById('thumb-grid-wrap');
+    const thumbnailButton = document.getElementById('thumb-expand-btn');
+    const clipsCarousel = document.querySelector('.clip-title')?.nextElementSibling;
+    if (episodesTitle && episodesCarousel && thumbnailsTitle && thumbnailGrid && thumbnailButton && clipsCarousel) {
+      episodesTitle.querySelector('span').textContent = 'Full Podcast Episodes';
+      thumbnailsTitle.querySelector('span').textContent = 'YouTube Thumbnails';
+
+      clipsCarousel.after(
+        thumbnailsTitle,
+        thumbnailGrid,
+        thumbnailButton,
+        episodesTitle,
+        episodesCarousel
+      );
     }
   }
   placeThumbnailsBeforeEpisodes();
@@ -1378,10 +1545,23 @@
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let current = 0;
     let timer;
-    cards.forEach((card,index) => loadCard(card,index));
+    cards.slice(0, 4).forEach((card,index) => loadCard(card,index));
+    const playerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const index = cards.indexOf(entry.target);
+        loadCard(entry.target, index);
+        playerObserver.unobserve(entry.target);
+      });
+    }, {root:carousel, rootMargin:'0px 500px', threshold:.01});
+    cards.slice(4).forEach(card => playerObserver.observe(card));
     const advance = () => {
       current = (current + 2) % cards.length;
       const card = cards[current];
+      [current, current + 1, current + 2, current + 3].forEach(index => {
+        const normalized = index % cards.length;
+        loadCard(cards[normalized], normalized);
+      });
       carousel.scrollTo({left:card.offsetLeft - (carousel.clientWidth - card.offsetWidth) / 2,behavior:'smooth'});
     };
     const start = () => { clearInterval(timer); timer = setInterval(advance, 4000); };
@@ -1395,6 +1575,7 @@
     }
     destroyTikTokCarousel = () => {
       stop();
+      playerObserver.disconnect();
       carousel.removeEventListener('mouseenter', stop);
       carousel.removeEventListener('mouseleave', start);
       carousel.removeEventListener('touchstart', stop);
@@ -1456,6 +1637,10 @@
     const section = document.getElementById('lgds-detail');
     const card = document.querySelector('.lgds-teaser');
     const pill = document.getElementById('explore-pill-label');
+    const willOpen = section.classList.contains('detail-collapsed');
+    if (willOpen && !document.getElementById('fabienne-detail')?.classList.contains('detail-collapsed')) {
+      toggleFabienneDetail();
+    }
     const collapsed = section.classList.toggle('detail-collapsed');
     if (card) card.setAttribute('aria-expanded', String(!collapsed));
     if (pill) {
@@ -1469,7 +1654,7 @@
         if (section.classList.contains('detail-collapsed')) return;
         initDesignCarousel();
         initTikTokCarousel();
-      }, 850);
+      }, 200);
       if (card && !card.classList.contains('legacy-stack')) {
         card.classList.add('burst-active');
         setTimeout(() => card.classList.remove('burst-active'), 1900);
@@ -1487,6 +1672,38 @@
     }
     if (collapsed) clearTimeout(projectLoadTimer);
     if (collapsed && destroyDesignCarousel) destroyDesignCarousel();
+  }
+
+  function toggleFabienneDetail(){
+    const section = document.getElementById('fabienne-detail');
+    const card = document.querySelector('.fab-teaser');
+    const pill = document.getElementById('fabienne-pill-label');
+    if (!section || !card || !pill) return;
+    const willOpen = section.classList.contains('detail-collapsed');
+    if (willOpen && !document.getElementById('lgds-detail')?.classList.contains('detail-collapsed')) {
+      toggleDetailFromCard();
+    }
+    const collapsed = section.classList.toggle('detail-collapsed');
+    card.setAttribute('aria-expanded', String(!collapsed));
+    pill.classList.toggle('is-open', !collapsed);
+    const textNode = pill.childNodes[0];
+    if (textNode && textNode.nodeType === 3) textNode.textContent = collapsed ? 'Open project ' : 'Close project ';
+
+    if (!collapsed) {
+      section.querySelectorAll('img[data-src]').forEach(img => {
+        img.src = img.dataset.src;
+      });
+      window.setTimeout(() => {
+        if (!section.classList.contains('detail-collapsed')) {
+          section.querySelector('.fab-category-title')?.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      }, 140);
+    } else {
+      window.setTimeout(() => {
+        if (!section.classList.contains('detail-collapsed')) return;
+        section.querySelectorAll('img[data-src]').forEach(img => img.removeAttribute('src'));
+      }, 500);
+    }
   }
 
   function openDetail(e){
@@ -1549,6 +1766,20 @@
   document.querySelector('.lgds-teaser').addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleDetailFromCard(); }
   });
+  document.querySelector('.fab-teaser').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFabienneDetail(); }
+  });
+
+  let fabCarouselIndex = 0;
+  function moveFabCarousel(direction){
+    const track = document.getElementById('fab-carousel-track');
+    if (!track) return;
+    const slides = track.querySelectorAll('.fab-carousel-slide');
+    fabCarouselIndex = (fabCarouselIndex + direction + slides.length) % slides.length;
+    track.style.transform = `translateX(-${fabCarouselIndex * 100}%)`;
+    const count = document.getElementById('fab-carousel-count');
+    if (count) count.textContent = `${fabCarouselIndex + 1} / ${slides.length}`;
+  }
 
   function openLightbox(src){
     const lb = document.getElementById('lightbox');
