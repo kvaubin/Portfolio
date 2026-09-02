@@ -268,6 +268,7 @@
     max-width:1280px;margin:80px auto 100px;padding:0 32px;
     display:grid;grid-template-columns:1.15fr 0.85fr;gap:64px;align-items:center;
   }
+  .feature-project:has(.placeholder-media[aria-expanded="true"]){position:relative;z-index:40;}
   @media(max-width:960px){.feature-project{grid-template-columns:1fr;gap:36px;}}
   .feature-copy .num{font-family:var(--mono);font-size:13px;color:var(--ink-faint);}
   .feature-copy{position:relative;z-index:6;}
@@ -865,26 +866,30 @@
 
   /* Fabienne Laferriere project */
   .fab-project{margin-top:130px;padding-top:70px;border-top:1px solid rgba(255,255,255,.1);}
-  .fab-teaser{background:#b94e73;border:1px solid rgba(255,255,255,.15);cursor:pointer;isolation:isolate;}
+  .fab-teaser{background:#b94e73;border:1px solid rgba(255,255,255,.15);cursor:pointer;isolation:isolate;overflow:visible;}
   .fab-teaser::after{z-index:4;background:linear-gradient(to top,rgba(35,5,16,.68),transparent 58%);}
-  .fab-teaser-art{position:absolute;inset:0;overflow:hidden;border-radius:inherit;}
+  .fab-teaser-art{position:absolute;inset:0;z-index:3;overflow:hidden;border-radius:inherit;transition:transform .5s ease;}
   .fab-teaser-wide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.16,1,.3,1),filter .45s ease;}
   .fab-teaser-poster{position:absolute;z-index:2;right:4%;top:0;width:34%;height:100%;object-fit:contain;border-radius:12px;filter:drop-shadow(0 24px 34px rgba(30,0,10,.58));transform:rotate(3deg);transition:transform .65s cubic-bezier(.16,1,.3,1);}
   .fab-teaser:hover .fab-teaser-wide,.fab-teaser[aria-expanded="true"] .fab-teaser-wide{transform:scale(1.045);filter:brightness(.76);}
   .fab-teaser:hover .fab-teaser-poster,.fab-teaser[aria-expanded="true"] .fab-teaser-poster{transform:translate(-18px,-6px) rotate(-2deg) scale(1.05);}
-  .fab-teaser-cloud{position:absolute;inset:0;z-index:3;pointer-events:none;}
-  .fab-cloud-item{position:absolute;left:50%;top:50%;width:clamp(90px,22%,145px);aspect-ratio:1;overflow:hidden;border-radius:14px;opacity:0;box-shadow:0 18px 45px rgba(24,0,10,.48);transform:translate(-50%,-50%) scale(.65) rotate(0);transition:transform .58s cubic-bezier(.16,1,.3,1),opacity .28s ease;transition-delay:var(--delay,0s);}
-  .fab-cloud-item img{display:block;width:100%;height:100%;object-fit:cover;}
+  .fab-teaser:is(:hover,.burst-active,[aria-expanded="true"]) .fab-teaser-art{transform:scale(1.03);}
+  .fab-teaser-cloud{position:absolute;inset:0;z-index:1;overflow:visible;pointer-events:none;}
+  .fab-cloud-item{position:absolute;left:50%;top:50%;width:clamp(110px,25%,175px);aspect-ratio:1;overflow:visible;opacity:0;transform:translate(-50%,-50%) scale(.14) rotate(0);transition:transform .95s cubic-bezier(.16,1,.3,1),opacity .36s ease,filter .68s ease;transition-delay:0s;}
+  .fab-cloud-item img{display:block;width:100%;height:100%;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.16);box-shadow:0 10px 24px rgba(0,0,0,.5);animation:cloudBob 3.4s ease-in-out infinite;animation-play-state:paused;}
   .fab-cloud-item.is-tall{aspect-ratio:1/2.45;width:clamp(64px,13%,90px);}
   .fab-cloud-item.is-wide{aspect-ratio:1.55/1;width:clamp(120px,27%,185px);}
   .fab-cloud-item.is-logo img{object-fit:contain;background:#54283f;padding:8px;}
-  .fab-teaser:is(:hover,[aria-expanded="true"]) .fab-cloud-item{opacity:.96;transform:translate(calc(-50% + var(--tx)),calc(-50% + var(--ty))) scale(var(--sc,1)) rotate(var(--rot,0deg));}
+  .fab-teaser:is(:hover,.burst-active,[aria-expanded="true"]) .fab-cloud-item{opacity:1;transform:translate(calc(-50% + var(--burst-x)),calc(-50% + var(--burst-y))) scale(var(--burst-scale,.82)) rotate(var(--burst-rot,0deg));transition-delay:var(--burst-delay,0s);filter:brightness(var(--burst-light,1));}
+  .fab-teaser:is(:hover,.burst-active,[aria-expanded="true"]) .fab-cloud-item img{animation-play-state:running;}
   .fab-teaser .media-label{position:absolute;inset:0;z-index:5;padding:0;}
   .fab-teaser .ep-count{position:absolute;left:24px;bottom:22px;color:#fff;font-family:var(--sans);font-size:14px;font-weight:650;text-transform:none;letter-spacing:-.01em;}
   .fab-teaser .explore-cta{position:absolute;left:50%;top:68%;transform:translate(-50%,-50%);}
   .fab-teaser .explore-pill.is-open{background:#d7193f;color:#fff;border-color:#ff536f;}
-  #fabienne-detail .fab-category-title{max-width:700px;margin:34px auto 0;padding:0 24px;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.58);}
+  #fabienne-detail .fab-category-title{max-width:none;margin:30px 24px 12px;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.58);}
+  #fabienne-detail .fab-drink-title{font-size:9px;letter-spacing:.09em;}
   .fab-section{max-width:1050px;margin:0 auto;padding:24px 32px 0;}
+  #fabienne-detail .fab-section{margin-left:0;margin-right:0;}
   .fab-promo-grid{display:grid;grid-template-columns:minmax(250px,.58fr) minmax(0,1.42fr);gap:16px;height:clamp(560px,60vw,800px);}
   .fab-promo-cards{display:grid;grid-template-rows:1fr 1fr;gap:16px;min-height:0;}
   .fab-promo-cards.single-card{display:flex;align-items:center;}
@@ -902,9 +907,10 @@
   .fab-backdrop-card{grid-column:1/-1;aspect-ratio:1.25;}
   .fab-backdrop-card img{object-fit:cover;}
   .fab-project-end{padding-bottom:110px;}
-  .fab-campaign-collage{display:grid;grid-template-columns:minmax(230px,290px) minmax(0,1fr);gap:26px;max-width:800px;align-items:center;padding:22px 24px 100px;}
+  .fab-campaign-collage{display:grid;grid-template-columns:minmax(260px,320px) minmax(0,1fr);gap:18px;max-width:860px;align-items:stretch;padding:12px 24px 64px;}
+  .fab-campaign-collage .fab-collage-label{font-size:7px;letter-spacing:.08em;}
   .fab-collage-side{min-width:0;display:grid;gap:12px;align-content:center;}
-  .fab-poster-group{align-self:stretch;display:grid;grid-template-rows:auto minmax(0,1fr);gap:9px;}
+  .fab-poster-group{align-self:stretch;display:grid;grid-template-rows:auto minmax(0,1fr);gap:9px;min-height:620px;}
   .fab-carousel-viewport{overflow:hidden;border-radius:18px;}
   .fab-carousel-track{display:flex;transition:transform .48s cubic-bezier(.16,1,.3,1);will-change:transform;}
   .fab-carousel-slide{flex:0 0 100%;min-width:0;padding:2px;display:grid;gap:18px;align-content:center;}
@@ -921,19 +927,61 @@
   .fab-collage-poster img,.fab-collage-launch img{height:auto;}
   .fab-collage-poster{position:relative;align-self:stretch;}
   .fab-collage-poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:left top;}
+  #fabienne-detail:not(.detail-collapsed) .fab-collage-poster img{animation:fabBannerUnroll 1.05s cubic-bezier(.16,1,.3,1) both;transform-origin:top center;}
   .fab-collage-logos{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:310px;align-items:center;}
   .fab-collage-logo{width:100%;aspect-ratio:1;border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:7%;background:rgba(255,255,255,.045);}
   .fab-cover-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
   .fab-cover-card{aspect-ratio:1;border-radius:16px;overflow:hidden;background:#191919;}
   .fab-cover-card img{width:100%;height:100%;object-fit:cover;}
-  .fab-single-covers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:800px;padding-top:12px;padding-bottom:100px;}
+  .fab-music-layout{max-width:860px;padding-top:12px;padding-bottom:64px;display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:18px;align-items:center;}
+  .fab-music-poster,.fab-music-covers-wrap{display:grid;gap:9px;min-width:0;}
+  .fab-music-poster .fab-tour-poster{width:100%;}
+  .fab-music-covers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+  .fab-single-poster{max-width:800px;padding-top:12px;padding-bottom:54px;display:flex;justify-content:center;}
+  .fab-single-poster .fab-tour-poster{width:min(100%,520px);}
+  .fab-single-covers{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:12px;max-width:800px;padding-top:12px;padding-bottom:64px;}
+  .fab-single-covers .fab-cover-card:first-child{grid-column:1/3;grid-row:1/3;aspect-ratio:auto;height:100%;}
+  .fab-single-covers .fab-cover-card:nth-child(2){grid-column:3;grid-row:1;}
+  .fab-single-covers .fab-cover-card:nth-child(3){grid-column:4;grid-row:1;}
+  .fab-single-covers .fab-cover-card:nth-child(4){grid-column:3/5;grid-row:2;aspect-ratio:2/1;}
+  .fab-tour-layout{max-width:800px;padding-top:12px;padding-bottom:64px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);grid-template-areas:"poster-label assets" "poster assets";gap:9px 18px;align-items:start;}
+  .fab-tour-layout > .fab-collage-label{grid-area:poster-label;}
+  .fab-tour-posters{grid-area:poster;display:grid;grid-template-columns:minmax(0,1fr);width:100%;margin:0;gap:14px;align-items:start;}
+  .fab-tour-poster{border-radius:18px;overflow:hidden;background:#111;}
+  .fab-tour-poster img{display:block;width:100%;height:auto;}
+  .fab-tour-assets{grid-area:assets;display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-self:center;}
+  .fab-tour-asset{aspect-ratio:1.55;border-radius:18px;overflow:hidden;background:#090909;}
+  .fab-tour-asset img{display:block;width:100%;height:100%;object-fit:contain;}
+  .fab-tour-layout .fab-collage-label{font-size:7px;letter-spacing:.08em;}
+  .fab-podcast-section{max-width:none;margin:0;padding:12px 24px 64px;}
+  .fab-thumbnail-section{max-width:none;margin:0;padding:12px 0 34px;}
+  .fab-thumbnail-section .thumb-grid{margin-bottom:0;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));}
+  .fab-podcast-carousel{display:flex!important;width:100%;gap:14px;padding:8px 0 24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;}
+  .fab-podcast-carousel::-webkit-scrollbar{display:none;}
+  .fab-podcast-carousel .h-card{display:flex!important;visibility:visible!important;opacity:1!important;flex:0 0 min(320px,78vw);width:min(320px,78vw);min-width:min(320px,78vw);scroll-snap-align:start;cursor:pointer;border-radius:18px;}
+  .fab-podcast-carousel .h-meta{display:block!important;padding:12px 14px 14px;}
+  .fab-podcast-carousel .name{display:block;font-size:13px;line-height:1.35;}
+  .fab-podcast-carousel .episode-number{display:block;margin-bottom:6px;font-size:9px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.38);}
+  .fab-instagram-title{display:flex;align-items:center;gap:7px;}
+  .fab-instagram-title .instagram-icon{width:12px;height:12px;flex:0 0 12px;color:#e1306c;}
+  .fab-instagram-section{max-width:none!important;margin:0!important;padding:0 24px 64px!important;}
+  .fab-instagram-carousel{gap:14px;padding:8px 0 24px;scrollbar-width:none;}
+  .fab-instagram-carousel::-webkit-scrollbar{display:none;}
+  .fab-instagram-carousel .reel-card{position:relative;flex:0 0 min(300px,76vw);height:535px;border-radius:22px;overflow:hidden;background:#090909;border:1px solid rgba(255,255,255,.14);scroll-snap-align:start;}
+  .fab-instagram-carousel video{display:block;width:100%;height:100%;border:0;background:#090909;object-fit:cover;}
+  .fab-instagram-carousel .reel-metric{position:absolute;left:12px;bottom:12px;z-index:2;padding:6px 10px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(0,0,0,.56);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-size:10px;font-weight:650;letter-spacing:.02em;color:rgba(255,255,255,.9);pointer-events:none;}
+  .fab-vlog-wrap{margin-top:18px;display:grid;grid-template-columns:minmax(0,360px);gap:0;}
+  .fab-vlog-card{border-radius:18px;overflow:hidden;background:#111;cursor:zoom-in;}
+  .fab-vlog-card img{display:block;width:100%;height:auto;}
   #fabienne-detail:not(.detail-collapsed) .fab-collage-piece{animation:fabImageIn .72s cubic-bezier(.16,1,.3,1) both;}
   #fabienne-detail:not(.detail-collapsed) .fab-collage-launch{animation-delay:.07s;}
   #fabienne-detail:not(.detail-collapsed) .fab-collage-logo:nth-child(2){animation-delay:.14s;}
   #fabienne-detail:not(.detail-collapsed) .fab-art-card{animation:fabImageIn .72s cubic-bezier(.16,1,.3,1) both;}
   #fabienne-detail:not(.detail-collapsed) .fab-promo-cards .fab-art-card:nth-child(2),#fabienne-detail:not(.detail-collapsed) .fab-web-grid .fab-art-card:nth-child(2){animation-delay:.1s;}
   @keyframes fabImageIn{from{opacity:0;transform:translateY(30px) scale(.975);}to{opacity:1;transform:none;}}
-  @media(max-width:760px){.fab-project{margin-top:90px;padding-top:50px;}.fab-teaser-poster{width:36%;right:3%;}.fab-cloud-item{width:88px}.fab-cloud-item:nth-child(n+7){display:none;}#fabienne-detail .fab-category-title{padding:0 18px;}.fab-section{padding:22px 18px 0;}.fab-campaign-collage{grid-template-columns:minmax(130px,34%) 1fr;gap:14px;padding:18px 18px 70px;}.fab-collage-side{gap:10px;}.fab-collage-logos,.fab-cover-grid{gap:8px;}.fab-collage-logo,.fab-cover-card{border-radius:12px;}.fab-collage-logo{padding:8%;}.fab-single-covers{grid-template-columns:repeat(2,1fr);gap:8px;padding-bottom:80px;}}
+  @keyframes fabBannerUnroll{0%{clip-path:inset(0 0 100% 0);transform:translateY(-14px) scaleY(.96);filter:brightness(.72);}65%{clip-path:inset(0 0 8% 0);filter:brightness(1.08);}100%{clip-path:inset(0);transform:none;filter:none;}}
+  @media(prefers-reduced-motion:reduce){#fabienne-detail:not(.detail-collapsed) .fab-collage-poster img{animation:none;}}
+  @media(max-width:760px){.fab-project{margin-top:90px;padding-top:50px;}.fab-teaser-poster{width:36%;right:3%;}.fab-cloud-item{width:88px}.fab-cloud-item:nth-child(n+7){display:none;}#fabienne-detail .fab-category-title{margin:30px 18px 12px;padding:0;}.fab-section{padding:18px 18px 0;}.fab-podcast-section{padding:12px 18px 54px;}.fab-music-layout{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:10px;padding-bottom:54px;}.fab-music-covers{gap:7px;}.fab-single-poster{padding-bottom:48px;}.fab-single-covers{grid-template-columns:repeat(2,1fr);grid-template-rows:auto;gap:8px;padding-bottom:54px;}.fab-single-covers .fab-cover-card:nth-child(n){grid-column:auto;grid-row:auto;aspect-ratio:1;}.fab-poster-group{min-height:430px;}.fab-campaign-collage{grid-template-columns:minmax(140px,38%) 1fr;gap:14px;padding:14px 18px 54px;}.fab-collage-side{gap:10px;}.fab-collage-logos,.fab-cover-grid{gap:8px;}.fab-collage-logo,.fab-cover-card,.fab-tour-poster,.fab-tour-asset{border-radius:12px;}.fab-collage-logo{padding:8%;}.fab-tour-layout{grid-template-columns:1fr;grid-template-areas:"poster-label" "poster" "assets";gap:8px;padding-bottom:54px;}.fab-tour-posters{gap:8px;}.fab-tour-assets{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}}
 </style>
 </head>
 <body>
@@ -1049,6 +1097,19 @@
         <div class="fab-cloud-item is-wide" style="--tx:105px;--ty:-10px;--rot:4deg;--sc:.9;--delay:.17s"><img src="assets/fabienne-launch-horizontal.jpg" alt="" loading="lazy"></div>
         <div class="fab-cloud-item is-logo" style="--tx:-92px;--ty:112px;--rot:-4deg;--sc:.7;--delay:.2s"><img src="assets/fabienne-logo-glitter.png" alt="" loading="lazy"></div>
         <div class="fab-cloud-item is-logo" style="--tx:92px;--ty:116px;--rot:5deg;--sc:.7;--delay:.23s"><img src="assets/fabienne-logo-clean.png" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item is-tall"><img src="assets/fabienne-tour-poster-portrait.jpg" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item is-wide is-logo"><img src="assets/fabienne-tour-logo.png" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item"><img src="assets/fabienne-tour-backdrop.png" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item is-tall"><img src="assets/fabienne-iam-her-single-poster.jpg" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item is-wide"><img src="assets/fabienne-podcast/qns7KNZPvhk.jpg" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item is-wide"><img src="assets/fabienne-podcast/vsXbzgeKHHo.jpg" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item is-wide"><img src="assets/fabienne-podcast/shurbiHSmDI.jpg" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item is-wide"><img src="assets/fabienne-podcast/q-4oelAIwKM.jpg" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item is-wide"><img src="assets/fabienne-podcast/4qB1PVb4Xfk.jpg" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item is-wide"><img src="assets/fabienne-podcast/LezokxG_Vuo.jpg" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item is-wide"><img src="assets/fabienne-podcast/k5VSlF-3ij8.jpg" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item is-wide"><img src="assets/fabienne-podcast/RGxCHdTvCYE.jpg" alt="" loading="lazy"></div>
+        <div class="fab-cloud-item is-wide"><img src="assets/fabienne-podcast/a0Hjd21Mgac.jpg" alt="" loading="lazy"></div>
       </div>
       <div class="media-label">
         <span class="ep-count">Launch campaign &amp; promotional design</span>
@@ -1322,14 +1383,77 @@
 <!-- PROJECT DETAIL: FABIENNE LAFERRIERE -->
 <section class="project-detail detail-collapsed" id="fabienne-detail">
   <div class="overlay-body">
-    <h4 class="fab-category-title">Problème Single Cover</h4>
+    <h4 class="fab-category-title">YouTube Thumbnails</h4>
+    <div class="fab-section fab-thumbnail-section" aria-label="Fabienne Laferrière YouTube thumbnail designs">
+      <div class="thumb-grid">
+        <div class="thumb-tile" onclick="openLightbox('assets/fabienne-podcast/qns7KNZPvhk.jpg')"><img data-src="assets/fabienne-podcast/qns7KNZPvhk.jpg" alt="La différence d'âge YouTube thumbnail"></div>
+        <div class="thumb-tile" onclick="openLightbox('assets/fabienne-podcast/vsXbzgeKHHo.jpg')"><img data-src="assets/fabienne-podcast/vsXbzgeKHHo.jpg" alt="Les Finances YouTube thumbnail"></div>
+        <div class="thumb-tile" onclick="openLightbox('assets/fabienne-podcast/shurbiHSmDI.jpg')"><img data-src="assets/fabienne-podcast/shurbiHSmDI.jpg" alt="La confiance YouTube thumbnail"></div>
+        <div class="thumb-tile" onclick="openLightbox('assets/fabienne-podcast/q-4oelAIwKM.jpg')"><img data-src="assets/fabienne-podcast/q-4oelAIwKM.jpg" alt="Les Ruptures YouTube thumbnail"></div>
+        <div class="thumb-tile" onclick="openLightbox('assets/fabienne-podcast/4qB1PVb4Xfk.jpg')"><img data-src="assets/fabienne-podcast/4qB1PVb4Xfk.jpg" alt="La vie d'adulte YouTube thumbnail"></div>
+        <div class="thumb-tile" onclick="openLightbox('assets/fabienne-podcast/LezokxG_Vuo.jpg')"><img data-src="assets/fabienne-podcast/LezokxG_Vuo.jpg" alt="La communauté LGBT YouTube thumbnail"></div>
+        <div class="thumb-tile" onclick="openLightbox('assets/fabienne-podcast/k5VSlF-3ij8.jpg')"><img data-src="assets/fabienne-podcast/k5VSlF-3ij8.jpg" alt="Vivre avec un handicap YouTube thumbnail"></div>
+        <div class="thumb-tile" onclick="openLightbox('assets/fabienne-podcast/RGxCHdTvCYE.jpg')"><img data-src="assets/fabienne-podcast/RGxCHdTvCYE.jpg" alt="Q and A avec Doudou YouTube thumbnail"></div>
+        <div class="thumb-tile" onclick="openLightbox('assets/fabienne-podcast/a0Hjd21Mgac.jpg')"><img data-src="assets/fabienne-podcast/a0Hjd21Mgac.jpg" alt="Beyoncé Toronto vlog YouTube thumbnail"></div>
+      </div>
+    </div>
+    <h4 class="fab-category-title">Podcast Episodes</h4>
+    <div class="fab-section fab-podcast-section" aria-label="Fabienne Laferrière podcast episodes and vlog thumbnail">
+      <div class="embed-carousel-wrap">
+        <div class="carousel-controls">
+          <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous Fabienne podcast episodes">←</button>
+          <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next Fabienne podcast episodes">→</button>
+        </div>
+        <div class="embed-carousel fab-podcast-carousel">
+          <div class="h-card video"><div class="yt-embed" data-yt-id="qns7KNZPvhk"><img class="yt-poster" data-src="assets/fabienne-podcast/qns7KNZPvhk.jpg" alt="La différence d'âge podcast thumbnail"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play La différence d'âge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div><div class="h-meta"><span class="episode-number">EPISODE 01</span><span class="name">La différence d'âge</span></div></div>
+          <div class="h-card video"><div class="yt-embed" data-yt-id="vsXbzgeKHHo"><img class="yt-poster" data-src="assets/fabienne-podcast/vsXbzgeKHHo.jpg" alt="Les Finances podcast thumbnail"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play Les Finances"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div><div class="h-meta"><span class="episode-number">EPISODE 02</span><span class="name">Les Finances</span></div></div>
+          <div class="h-card video"><div class="yt-embed" data-yt-id="shurbiHSmDI"><img class="yt-poster" data-src="assets/fabienne-podcast/shurbiHSmDI.jpg" alt="La confiance podcast thumbnail"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play La confiance"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div><div class="h-meta"><span class="episode-number">EPISODE 03</span><span class="name">La confiance</span></div></div>
+          <div class="h-card video"><div class="yt-embed" data-yt-id="q-4oelAIwKM"><img class="yt-poster" data-src="assets/fabienne-podcast/q-4oelAIwKM.jpg" alt="Les Ruptures podcast thumbnail"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play Les Ruptures"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div><div class="h-meta"><span class="episode-number">EPISODE 04</span><span class="name">Les Ruptures</span></div></div>
+          <div class="h-card video"><div class="yt-embed" data-yt-id="4qB1PVb4Xfk"><img class="yt-poster" data-src="assets/fabienne-podcast/4qB1PVb4Xfk.jpg" alt="La vie d'adulte podcast thumbnail"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play La vie d'adulte"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div><div class="h-meta"><span class="episode-number">EPISODE 05</span><span class="name">La vie d'adulte avec Laurence Belzile</span></div></div>
+          <div class="h-card video"><div class="yt-embed" data-yt-id="LezokxG_Vuo"><img class="yt-poster" data-src="assets/fabienne-podcast/LezokxG_Vuo.jpg" alt="La communauté LGBT podcast thumbnail"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play La communauté LGBT"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div><div class="h-meta"><span class="episode-number">EPISODE 06</span><span class="name">La communauté LGBT avec Rosalie Lessard</span></div></div>
+          <div class="h-card video"><div class="yt-embed" data-yt-id="k5VSlF-3ij8"><img class="yt-poster" data-src="assets/fabienne-podcast/k5VSlF-3ij8.jpg" alt="Vivre avec un handicap podcast thumbnail"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play Vivre avec un handicap"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div><div class="h-meta"><span class="episode-number">EPISODE 07</span><span class="name">Vivre avec un handicap avec Charlie Rousseau</span></div></div>
+          <div class="h-card video"><div class="yt-embed" data-yt-id="RGxCHdTvCYE"><img class="yt-poster" data-src="assets/fabienne-podcast/RGxCHdTvCYE.jpg" alt="Q and A avec Doudou podcast thumbnail"><button class="yt-play-btn" onclick="loadYouTube(this)" aria-label="Play Q and A avec Doudou"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div><div class="h-meta"><span class="episode-number">EPISODE 08</span><span class="name">Q&amp;A avec Doudou</span></div></div>
+        </div>
+      </div>
+    </div>
+    <h4 class="fab-category-title fab-instagram-title"><svg class="instagram-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg><span>Social Clips</span></h4>
+    <div class="fab-section fab-instagram-section">
+      <div class="embed-carousel-wrap">
+        <div class="carousel-controls">
+          <button class="carousel-btn" onclick="scrollCarousel(this,-1)" aria-label="Previous Fabidou Show clips">←</button>
+          <button class="carousel-btn" onclick="scrollCarousel(this,1)" aria-label="Next Fabidou Show clips">→</button>
+        </div>
+        <div class="ig-grid fab-instagram-carousel" aria-label="Popular Fabidou Show Instagram reels">
+          <div class="reel-card"><video data-reel-src="assets/fabienne-reels/CszYP82Jph7.mp4" poster="assets/fabienne-reels/CszYP82Jph7.jpg" aria-label="Fabidou Show reel, 24.4K plays" muted loop playsinline preload="metadata"></video><span class="reel-metric">24.4K plays</span></div>
+          <div class="reel-card"><video data-reel-src="assets/fabienne-reels/Ct7YOgRppp0.mp4" poster="assets/fabienne-reels/Ct7YOgRppp0.jpg" aria-label="Fabidou Show reel, 23.9K plays" muted loop playsinline preload="metadata"></video><span class="reel-metric">23.9K plays</span></div>
+          <div class="reel-card"><video data-reel-src="assets/fabienne-reels/Ctr9MQepCNG.mp4" poster="assets/fabienne-reels/Ctr9MQepCNG.jpg" aria-label="Fabidou Show reel, 17.5K plays" muted loop playsinline preload="metadata"></video><span class="reel-metric">17.5K plays</span></div>
+          <div class="reel-card"><video data-reel-src="assets/fabienne-reels/CtNIv9qJBgt.mp4" poster="assets/fabienne-reels/CtNIv9qJBgt.jpg" aria-label="Fabidou Show reel, 16.7K plays" muted loop playsinline preload="metadata"></video><span class="reel-metric">16.7K plays</span></div>
+          <div class="reel-card"><video data-reel-src="assets/fabienne-reels/Cs4R1XspGb4.mp4" poster="assets/fabienne-reels/Cs4R1XspGb4.jpg" aria-label="Fabidou Show reel, 15.4K plays" muted loop playsinline preload="metadata"></video><span class="reel-metric">15.4K plays</span></div>
+          <div class="reel-card"><video data-reel-src="assets/fabienne-reels/CukjaOwOgSu.mp4" poster="assets/fabienne-reels/CukjaOwOgSu.jpg" aria-label="Fabidou Show reel, 13.8K plays" muted loop playsinline preload="metadata"></video><span class="reel-metric">13.8K plays</span></div>
+          <div class="reel-card"><video data-reel-src="assets/fabienne-reels/CtFSxrNpssi.mp4" poster="assets/fabienne-reels/CtFSxrNpssi.jpg" aria-label="Fabidou Show reel, 13.4K plays" muted loop playsinline preload="metadata"></video><span class="reel-metric">13.4K plays</span></div>
+          <div class="reel-card"><video data-reel-src="assets/fabienne-reels/CtKSVkEJzyS.mp4" poster="assets/fabienne-reels/CtKSVkEJzyS.jpg" aria-label="Fabidou Show reel, 12.8K plays" muted loop playsinline preload="metadata"></video><span class="reel-metric">12.8K plays</span></div>
+        </div>
+      </div>
+    </div>
+    <h4 class="fab-category-title">Single Cover</h4>
     <div class="fab-section fab-single-covers" aria-label="Problème single cover designs">
       <figure class="fab-collage-piece fab-cover-card" role="button" tabindex="0" aria-label="Open Problème portrait cover" onclick="openLightbox('assets/fabienne-probleme-cover-photo.jpeg')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('assets/fabienne-probleme-cover-photo.jpeg')}"><img data-src="assets/fabienne-probleme-cover-photo.jpeg" alt="Problème single cover featuring Fabe"></figure>
       <figure class="fab-collage-piece fab-cover-card" role="button" tabindex="0" aria-label="Open Problème smoke cover" onclick="openLightbox('assets/fabienne-probleme-cover-smoke.jpg')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('assets/fabienne-probleme-cover-smoke.jpg')}"><img data-src="assets/fabienne-probleme-cover-smoke.jpg" alt="Problème single cover with dark smoke texture"></figure>
       <figure class="fab-collage-piece fab-cover-card" role="button" tabindex="0" aria-label="Open Problème grey cover" onclick="openLightbox('assets/fabienne-probleme-cover-grey.jpg')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('assets/fabienne-probleme-cover-grey.jpg')}"><img data-src="assets/fabienne-probleme-cover-grey.jpg" alt="Problème single cover in grey"></figure>
       <figure class="fab-collage-piece fab-cover-card" role="button" tabindex="0" aria-label="Open Problème black cover" onclick="openLightbox('assets/fabienne-probleme-cover-black.jpg')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('assets/fabienne-probleme-cover-black.jpg')}"><img data-src="assets/fabienne-probleme-cover-black.jpg" alt="Problème single cover in black"></figure>
     </div>
-    <h4 class="fab-category-title">Fabe Drink Campaign</h4>
+    <h4 class="fab-category-title">Tour Campaign</h4>
+    <div class="fab-section fab-tour-layout" aria-label="Fabuleuse tournée campaign designs">
+      <p class="fab-collage-label">Tour Poster</p>
+      <div class="fab-tour-posters">
+        <figure class="fab-collage-piece fab-tour-poster" role="button" tabindex="0" aria-label="Open Fabuleuse tournée portrait poster" onclick="openLightbox('assets/fabienne-tour-poster-portrait.jpg')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('assets/fabienne-tour-poster-portrait.jpg')}"><img data-src="assets/fabienne-tour-poster-portrait.jpg" alt="Fabuleuse tournée portrait poster"></figure>
+      </div>
+      <div class="fab-tour-assets">
+        <div class="fab-collage-group"><p class="fab-collage-label">Logo</p><figure class="fab-collage-piece fab-tour-asset" role="button" tabindex="0" aria-label="Open Fabuleuse tournée logo" onclick="openLightbox('assets/fabienne-tour-logo.png')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('assets/fabienne-tour-logo.png')}"><img data-src="assets/fabienne-tour-logo.png" alt="Fabuleuse tournée logo"></figure></div>
+        <div class="fab-collage-group"><p class="fab-collage-label">Backdrop</p><figure class="fab-collage-piece fab-tour-asset" role="button" tabindex="0" aria-label="Open Fabuleuse tournée backdrop" onclick="openLightbox('assets/fabienne-tour-backdrop.png')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('assets/fabienne-tour-backdrop.png')}"><img data-src="assets/fabienne-tour-backdrop.png" alt="Fabuleuse tournée event backdrop"></figure></div>
+      </div>
+    </div>
+    <h4 class="fab-category-title fab-drink-title">Drink Campaign</h4>
     <div class="fab-section fab-campaign-collage" aria-label="Fabe drink promotional campaign">
       <div class="fab-poster-group">
         <p class="fab-collage-label">Event Banner</p>
@@ -1362,6 +1486,10 @@
           </div>
         </div>
       </div>
+    </div>
+    <h4 class="fab-category-title">Poster</h4>
+    <div class="fab-section fab-single-poster" aria-label="I Am Her poster">
+      <figure class="fab-collage-piece fab-tour-poster" role="button" tabindex="0" aria-label="Open I Am Her poster" onclick="openLightbox('assets/fabienne-iam-her-single-poster.jpg')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('assets/fabienne-iam-her-single-poster.jpg')}"><img data-src="assets/fabienne-iam-her-single-poster.jpg" alt="I Am Her poster for Fabienne Laferrière"></figure>
     </div>
   </div>
 </section>
@@ -1430,7 +1558,7 @@
   <img id="lightbox-img" src="" alt="Enlarged thumbnail">
 </div>
 
-<script src="episode-metadata.js?v=3"></script>
+<script src="episode-metadata.js?v=4"></script>
 <script>
   function placeThumbnailsBeforeEpisodes(){
     const titles = [...document.querySelectorAll('#lgds-overlay-body h4.logo-h4')];
@@ -1491,6 +1619,27 @@
     });
   }
   initWideThumbnailBurst();
+
+  function initFabienneBurst(){
+    const items = [...document.querySelectorAll('.fab-teaser-cloud .fab-cloud-item')];
+    const total = items.length;
+    items.forEach((item,index) => {
+      const lane = index % 3;
+      const angle = (index / total) * Math.PI * 2 - Math.PI / 2 + lane * .075;
+      const radiusX = 22 + lane * 8 + (index % 2) * 3;
+      const radiusY = 14 + lane * 6 + ((index + 1) % 2) * 3;
+      const horizontalPosition = Math.cos(angle) * radiusX;
+      const containedX = horizontalPosition < 0 ? horizontalPosition * .75 : horizontalPosition;
+      item.style.setProperty('--burst-x',`${containedX}vw`);
+      item.style.setProperty('--burst-y',`${Math.sin(angle) * radiusY}vh`);
+      item.style.setProperty('--burst-rot',`${Math.sin(angle * 2) * 22 + (index % 5 - 2) * 4}deg`);
+      item.style.setProperty('--burst-scale',`${.86 + lane * .07 + (index % 4) * .02}`);
+      item.style.setProperty('--burst-delay',`${index * .013}s`);
+      item.style.setProperty('--burst-light',`${.76 + lane * .11}`);
+      item.style.zIndex = String(10 + lane * 10);
+    });
+  }
+  initFabienneBurst();
 
   let destroyDesignCarousel = null;
   function initDesignCarousel(){
@@ -1633,14 +1782,25 @@
   window.addEventListener('load', initEpisodeCarouselOffset);
 
   let projectLoadTimer;
+
+  function placeProjectDetailsWithCards(){
+    const lgdsProject = document.querySelector('.lgds-teaser')?.closest('.feature-project');
+    const fabProject = document.querySelector('.fab-teaser')?.closest('.feature-project');
+    const lgdsDetail = document.getElementById('lgds-detail');
+    const fabDetail = document.getElementById('fabienne-detail');
+    if (lgdsProject && lgdsDetail) lgdsProject.insertAdjacentElement('afterend',lgdsDetail);
+    if (fabProject && fabDetail) fabProject.insertAdjacentElement('afterend',fabDetail);
+  }
+
+  placeProjectDetailsWithCards();
+  document.querySelectorAll('.fab-podcast-carousel .yt-embed').forEach(player => {
+    player.dataset.initialHtml = player.innerHTML;
+  });
+
   function toggleDetailFromCard(){
     const section = document.getElementById('lgds-detail');
     const card = document.querySelector('.lgds-teaser');
     const pill = document.getElementById('explore-pill-label');
-    const willOpen = section.classList.contains('detail-collapsed');
-    if (willOpen && !document.getElementById('fabienne-detail')?.classList.contains('detail-collapsed')) {
-      toggleFabienneDetail();
-    }
     const collapsed = section.classList.toggle('detail-collapsed');
     if (card) card.setAttribute('aria-expanded', String(!collapsed));
     if (pill) {
@@ -1679,10 +1839,6 @@
     const card = document.querySelector('.fab-teaser');
     const pill = document.getElementById('fabienne-pill-label');
     if (!section || !card || !pill) return;
-    const willOpen = section.classList.contains('detail-collapsed');
-    if (willOpen && !document.getElementById('lgds-detail')?.classList.contains('detail-collapsed')) {
-      toggleDetailFromCard();
-    }
     const collapsed = section.classList.toggle('detail-collapsed');
     card.setAttribute('aria-expanded', String(!collapsed));
     pill.classList.toggle('is-open', !collapsed);
@@ -1690,8 +1846,18 @@
     if (textNode && textNode.nodeType === 3) textNode.textContent = collapsed ? 'Open project ' : 'Close project ';
 
     if (!collapsed) {
+      card.classList.add('burst-active');
+      window.setTimeout(() => card.classList.remove('burst-active'), 1900);
       section.querySelectorAll('img[data-src]').forEach(img => {
         img.src = img.dataset.src;
+      });
+      section.querySelectorAll('video[data-reel-src]').forEach(video => {
+        if (!video.src) {
+          video.src = video.dataset.reelSrc;
+          video.load();
+        }
+        video.muted = true;
+        video.play().catch(() => {});
       });
       window.setTimeout(() => {
         if (!section.classList.contains('detail-collapsed')) {
@@ -1699,6 +1865,14 @@
         }
       }, 140);
     } else {
+      section.querySelectorAll('.fab-podcast-carousel .yt-embed').forEach(player => {
+        if (player.querySelector('iframe') && player.dataset.initialHtml) player.innerHTML = player.dataset.initialHtml;
+      });
+      section.querySelectorAll('video[data-reel-src]').forEach(video => {
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+      });
       window.setTimeout(() => {
         if (!section.classList.contains('detail-collapsed')) return;
         section.querySelectorAll('img[data-src]').forEach(img => img.removeAttribute('src'));

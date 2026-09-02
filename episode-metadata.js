@@ -197,7 +197,7 @@ const episodeViews = {
 };
 
 function hydrateEpisodeCards() {
-  document.querySelectorAll('.yt-embed[data-yt-id]').forEach((embed) => {
+  document.querySelectorAll('#lgds-detail .yt-embed[data-yt-id]').forEach((embed) => {
     const id = embed.dataset.ytId;
     const card = embed.closest('.h-card');
     const title = episodeTitles[id];
