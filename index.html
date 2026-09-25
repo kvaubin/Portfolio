@@ -1120,44 +1120,6 @@
   @keyframes fabBannerUnroll{0%{clip-path:inset(0 0 100% 0);transform:translateY(-14px) scaleY(.96);filter:brightness(.72);}65%{clip-path:inset(0 0 8% 0);filter:brightness(1.08);}100%{clip-path:inset(0);transform:none;filter:none;}}
   @media(prefers-reduced-motion:reduce){#fabienne-detail:not(.detail-collapsed) .fab-collage-poster img,.fab-design-square figure,#fabienne-detail:not(.detail-collapsed) .fab-design-slide{animation:none;}}
   @media(max-width:760px){.fab-project{margin-top:90px;padding-top:50px;}.fab-teaser-poster{width:36%;right:3%;}.fab-cloud-item{width:88px}.fab-cloud-item:nth-child(n+7){display:none;}#fabienne-detail .fab-category-title{margin:30px 18px 12px;padding:0;}.fab-section{padding:18px 18px 0;}.fab-design-square{height:360px;border-radius:24px;}.fab-podcast-section{padding:12px 18px 54px;}.fab-music-layout{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:10px;padding-bottom:54px;}.fab-music-covers{gap:7px;}.fab-single-poster{padding-bottom:48px;}.fab-single-covers{grid-template-columns:repeat(2,1fr);grid-template-rows:auto;gap:8px;padding-bottom:54px;}.fab-single-covers .fab-cover-card:nth-child(n){grid-column:auto;grid-row:auto;aspect-ratio:1;}.fab-poster-group{min-height:430px;}.fab-campaign-collage{grid-template-columns:minmax(140px,38%) 1fr;gap:14px;padding:14px 18px 54px;}.fab-collage-side{gap:10px;}.fab-collage-logos,.fab-cover-grid{gap:8px;}.fab-collage-logo,.fab-cover-card,.fab-tour-poster,.fab-tour-asset{border-radius:12px;}.fab-collage-logo{padding:8%;}.fab-tour-layout{grid-template-columns:1fr;grid-template-areas:"poster-label" "poster" "assets";gap:8px;padding-bottom:54px;}.fab-tour-posters{gap:8px;}.fab-tour-assets{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}}
-  /* Apple-inspired 2026 concept; project content is unchanged. */
-  .hero{min-height:760px;background:#f6f7f9;color:#101114;}
-  .hero::after{display:none;}
-  .hero-stage{background:radial-gradient(circle at 78% 51%,#fff 0,#f2f4f8 31%,#f7f8fa 60%);}
-  .hero-title{left:clamp(30px,7vw,120px);top:50%;transform:translateY(-50%);width:min(61vw,830px);text-align:left;}
-  .hero-title h1{font-size:clamp(92px,12vw,192px);font-weight:850;letter-spacing:-.085em;line-height:.79;color:#101114;}
-  .hero-title h1>span{display:block;}
-  .hero-title .hero-dot{color:#007aff;}
-  .hero-title p{margin:36px 0 0;max-width:490px;color:#545b66;font-size:clamp(18px,1.8vw,25px);font-weight:520;line-height:1.32;letter-spacing:-.025em;}
-  .hero-cta{margin-top:42px;padding:22px 38px;border:0;background:#111318;color:#fff;box-shadow:0 16px 38px rgba(22,27,37,.15);font-size:19px;}
-  .hero-cta:hover{background:#007aff;box-shadow:0 20px 44px rgba(0,122,255,.24);}
-  .hero-visual{position:absolute;right:4vw;top:50%;width:min(43vw,620px);aspect-ratio:1;transform:translateY(-50%);z-index:3;}
-  .hero-orb{position:absolute;inset:4%;border-radius:50%;background:radial-gradient(circle at 29% 21%,rgba(255,255,255,.96),transparent 29%),radial-gradient(circle at 70% 76%,#ad9cff,transparent 36%),radial-gradient(circle at 68% 27%,#a2e7ff,transparent 35%),conic-gradient(from 145deg,#c9d0e1,#fdfdff,#7e8ca6,#e9edf4,#a9c8f1,#e5e5ee,#c9d0e1);box-shadow:inset -22px -28px 55px rgba(76,85,113,.24),inset 14px 18px 42px #fff,0 34px 90px rgba(87,111,169,.19);animation:orbFloat 9s ease-in-out infinite;}
-  .hero-orb::before{content:"";position:absolute;inset:12%;border:1px solid rgba(255,255,255,.8);border-radius:50%;box-shadow:0 0 30px rgba(255,255,255,.7),inset 0 0 25px rgba(255,255,255,.55);}
-  .hero-orb::after{content:"";position:absolute;left:15%;top:12%;width:38%;height:18%;border-radius:50%;background:rgba(255,255,255,.65);filter:blur(24px);transform:rotate(-28deg);}
-  .hero-mark{position:absolute;left:26%;top:24%;width:48%;height:auto;filter:drop-shadow(0 25px 24px rgba(30,35,52,.2));transform:rotate(-9deg);animation:markFloat 8s ease-in-out infinite;}
-  .hero-profile{position:absolute;left:67%;right:auto;top:63%;width:25%;padding:7px;border:1px solid rgba(255,255,255,.75);border-radius:24px;background:rgba(255,255,255,.2);box-shadow:0 24px 70px rgba(28,38,69,.24),inset 0 1px 0 rgba(255,255,255,.9);backdrop-filter:blur(20px) saturate(130%);-webkit-backdrop-filter:blur(20px) saturate(130%);transform:rotate(8deg);}
-  .hero-profile img{border-radius:17px;filter:saturate(.72) contrast(1.04);}
-  .hero-profile:hover{transform:rotate(2deg) translateY(-8px);}
-  .language-switch{background:rgba(255,255,255,.72);border-color:rgba(0,0,0,.1);box-shadow:0 8px 28px rgba(0,0,0,.07);}
-  .language-switch button{color:#666d77;}
-  .language-switch button[aria-pressed="true"]{background:#111318;color:#fff;}
-  .production{padding:140px 24px 160px;background:#f5f5f7;color:#111318;}
-  .production .section-head h2{color:#111318;font-size:clamp(66px,9vw,130px);font-weight:800;letter-spacing:-.075em;}
-  .production .prod-grid{margin:70px auto 0;max-width:1280px;gap:18px;}
-  .production .prod-cell{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:100px 110px;justify-items:center;align-content:center;min-height:370px;padding:46px 28px;border:1px solid #e5e7ec;border-radius:38px;background:#fff;box-shadow:0 24px 65px rgba(26,38,65,.045);}
-  .production .prod-cell:hover{background:#fff;border-color:#cdd4df;box-shadow:0 30px 75px rgba(26,38,65,.1);}
-  .production .prod-cell h3{grid-column:1;grid-row:1;max-width:220px;align-self:start;color:#111318;font-size:clamp(32px,3vw,43px);font-weight:800;letter-spacing:-.055em;line-height:.98;}
-  .production .prod-tags{grid-column:1;grid-row:2;width:100%;align-self:start;margin:0;gap:9px;}
-  .production .prod-tags span{background:#f1f2f4!important;border-color:transparent!important;color:#4e5560!important;}
-  .production .prod-tags span:hover{background:#e6e9ed!important;color:#111318!important;}
-  @keyframes orbFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-13px) rotate(3deg)}}
-  @keyframes markFloat{0%,100%{transform:translateY(0) rotate(-9deg)}50%{transform:translateY(-16px) rotate(-4deg)}}
-  .contact-portrait{position:absolute;right:9vw;bottom:10%;z-index:2;width:clamp(105px,12vw,170px);padding:8px;border:1px solid rgba(255,255,255,.3);border-radius:26px;background:rgba(255,255,255,.1);box-shadow:0 22px 60px rgba(0,0,0,.35);transform:rotate(8deg);}
-  .contact-portrait img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:19px;}
-  @media(max-width:900px){.hero{min-height:700px;}.hero-title{left:6vw;top:56%;width:88vw;z-index:5;}.hero-title h1{font-size:clamp(76px,15vw,142px);}.hero-visual{right:-18vw;top:31%;width:70vw;opacity:.63;}.hero-profile{display:block;}.production .prod-grid{grid-template-columns:1fr;max-width:560px;}.production .prod-cell{min-height:330px;padding:46px 28px;grid-template-rows:86px auto;}}
-  @media(max-width:620px){.hero{min-height:680px;height:100svh;}.hero-title{top:54%;width:88vw;}.hero-title h1{font-size:clamp(66px,18vw,108px);}.hero-title p{margin-top:28px;font-size:19px;max-width:330px;color:#3c4350;}.hero-cta{margin-top:30px;padding:18px 28px;font-size:17px;}.hero-visual{top:20%;right:-22vw;width:84vw;opacity:.5;}.production{padding:105px 20px 120px;}.production .prod-grid{padding:0;margin-top:52px;}.production .prod-cell{min-height:315px;padding:38px 22px;grid-template-rows:84px auto;}.production .prod-cell h3{font-size:35px;}.contact-portrait{right:4vw;bottom:5%;width:90px;padding:5px;border-radius:17px;}.contact-portrait img{border-radius:12px;}}
-  @media(prefers-reduced-motion:reduce){.hero-orb,.hero-mark{animation:none;}}
 </style>
 </head>
 <body>
@@ -1166,13 +1128,12 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-stage">
-    <div class="hero-visual" aria-hidden="true">
-      <div class="hero-orb"></div>
-      <img class="hero-mark" src="assets/apple-skull.png" alt="">
-      <div class="hero-profile"><img src="assets/kevin-profile.jpg" alt=""></div>
+    <img class="hero-sticker sticker-skull" src="assets/apple-skull.png" alt="Rainbow Apple skull decal">
+    <div class="hero-profile">
+      <img src="assets/kevin-profile.jpg" alt="Kevin Aubin">
     </div>
     <div class="hero-title">
-      <h1><span>Kevin</span><span>Aubin<span class="hero-dot">.</span></span></h1>
+      <h1>Kevin Aubin</h1>
       <p>Editor, Graphic Design, Web Design</p>
       <a class="hero-cta" href="#work">See my work <i aria-hidden="true"></i></a>
     </div>
@@ -1731,7 +1692,6 @@
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <img class="contact-decal contact-skull" src="assets/apple-skull.png" alt="">
-  <div class="contact-portrait" aria-hidden="true"><img src="assets/kevin-profile.jpg" alt=""></div>
   <div class="contact-inner">
     <h2 class="reveal">Contact</h2>
     <a class="btn solid reveal" href="mailto:kaubin@icloud.com">kaubin@icloud.com</a>
