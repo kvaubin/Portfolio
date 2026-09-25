@@ -899,10 +899,9 @@
   .language-switch button{border:0;border-radius:100px;background:transparent;color:rgba(255,255,255,.62);padding:6px 10px;font:600 11px var(--sans);letter-spacing:.04em;cursor:pointer;}
   .language-switch button[aria-pressed="true"]{background:#f5f5f7;color:#111;}
   .language-switch button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
-  @media(min-width:901px){
-    .production .prod-cell h3{display:flex;align-items:center;justify-content:center;height:72px;min-height:72px;}
-    .production .prod-cell p{min-height:66px;}
-  }
+  .production .prod-cell{justify-content:center;min-height:280px;}
+  .production .prod-tags{margin-top:10px;}
+  @media(min-width:901px){.production .prod-cell h3{display:flex;align-items:center;justify-content:center;height:72px;min-height:72px;}}
   @media(min-width:761px){.apple-inner>.eyebrow{margin-top:26px;}}
   .press-more{white-space:nowrap;color:rgba(255,255,255,.34);font-size:11px;font-weight:650;letter-spacing:.02em;}
   @media(max-width:900px){.press-mentions{grid-template-columns:auto 1fr;}.press-links{justify-content:flex-start;flex-wrap:wrap;}.press-more{grid-column:2;}.press-links a{flex:0 1 116px;}}
@@ -1657,9 +1656,9 @@
     <h2>What I do</h2>
   </div>
   <div class="prod-grid">
-    <div class="prod-cell reveal" data-index="01"><h3>Podcast &amp; content</h3><p>Complete post-production and platform-ready content from every recording.</p><div class="prod-tags"><span>Long-form editing</span><span>Multicam</span><span>Social clips</span><span>Twitch clipping</span><span>Thumbnails</span><span>Publishing &amp; posting</span></div></div>
-    <div class="prod-cell reveal" data-index="02"><h3>Graphic design</h3><p>Flexible visual assets for brands, releases, launches and live events.</p><div class="prod-tags"><span>Logos</span><span>Event flyers</span><span>Posters</span><span>Album covers</span><span>Banners</span><span>Overlays</span><span>Campaign assets</span></div></div>
-    <div class="prod-cell reveal" data-index="03"><h3>Digital experiences</h3><p>Web pages and Apple-platform experiences shaped from early concept through development.</p><div class="prod-tags"><span>Web page design</span><span>iOS apps</span><span>macOS apps</span><span>UI design</span><span>UI concepts</span><span>Prototyping</span></div></div>
+    <div class="prod-cell reveal" data-index="01"><h3>Podcast &amp; content</h3><div class="prod-tags"><span>Long-form editing</span><span>Multicam</span><span>Social clips</span><span>Twitch clipping</span><span>Thumbnails</span><span>Publishing &amp; posting</span></div></div>
+    <div class="prod-cell reveal" data-index="02"><h3>Graphic design</h3><div class="prod-tags"><span>Logos</span><span>Event flyers</span><span>Posters</span><span>Album covers</span><span>Banners</span><span>Overlays</span><span>Campaign assets</span></div></div>
+    <div class="prod-cell reveal" data-index="03"><h3>Digital experiences</h3><div class="prod-tags"><span>Web page design</span><span>iOS apps</span><span>macOS apps</span><span>UI design</span><span>UI concepts</span><span>Prototyping</span></div></div>
   </div>
 </section>
 
@@ -1717,11 +1716,8 @@
         '.hero-cta': 'See my work',
         '.production .section-head h2': 'What I do',
         '.prod-cell:nth-child(1) h3': 'Podcast & content',
-        '.prod-cell:nth-child(1) p': 'Complete post-production and platform-ready content from every recording.',
         '.prod-cell:nth-child(2) h3': 'Graphic design',
-        '.prod-cell:nth-child(2) p': 'Flexible visual assets for brands, releases, launches and live events.',
         '.prod-cell:nth-child(3) h3': 'Digital experiences',
-        '.prod-cell:nth-child(3) p': 'Web pages and Apple-platform experiences shaped from early concept through development.',
         '.x-follow': 'View on Twitter ↗',
         '.apple-inner .lead': 'I track Apple betas, new iOS changes, upcoming and unreleased Apple products, hardware details and the small things Apple does not always mention.',
         '.press-label': 'As seen in',
@@ -1733,11 +1729,8 @@
         '.hero-cta': 'Voir mon travail',
         '.production .section-head h2': 'Ce que je fais',
         '.prod-cell:nth-child(1) h3': 'Balados et contenu',
-        '.prod-cell:nth-child(1) p': 'Une postproduction complète et du contenu prêt à publier à partir de chaque enregistrement.',
         '.prod-cell:nth-child(2) h3': 'Design graphique',
-        '.prod-cell:nth-child(2) p': 'Des visuels polyvalents pour les marques, les sorties, les lancements et les événements.',
         '.prod-cell:nth-child(3) h3': 'Expériences numériques',
-        '.prod-cell:nth-child(3) p': 'Des sites web et des expériences Apple, de la première idée jusqu’au développement.',
         '.x-follow': 'Voir sur Twitter ↗',
         '.apple-inner .lead': 'Je suis les bêtas d’Apple, les nouveautés d’iOS, les produits à venir ou inédits, les détails du matériel et les petites choses qu’Apple ne mentionne pas toujours.',
         '.press-label': 'Mentionné dans',
@@ -1749,6 +1742,78 @@
       en: ['Long-form editing','Multicam','Social clips','Twitch clipping','Thumbnails','Publishing & posting','Logos','Event flyers','Posters','Album covers','Banners','Overlays','Campaign assets','Web page design','iOS apps','macOS apps','UI design','UI concepts','Prototyping'],
       fr: ['Montage longue durée','Multicaméra','Extraits sociaux','Extraits Twitch','Miniatures','Publication','Logos','Visuels d’événement','Affiches','Pochettes d’album','Bannières','Habillages','Visuels de campagne','Design web','Applications iOS','Applications macOS','Design d’interface','Concepts d’interface','Prototypage']
     };
+    const projectCopy = {
+      'Work': 'Projets',
+      'Receiving raw files, assembling full episodes for streaming, cutting clips for social, thumbnails, and everything that ends on @lagangdushow.': 'À partir des fichiers bruts, je monte les épisodes complets pour la diffusion, crée des extraits pour les réseaux sociaux et conçois les miniatures et les autres visuels de @lagangdushow.',
+      'Podcast': 'Balado',
+      'Editing': 'Montage',
+      'Social media': 'Réseaux sociaux',
+      '98+ episodes, clips, thumbnails & design': 'Plus de 98 épisodes, extraits, miniatures et visuels',
+      'Open project': 'Voir le projet',
+      'Close project': 'Fermer le projet',
+      'Podcast production and publishing across YouTube and Spotify, including social clips and thumbnail design, alongside branding, launch campaigns, posters and album artwork.': 'Production et publication de balados sur YouTube et Spotify, avec extraits pour les réseaux sociaux et miniatures, ainsi que création de l’identité visuelle, de campagnes de lancement, d’affiches et de pochettes d’album.',
+      'Graphic design': 'Design graphique',
+      'Publishing': 'Publication',
+      'Social clips': 'Extraits sociaux',
+      'Thumbnails': 'Miniatures',
+      'Launch campaign & promotional design': 'Campagne de lancement et visuels promotionnels',
+      'Logo & Show Graphics': 'Logo et habillage de l’émission',
+      'Social Clips': 'Extraits pour les réseaux sociaux',
+      'Full Episode Editing': 'Montage des épisodes complets',
+      'Full Podcast Episodes': 'Épisodes complets du balado',
+      'YouTube Thumbnail Design': 'Création de miniatures YouTube',
+      'YouTube Thumbnails': 'Miniatures YouTube',
+      'Show all thumbnails': 'Voir toutes les miniatures',
+      'Show less': 'Voir moins',
+      'Watch on YouTube ↗': 'Voir sur YouTube ↗',
+      'Podcast Episodes': 'Épisodes de balado',
+      'Graphic Design': 'Design graphique',
+      'Single Cover': 'Pochette de single',
+      'Tour Campaign': 'Campagne de tournée',
+      'Drink Campaign': 'Campagne Fabe',
+      'Poster': 'Affiches',
+      'Tour Poster': 'Affiche de tournée',
+      'Backdrop': 'Fond de scène',
+      'Event Banner': 'Bannière d’événement',
+      'Launch Card': 'Visuel de lancement'
+    };
+    const projectNodes = [];
+    const projectAttributes = [];
+    function collectProjectCopy() {
+      for (const root of document.querySelectorAll('#work, #lgds-detail, #fabienne-detail')) {
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        while (walker.nextNode()) {
+          const node = walker.currentNode;
+          const original = node.textContent;
+          if (Object.hasOwn(projectCopy, original.trim())) projectNodes.push({node, original});
+        }
+        root.querySelectorAll('[aria-label], [alt]').forEach(element => {
+          for (const attribute of ['aria-label', 'alt']) {
+            if (element.hasAttribute(attribute)) projectAttributes.push({element, attribute, original:element.getAttribute(attribute)});
+          }
+        });
+      }
+    }
+    function translateProjectLabel(label) {
+      return label.replace(/^Previous\b/, 'Précédent').replace(/^Next\b/, 'Suivant').replace(/^Open\b/, 'Ouvrir').replace(/^Play\b/, 'Lire').replace(/\bgraphic design\b/gi, 'design graphique').replace(/\bpodcast thumbnails\b/gi, 'miniatures de balado').replace(/\bpodcast episodes\b/gi, 'épisodes de balado').replace(/\bepisode thumbnail\b/gi, 'miniature d’épisode').replace(/\bYouTube thumbnail\b/gi, 'miniature YouTube').replace(/\bthumbnail\b/gi, 'miniature').replace(/\bclips\b/gi, 'extraits').replace(/\bviews\b/gi, 'vues').replace(/\bposter\b/gi, 'affiche').replace(/\bbackdrop\b/gi, 'fond de scène').replace(/\bcategory\b/gi, 'catégorie').replace(/\bwith the Fabe beverage campaign\b/gi, 'pour la campagne de boisson Fabe').replace(/\bdesigns\b/gi, 'visuels').replace(/\breel\b/gi, 'vidéo courte');
+    }
+    function translateProjects(lang) {
+      if (!projectNodes.length) collectProjectCopy();
+      for (const {node, original} of projectNodes) {
+        const key = original.trim();
+        node.textContent = lang === 'fr' ? original.replace(key, projectCopy[key]) : original;
+      }
+      for (const {element, attribute, original} of projectAttributes) {
+        element.setAttribute(attribute, lang === 'fr' ? translateProjectLabel(original) : original);
+      }
+      for (const [pillId, sectionId] of [['explore-pill-label','lgds-detail'],['fabienne-pill-label','fabienne-detail']]) {
+        const pill = document.getElementById(pillId);
+        const open = !document.getElementById(sectionId).classList.contains('detail-collapsed');
+        if (pill?.firstChild) pill.firstChild.textContent = (lang === 'fr' ? (open ? 'Fermer le projet' : 'Voir le projet') : (open ? 'Close project' : 'Open project')) + ' ';
+      }
+      const thumbButton = document.getElementById('thumb-expand-btn');
+      if (thumbButton) thumbButton.textContent = lang === 'fr' ? (document.getElementById('thumb-grid-wrap')?.classList.contains('expanded') ? 'Voir moins' : 'Voir toutes les miniatures') : (document.getElementById('thumb-grid-wrap')?.classList.contains('expanded') ? 'Show less' : 'Show all thumbnails');
+    }
     function setLanguage(lang) {
       if (!copy[lang]) return;
       document.documentElement.lang = lang;
@@ -1760,6 +1825,7 @@
         }
       }
       document.querySelectorAll('.production .prod-tags span').forEach((element, index) => { element.textContent = tags[lang][index]; });
+      if (document.readyState !== 'loading') translateProjects(lang);
       document.querySelectorAll('.language-switch button').forEach(button => { button.setAttribute('aria-pressed', String(button.dataset.lang === lang)); });
       const url = new URL(location.href);
       if (lang === 'fr') url.searchParams.set('lang', 'fr');
@@ -1768,6 +1834,7 @@
     }
     document.querySelectorAll('.language-switch button').forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.lang)));
     setLanguage(new URLSearchParams(location.search).get('lang') === 'fr' ? 'fr' : 'en');
+    document.addEventListener('DOMContentLoaded', () => translateProjects(document.documentElement.lang));
   })();
   function placeThumbnailsBeforeEpisodes(){
     const titles = [...document.querySelectorAll('#lgds-overlay-body h4.logo-h4')];
@@ -2052,7 +2119,7 @@
     if (pill) {
       pill.classList.toggle('is-open', !collapsed);
       const textNode = pill.childNodes[0];
-      if (textNode && textNode.nodeType === 3) textNode.textContent = collapsed ? 'Open project ' : 'Close project ';
+      if (textNode && textNode.nodeType === 3) textNode.textContent = document.documentElement.lang === 'fr' ? (collapsed ? 'Voir le projet ' : 'Fermer le projet ') : (collapsed ? 'Open project ' : 'Close project ');
     }
     if (!collapsed) {
       clearTimeout(projectLoadTimer);
@@ -2089,7 +2156,7 @@
     card.setAttribute('aria-expanded', String(!collapsed));
     pill.classList.toggle('is-open', !collapsed);
     const textNode = pill.childNodes[0];
-    if (textNode && textNode.nodeType === 3) textNode.textContent = collapsed ? 'Open project ' : 'Close project ';
+    if (textNode && textNode.nodeType === 3) textNode.textContent = document.documentElement.lang === 'fr' ? (collapsed ? 'Voir le projet ' : 'Fermer le projet ') : (collapsed ? 'Open project ' : 'Close project ');
 
     if (!collapsed) {
       card.classList.add('burst-active');
@@ -2177,7 +2244,7 @@
     } else {
       setThumbRowCap();
     }
-    btn.textContent = expanded ? 'Show less' : 'Show all thumbnails';
+    btn.textContent = document.documentElement.lang === 'fr' ? (expanded ? 'Voir moins' : 'Voir toutes les miniatures') : (expanded ? 'Show less' : 'Show all thumbnails');
   }
 
   setThumbRowCap();
