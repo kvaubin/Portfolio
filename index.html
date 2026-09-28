@@ -28,7 +28,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;scrollbar-width:none;-ms-overflow-style:none;}
   *::-webkit-scrollbar{display:none;width:0;height:0;}
-  html{scroll-behavior:smooth;scroll-padding-top:56px;}
+  html{scroll-behavior:smooth;scroll-padding-top:100px;}
   body{
     background:var(--bg);color:var(--ink);font-family:var(--sans);
     overflow-x:hidden;
@@ -809,12 +809,10 @@
   @media(max-width:620px){.contact{min-height:720px;}.contact-skull{left:3vw;top:12%;width:86px;}.contact-wheel{right:3vw;bottom:8%;width:84px;}.contact h2{font-size:clamp(76px,24vw,112px);}.contact .btn.solid{font-size:13px;}}
   .hero-sticker{transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .4s ease;}
   .hero-stage:has(.hero-cta:hover) .sticker-skull{transform:translate(-55px,-24px) rotate(-17deg);}
-  .hero-stage:has(.hero-cta:hover) .hero-profile{transform:translate(58px,-26px) rotate(9deg);}
   .hero-stage:has(.hero-cta:hover) .hero-unlock{transform:translate(-58px,28px) rotate(-8deg);}
   .hero-stage:has(.hero-cta:hover) .sticker-wheel{animation:none;transform:translate(58px,30px) rotate(34deg);}
   @media(max-width:620px){
     .hero-stage:has(.hero-cta:hover) .sticker-skull{transform:translate(-18px,-12px) rotate(-14deg);}
-    .hero-stage:has(.hero-cta:hover) .hero-profile{transform:translate(18px,-14px) rotate(8deg);}
     .hero-stage:has(.hero-cta:hover) .hero-unlock{transform:translate(-20px,14px) rotate(-7deg);}
     .hero-stage:has(.hero-cta:hover) .sticker-wheel{transform:translate(18px,14px) rotate(28deg);}
   }
@@ -872,7 +870,7 @@
   .production .prod-tags span{display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:0;padding:7px 11px!important;font-size:10px;line-height:1.15;text-align:center;box-shadow:none!important;background:rgba(255,255,255,.07)!important;border-color:transparent!important;color:rgba(255,255,255,.72)!important;}
   .production .prod-tags span:hover{transform:none;background:#fff!important;color:#000!important;}
   @media(max-width:900px){.production .prod-grid{grid-template-columns:1fr;}.production .prod-cell{min-height:300px;border-radius:34px;}.production .prod-cell h3{min-height:0;margin-top:0;}.production .prod-cell p{min-height:0;}}
-  .apple-section{padding:105px 24px 125px;background:#000;}
+  .apple-section{padding:165px 24px 125px;background:#000;}
   .apple-inner{display:grid;grid-template-columns:minmax(220px,.65fr) minmax(0,1.35fr);gap:10px 64px;max-width:1120px;margin:0 auto;padding:46px 48px;border:1px solid rgba(255,255,255,.13);border-radius:44px;background:#0b0b0d;text-align:left;}
   .x-profile-head{grid-column:1;grid-row:1/4;align-self:stretch;position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:14px;padding:0 48px 0 0;border:0;}
   .x-profile-head::after{content:"";position:absolute;top:0;right:0;bottom:-35px;width:1px;background:rgba(255,255,255,.11);}
@@ -906,6 +904,7 @@
   .press-more{white-space:nowrap;color:rgba(255,255,255,.34);font-size:11px;font-weight:650;letter-spacing:.02em;}
   @media(max-width:900px){.press-mentions{grid-template-columns:auto 1fr;}.press-links{justify-content:flex-start;flex-wrap:wrap;}.press-more{grid-column:2;}.press-links a{flex:0 1 116px;}}
   @media(max-width:760px){.apple-inner{grid-template-columns:1fr;padding:34px 28px;border-radius:34px;}.x-profile-head{grid-column:1;grid-row:auto;flex-direction:row;align-items:center;justify-content:flex-start;padding:0 0 26px;border-right:0;border-bottom:1px solid rgba(255,255,255,.11);}.x-profile-head::after{display:none;}.x-profile-name{flex:1;}.x-follow{margin:0;}.apple-inner>.eyebrow,.apple-inner .lead{grid-column:1;}.apple-inner>.eyebrow{margin-top:22px;}.press-mentions{grid-column:1;grid-template-columns:1fr;}.press-links{grid-column:1;}.press-more{grid-column:1;}}
+  @media(max-width:760px){.apple-section{padding-top:140px;}}
   .overlay-body h4:not(.logo-h4),
   .overlay-body h4.logo-h4 span,
   .carousel-title:not(.logo-title),
@@ -1120,20 +1119,104 @@
   @keyframes fabBannerUnroll{0%{clip-path:inset(0 0 100% 0);transform:translateY(-14px) scaleY(.96);filter:brightness(.72);}65%{clip-path:inset(0 0 8% 0);filter:brightness(1.08);}100%{clip-path:inset(0);transform:none;filter:none;}}
   @media(prefers-reduced-motion:reduce){#fabienne-detail:not(.detail-collapsed) .fab-collage-poster img,.fab-design-square figure,#fabienne-detail:not(.detail-collapsed) .fab-design-slide{animation:none;}}
   @media(max-width:760px){.fab-project{margin-top:90px;padding-top:50px;}.fab-teaser-poster{width:36%;right:3%;}.fab-cloud-item{width:88px}.fab-cloud-item:nth-child(n+7){display:none;}#fabienne-detail .fab-category-title{margin:30px 18px 12px;padding:0;}.fab-section{padding:18px 18px 0;}.fab-design-square{height:360px;border-radius:24px;}.fab-podcast-section{padding:12px 18px 54px;}.fab-music-layout{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:10px;padding-bottom:54px;}.fab-music-covers{gap:7px;}.fab-single-poster{padding-bottom:48px;}.fab-single-covers{grid-template-columns:repeat(2,1fr);grid-template-rows:auto;gap:8px;padding-bottom:54px;}.fab-single-covers .fab-cover-card:nth-child(n){grid-column:auto;grid-row:auto;aspect-ratio:1;}.fab-poster-group{min-height:430px;}.fab-campaign-collage{grid-template-columns:minmax(140px,38%) 1fr;gap:14px;padding:14px 18px 54px;}.fab-collage-side{gap:10px;}.fab-collage-logos,.fab-cover-grid{gap:8px;}.fab-collage-logo,.fab-cover-card,.fab-tour-poster,.fab-tour-asset{border-radius:12px;}.fab-collage-logo{padding:8%;}.fab-tour-layout{grid-template-columns:1fr;grid-template-areas:"poster-label" "poster" "assets";gap:8px;padding-bottom:54px;}.fab-tour-posters{gap:8px;}.fab-tour-assets{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}}
+  /* Apple-inspired 2026 concept; project content is unchanged. */
+  .hero{min-height:760px;background:#f6f7f9;color:#101114;}
+  .hero::after{display:none;}
+  .hero-stage{background:linear-gradient(135deg,#f9fafb,#f2f4f8);}
+  .hero-title{left:clamp(30px,7vw,120px);top:50%;transform:translateY(-50%);width:min(61vw,830px);text-align:left;}
+  .hero-title h1{font-size:clamp(92px,12vw,192px);font-weight:850;letter-spacing:-.085em;line-height:.79;color:#101114;}
+  .hero-title h1>span{display:block;}
+  .hero-title p{margin:36px 0 0;max-width:490px;color:#545b66;font-size:clamp(18px,1.8vw,25px);font-weight:520;line-height:1.32;letter-spacing:-.025em;}
+  .hero-cta{margin-top:42px;padding:22px 38px;border:0;background:#111318;color:#fff;box-shadow:0 16px 38px rgba(22,27,37,.15);font-size:19px;}
+  .hero-cta:hover{background:#007aff;box-shadow:0 20px 44px rgba(0,122,255,.24);}
+  .hero-visual{position:absolute;right:4vw;top:50%;width:min(43vw,620px);aspect-ratio:1;transform:translateY(-50%);z-index:3;}
+  .hero-mark{position:absolute;left:12%;top:26%;width:34%;height:auto;filter:drop-shadow(0 25px 24px rgba(30,35,52,.2));transform:translate3d(var(--drag-x,0px),var(--drag-y,0px),0) rotate(-9deg);}
+  .hero-profile{position:absolute;left:57%;right:auto;top:41%;width:34%;padding:7px;border:1px solid rgba(255,255,255,.75);border-radius:24px;background:rgba(255,255,255,.2);box-shadow:0 24px 70px rgba(28,38,69,.24),inset 0 1px 0 rgba(255,255,255,.9);backdrop-filter:blur(20px) saturate(130%);-webkit-backdrop-filter:blur(20px) saturate(130%);transform:translate3d(var(--drag-x,0px),var(--drag-y,0px),0) rotate(8deg);}
+  .hero-profile img{border-radius:17px;filter:saturate(.72) contrast(1.04);}
+  .hero-piece{z-index:2;cursor:grab;touch-action:none;user-select:none;-webkit-user-drag:none;transition:transform .25s ease,filter .25s ease,box-shadow .25s ease;}
+  .hero-piece:hover,.hero-piece:focus-visible{z-index:8;filter:drop-shadow(0 28px 25px rgba(0,122,255,.22));}
+  .hero-visual .hero-profile:hover{transform:translate3d(var(--drag-x,0px),var(--drag-y,0px),0) rotate(8deg);}
+  .hero-piece.is-dragging{z-index:9;cursor:grabbing;transition:none;}
+  .hero-piece:focus-visible{outline:3px solid #007aff;outline-offset:8px;}
+  .language-switch{background:rgba(255,255,255,.72);border-color:rgba(0,0,0,.1);box-shadow:0 8px 28px rgba(0,0,0,.07);}
+  .language-switch button{color:#666d77;}
+  .language-switch button[aria-pressed="true"]{background:#111318;color:#fff;}
+  .production{padding:140px 24px 160px;background:#f5f5f7;color:#111318;}
+  .production .section-head h2{color:#111318;font-size:clamp(66px,9vw,130px);font-weight:800;letter-spacing:-.075em;}
+  .production .prod-grid{margin:70px auto 0;max-width:1280px;gap:18px;}
+  .production .prod-cell{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:100px 110px;justify-items:center;align-content:center;min-height:370px;padding:46px 28px;border:1px solid #e5e7ec;border-radius:38px;background:#fff;box-shadow:0 24px 65px rgba(26,38,65,.045);}
+  .production .prod-cell:hover{background:#fff;border-color:#cdd4df;box-shadow:0 30px 75px rgba(26,38,65,.1);}
+  .production .prod-cell h3{grid-column:1;grid-row:1;max-width:220px;align-self:start;color:#111318;font-size:clamp(32px,3vw,43px);font-weight:800;letter-spacing:-.055em;line-height:.98;}
+  .production .prod-tags{grid-column:1;grid-row:2;width:100%;align-self:start;margin:0;gap:9px;}
+  .production .prod-tags span{background:#f1f2f4!important;border-color:transparent!important;color:#4e5560!important;}
+  .production .prod-tags span:hover{background:#e6e9ed!important;color:#111318!important;}
+  @media(min-width:1100px){html:lang(en) .production .prod-cell{grid-template-rows:100px 70px;}}
+  .contact-portrait{position:absolute;right:9vw;bottom:10%;z-index:2;width:clamp(105px,12vw,170px);padding:8px;border:1px solid rgba(255,255,255,.3);border-radius:26px;background:rgba(255,255,255,.1);box-shadow:0 22px 60px rgba(0,0,0,.35);transform:rotate(8deg);}
+  .contact-portrait img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:19px;}
+  @media(max-width:900px){.hero{min-height:700px;}.hero-title{left:6vw;top:56%;width:88vw;z-index:5;}.hero-title h1{font-size:clamp(76px,15vw,142px);}.hero-visual{right:-18vw;top:31%;width:70vw;opacity:.63;}.hero-profile{display:block;}.production .prod-grid{grid-template-columns:1fr;max-width:560px;}.production .prod-cell{min-height:330px;padding:46px 28px;grid-template-rows:86px auto;}}
+  @media(max-width:620px){.hero{min-height:680px;height:100svh;}.hero-title{top:54%;width:88vw;}.hero-title h1{font-size:clamp(66px,18vw,108px);}.hero-title p{margin-top:28px;font-size:19px;max-width:330px;color:#3c4350;}.hero-cta{margin-top:30px;padding:18px 28px;font-size:17px;}.hero-visual{top:5%;right:0;width:100vw;opacity:1;}.hero-mark{left:12%;top:8%;width:32%;}.hero-profile{left:57%;top:19%;width:32%;}.production{padding:105px 20px 120px;}.production .prod-grid{padding:0;margin-top:52px;}.production .prod-cell{min-height:315px;padding:38px 22px;grid-template-rows:84px auto;}.production .prod-cell h3{font-size:35px;}.contact-portrait{right:4vw;bottom:5%;width:90px;padding:5px;border-radius:17px;}.contact-portrait img{border-radius:12px;}}
+  .glass-header{position:fixed;z-index:600;top:14px;left:50%;display:flex;align-items:center;gap:14px;width:min(730px,calc(100% - 40px));height:52px;padding:5px 7px 5px 12px;border:1px solid rgba(255,255,255,.72);border-radius:999px;background:radial-gradient(240px 100px at var(--glass-x,50%) var(--glass-y,0%),rgba(255,255,255,.44),transparent 80%),linear-gradient(130deg,rgba(255,255,255,.73),rgba(232,237,246,.57));box-shadow:inset 0 1px 1px rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.25),0 13px 40px rgba(42,56,83,.13);backdrop-filter:blur(28px) saturate(190%);-webkit-backdrop-filter:blur(28px) saturate(190%);transform:translateX(-50%);transition:background .3s ease,box-shadow .3s ease,border-color .3s ease;}
+  .glass-header::after{content:"";position:absolute;top:2px;left:6%;right:6%;height:1px;border-radius:50%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.95),transparent);pointer-events:none;}
+  .glass-header:hover{box-shadow:inset 0 1px 1px rgba(255,255,255,.95),0 18px 46px rgba(42,56,83,.18);}
+  .glass-brand{display:flex;align-items:center;justify-content:center;flex:none;width:34px;height:34px;padding:2px;border-radius:50%;background:rgba(255,255,255,.9);box-shadow:0 2px 8px rgba(17,19,24,.16);overflow:hidden;}
+  .glass-brand img{width:100%;height:100%;border-radius:50%;object-fit:cover;}
+  .glass-nav{display:flex;align-items:center;justify-content:center;gap:3px;flex:1;min-width:0;}
+  .glass-nav a{padding:9px 11px;border-radius:999px;color:#363d48;font-size:12px;font-weight:500;white-space:nowrap;transition:background .25s ease,color .25s ease,transform .25s ease;}
+  .glass-nav a:hover,.glass-nav a:focus-visible{background:rgba(255,255,255,.7);color:#101114;transform:translateY(-1px);}
+  .glass-nav a[aria-current="location"],.glass-nav a[aria-current="location"]:hover,.glass-nav a[aria-expanded="true"]{background:#111318;color:#fff;box-shadow:0 4px 12px rgba(17,19,24,.2);}
+  .glass-brand[aria-current="location"]{box-shadow:0 0 0 2px #007aff,0 3px 12px rgba(0,122,255,.24);}
+  .glass-header .language-switch{position:static;z-index:auto;flex:none;padding:4px;background:rgba(255,255,255,.65);border-color:rgba(255,255,255,.9);box-shadow:inset 0 1px 2px rgba(255,255,255,.8);}
+  .glass-header a:focus-visible{outline:2px solid #007aff;outline-offset:2px;}
+  .press-mentions{grid-template-columns:minmax(0,1fr) auto;}
+  .press-mentions .press-links{grid-column:1;}
+  .press-mentions .press-more{grid-column:2;}
+  .contact-actions{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;}
+  .contact-form-trigger{font-family:var(--sans);font-weight:600;cursor:pointer;}
+  @media(max-width:900px){.press-mentions{grid-template-columns:1fr;}.press-mentions .press-more{grid-column:1;}}
+  #work .lgds-teaser .explore-pill,#work .fab-teaser .explore-pill{padding:16px 27px;border:1px solid rgba(255,255,255,.85);border-radius:999px;background:#fff;color:#111318;box-shadow:0 14px 38px rgba(0,0,0,.34);font-size:16px;font-weight:650;letter-spacing:-.02em;animation:none;transform:none;}
+  #work .lgds-teaser:hover .explore-pill,#work .fab-teaser:hover .explore-pill{background:#fff;color:#111318;box-shadow:0 18px 44px rgba(0,0,0,.42);transform:translateY(-3px);}
+  #work .lgds-teaser .explore-pill.is-open,#work .fab-teaser .explore-pill.is-open,#work .lgds-teaser:hover .explore-pill.is-open,#work .fab-teaser:hover .explore-pill.is-open{background:#d41136;color:#fff;border-color:#ff536f;box-shadow:0 14px 38px rgba(212,17,54,.34);animation:none;}
+  @media(max-width:700px){.glass-header{gap:8px;width:calc(100% - 24px);height:48px;top:10px;padding:5px 7px 5px 9px;}.glass-brand{width:32px;height:32px;}.glass-nav a{padding:8px 9px;font-size:12px;}.glass-nav .header-services,.glass-nav .header-apple{display:none;}.glass-nav a[aria-current="location"]{display:block;}.glass-header .language-switch button{padding:6px 8px;}}
+  @media(max-width:370px){.glass-nav a{padding:9px 6px;font-size:11px;}.glass-header{gap:3px;}.glass-nav:has(.header-services[aria-current="location"],.header-apple[aria-current="location"]) .header-contact{display:none;}}
+  .contact-dialog{position:fixed;inset:0;margin:auto;width:min(540px,calc(100% - 28px));max-height:min(90svh,780px);padding:38px;border:1px solid rgba(255,255,255,.75);border-radius:32px;background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(239,242,247,.96));color:#111318;box-shadow:0 36px 110px rgba(0,0,0,.34),inset 0 1px 0 #fff;backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);overflow:auto;}
+  .contact-dialog::backdrop{background:rgba(2,5,12,.62);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+  .contact-dialog-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;}
+  .contact-dialog h2{font-size:clamp(38px,6vw,58px);font-weight:800;letter-spacing:-.075em;line-height:.95;}
+  .contact-dialog-close{display:flex;align-items:center;justify-content:center;flex:none;width:36px;height:36px;border:1px solid rgba(17,19,24,.1);border-radius:50%;background:#fff;color:#111318;font:22px var(--sans);cursor:pointer;}
+  .dialog-intro{margin:14px 0 30px;max-width:370px;color:#606773;font-size:15px;line-height:1.45;}
+  .contact-form{display:grid;gap:16px;}
+  .contact-form label{display:grid;gap:7px;color:#343b45;font-size:12px;font-weight:650;}
+  .contact-form input,.contact-form textarea{width:100%;padding:14px 16px;border:1px solid #dce0e6;border-radius:15px;outline:none;background:rgba(255,255,255,.8);color:#111318;font:15px var(--sans);transition:border-color .2s ease,box-shadow .2s ease;}
+  .contact-form textarea{min-height:142px;resize:vertical;}
+  .contact-form input:focus,.contact-form textarea:focus{border-color:#007aff;box-shadow:0 0 0 3px rgba(0,122,255,.13);}
+  .contact-form-actions{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:6px;}
+  .dialog-note{max-width:245px;color:#767d88;font-size:11px;line-height:1.35;}
+  .dialog-submit{flex:none;padding:14px 20px;border:0;border-radius:999px;background:#111318;color:#fff;font:650 14px var(--sans);cursor:pointer;transition:background .2s ease,transform .2s ease;}
+  .dialog-submit:hover{background:#007aff;transform:translateY(-2px);}
+  @media(max-width:560px){.contact-dialog{padding:27px 22px;border-radius:25px;}.contact-form-actions{align-items:stretch;flex-direction:column-reverse;gap:12px;}.dialog-note{max-width:none;}.dialog-submit{width:100%;}}
 </style>
 </head>
 <body>
-<div class="language-switch" role="group" aria-label="Language / Langue"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="fr" aria-pressed="false">FR</button></div>
+<header class="glass-header">
+  <a class="glass-brand" href="#home" aria-label="Kevin Aubin — home"><img src="assets/kevin-profile.jpg" alt=""></a>
+  <div class="glass-nav" role="navigation" aria-label="Main navigation">
+    <a class="header-work" href="#work">Work</a>
+    <a class="header-services" href="#production">What I do</a>
+    <a class="header-apple" href="#apple">Apple &amp; Tech</a>
+    <a class="header-contact" href="#contact" aria-haspopup="dialog" aria-controls="contact-dialog" aria-expanded="false">Contact</a>
+  </div>
+  <div class="language-switch" role="group" aria-label="Language / Langue"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="fr" aria-pressed="false">FR</button></div>
+</header>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="home">
   <div class="hero-stage">
-    <img class="hero-sticker sticker-skull" src="assets/apple-skull.png" alt="Rainbow Apple skull decal">
-    <div class="hero-profile">
-      <img src="assets/kevin-profile.jpg" alt="Kevin Aubin">
+    <div class="hero-visual">
+      <img class="hero-mark hero-piece" src="assets/apple-skull.png" alt="" draggable="false" role="button" tabindex="0" aria-label="Move skull sticker">
+      <div class="hero-profile hero-piece" role="button" tabindex="0" aria-label="Move portrait sticker"><img src="assets/kevin-profile.jpg" alt="" draggable="false"></div>
     </div>
     <div class="hero-title">
-      <h1>Kevin Aubin</h1>
+      <h1><span>Kevin</span><span>Aubin</span></h1>
       <p>Editor, Graphic Design, Web Design</p>
       <a class="hero-cta" href="#work">See my work <i aria-hidden="true"></i></a>
     </div>
@@ -1663,7 +1746,7 @@
 </section>
 
 <!-- APPLE & TECH -->
-<section class="apple-section">
+<section class="apple-section" id="apple">
   <div class="apple-inner reveal">
     <div class="x-profile-head">
       <img class="apple-avatar" src="assets/apple-skull.png" alt="Rainbow Apple skull, @kaubin profile picture">
@@ -1674,7 +1757,6 @@
     <p class="lead">I track Apple betas, new iOS changes, upcoming and unreleased Apple products, hardware details and the small things Apple does not always mention.</p>
 
     <div class="press-mentions">
-      <span class="press-label">As seen in</span>
       <div class="press-links">
         <a href="https://www.macrumors.com/2023/12/13/ios-17-3-collaborative-playlist-emoji/" target="_blank" rel="noopener" aria-label="MacRumors"><img class="press-logo" src="https://images.macrumors.com/images-new/macrumors-simple-logo-dark.svg" alt="MacRumors" referrerpolicy="no-referrer"></a>
         <a href="https://www.cultofmac.com/news/ios-17-2-beta-features-changes" target="_blank" rel="noopener" aria-label="Cult of Mac"><img class="press-logo press-logo-icon" src="https://www.cultofmac.com/wp-content/uploads/2026/06/cultofmac-site-icon-192.png" alt="" referrerpolicy="no-referrer"><span class="press-name">Cult of Mac</span></a>
@@ -1692,15 +1774,27 @@
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <img class="contact-decal contact-skull" src="assets/apple-skull.png" alt="">
+  <div class="contact-portrait" aria-hidden="true"><img src="assets/kevin-profile.jpg" alt=""></div>
   <div class="contact-inner">
     <h2 class="reveal">Contact</h2>
-    <a class="btn solid reveal" href="mailto:kaubin@icloud.com">kaubin@icloud.com</a>
+    <div class="contact-actions reveal"><a class="btn solid" href="mailto:kaubin@icloud.com" title="kaubin@icloud.com">Email</a><button class="btn solid contact-form-trigger" type="button" aria-haspopup="dialog" aria-controls="contact-dialog">Contact form</button></div>
     <div class="contact-links reveal">
       <a class="nav-icon" href="https://twitter.com/kaubin" target="_blank" rel="noopener" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.95 4.57c-.88.39-1.83.65-2.82.77a4.92 4.92 0 0 0 2.16-2.72 9.86 9.86 0 0 1-3.12 1.19 4.92 4.92 0 0 0-8.51 3.36c0 .39.04.76.13 1.12A13.96 13.96 0 0 1 1.64 3.15a4.9 4.9 0 0 0 1.52 6.56 4.87 4.87 0 0 1-2.23-.62v.06a4.92 4.92 0 0 0 3.95 4.82 4.93 4.93 0 0 1-2.22.08 4.92 4.92 0 0 0 4.6 3.42A9.87 9.87 0 0 1 0 19.5a13.9 13.9 0 0 0 7.55 2.21c9.06 0 14.01-7.5 14.01-14.01 0-.21 0-.43-.01-.64a10 10 0 0 0 2.4-2.55Z"/></svg></a>
       <a class="nav-icon" href="https://instagram.com/kevnaubin" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r=".7" fill="currentColor" stroke="none"/></svg></a>
     </div>
   </div>
 </section>
+
+<dialog class="contact-dialog" id="contact-dialog" aria-labelledby="contact-dialog-title">
+  <div class="contact-dialog-head"><h2 id="contact-dialog-title">Let's talk.</h2><button class="contact-dialog-close" type="button" aria-label="Close contact form">×</button></div>
+  <p class="dialog-intro">Tell me what you have in mind.</p>
+  <form class="contact-form" id="contact-form">
+    <label><span class="dialog-name-label">Name</span><input name="name" type="text" autocomplete="name" required></label>
+    <label><span class="dialog-email-label">Email</span><input name="email" type="email" autocomplete="email" required></label>
+    <label><span class="dialog-message-label">Message</span><textarea name="message" required></textarea></label>
+    <div class="contact-form-actions"><p class="dialog-note">This opens your email app. Nothing is sent to a server.</p><button class="dialog-submit" type="submit">Create email ↗</button></div>
+  </form>
+</dialog>
 
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
@@ -1714,26 +1808,48 @@
       en: {
         '.hero-title p': 'Editor, Graphic Design, Web Design',
         '.hero-cta': 'See my work',
+        '.header-work': 'Work',
+        '.header-services': 'What I do',
+        '.header-apple': 'Apple & Tech',
+        '.header-contact': 'Contact',
+        '.contact-dialog h2': "Let's talk.",
+        '.dialog-intro': 'Tell me what you have in mind.',
+        '.dialog-name-label': 'Name',
+        '.dialog-email-label': 'Email',
+        '.dialog-message-label': 'Message',
+        '.dialog-note': 'This opens your email app. Nothing is sent to a server.',
+        '.dialog-submit': 'Create email ↗',
+        '.contact-form-trigger': 'Contact form',
         '.production .section-head h2': 'What I do',
         '.prod-cell:nth-child(1) h3': 'Podcast & content',
         '.prod-cell:nth-child(2) h3': 'Graphic design',
         '.prod-cell:nth-child(3) h3': 'Digital experiences',
         '.x-follow': 'View on Twitter ↗',
         '.apple-inner .lead': 'I track Apple betas, new iOS changes, upcoming and unreleased Apple products, hardware details and the small things Apple does not always mention.',
-        '.press-label': 'As seen in',
         '.press-more': '+ 10 more articles',
         '.contact h2': 'Contact'
       },
       fr: {
         '.hero-title p': 'Montage, design graphique et design web',
         '.hero-cta': 'Voir mon travail',
+        '.header-work': 'Projets',
+        '.header-services': 'Ce que je fais',
+        '.header-apple': 'Apple & Tech',
+        '.header-contact': 'Contact',
+        '.contact-dialog h2': 'Parlons-en.',
+        '.dialog-intro': 'Parlez-moi de votre idée ou de votre projet.',
+        '.dialog-name-label': 'Nom',
+        '.dialog-email-label': 'Email',
+        '.dialog-message-label': 'Message',
+        '.dialog-note': 'Ouvre votre application de courriel. Rien n’est envoyé à un serveur.',
+        '.dialog-submit': 'Créer le courriel ↗',
+        '.contact-form-trigger': 'Formulaire',
         '.production .section-head h2': 'Ce que je fais',
         '.prod-cell:nth-child(1) h3': 'Balados et contenu',
         '.prod-cell:nth-child(2) h3': 'Design graphique',
         '.prod-cell:nth-child(3) h3': 'Expériences numériques',
         '.x-follow': 'Voir sur Twitter ↗',
         '.apple-inner .lead': 'Je suis les bêtas d’Apple, les nouveautés d’iOS, les produits à venir ou inédits, les détails du matériel et les petites choses qu’Apple ne mentionne pas toujours.',
-        '.press-label': 'Mentionné dans',
         '.press-more': '+ 10 autres articles',
         '.contact h2': 'Contact'
       }
@@ -1825,6 +1941,11 @@
         }
       }
       document.querySelectorAll('.production .prod-tags span').forEach((element, index) => { element.textContent = tags[lang][index]; });
+      document.querySelector('.hero-mark').setAttribute('aria-label', lang === 'fr' ? 'Déplacer l’autocollant tête de mort' : 'Move skull sticker');
+      document.querySelector('.hero-profile').setAttribute('aria-label', lang === 'fr' ? 'Déplacer la photo' : 'Move portrait sticker');
+      document.querySelector('.glass-brand').setAttribute('aria-label', lang === 'fr' ? 'Kevin Aubin — accueil' : 'Kevin Aubin — home');
+      document.querySelector('.glass-nav').setAttribute('aria-label', lang === 'fr' ? 'Navigation principale' : 'Main navigation');
+      document.querySelector('.contact-dialog-close').setAttribute('aria-label', lang === 'fr' ? 'Fermer le formulaire' : 'Close contact form');
       if (document.readyState !== 'loading') translateProjects(lang);
       document.querySelectorAll('.language-switch button').forEach(button => { button.setAttribute('aria-pressed', String(button.dataset.lang === lang)); });
       const url = new URL(location.href);
@@ -2286,6 +2407,105 @@
   });
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
+  });
+
+  const glassHeader = document.querySelector('.glass-header');
+  const contactDialog = document.getElementById('contact-dialog');
+  const contactNavLink = document.querySelector('.header-contact');
+  function openContactDialog() {
+    if (contactDialog.open) return;
+    contactDialog.showModal();
+    contactNavLink.setAttribute('aria-expanded', 'true');
+    glassHeader.querySelectorAll('a[aria-current]').forEach(link => link.removeAttribute('aria-current'));
+    contactNavLink.setAttribute('aria-current', 'location');
+    contactDialog.querySelector('input[name="name"]').focus();
+  }
+  contactNavLink.addEventListener('click', event => {
+    event.preventDefault();
+    openContactDialog();
+  });
+  document.querySelector('.contact-form-trigger').addEventListener('click', openContactDialog);
+  contactDialog.querySelector('.contact-dialog-close').addEventListener('click', () => contactDialog.close());
+  contactDialog.addEventListener('click', event => {
+    if (event.target === contactDialog) contactDialog.close();
+  });
+  contactDialog.addEventListener('close', () => {
+    contactNavLink.setAttribute('aria-expanded', 'false');
+    updateHeaderSection();
+  });
+  document.getElementById('contact-form').addEventListener('submit', event => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const name = form.elements.namedItem('name').value.trim();
+    const email = form.elements.namedItem('email').value.trim();
+    const message = form.elements.namedItem('message').value.trim();
+    if (!name || !email || !message || !form.reportValidity()) return;
+    const french = document.documentElement.lang === 'fr';
+    const subject = `${french ? 'Projet de portfolio' : 'Portfolio inquiry'} — ${name}`;
+    const body = `${french ? 'Nom' : 'Name'}: ${name}\nEmail: ${email}\n\n${message}`;
+    window.location.href = `mailto:kaubin@icloud.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+  glassHeader.addEventListener('pointermove', event => {
+    const bounds = glassHeader.getBoundingClientRect();
+    glassHeader.style.setProperty('--glass-x', `${event.clientX - bounds.left}px`);
+    glassHeader.style.setProperty('--glass-y', `${event.clientY - bounds.top}px`);
+  });
+  glassHeader.addEventListener('pointerleave', () => {
+    glassHeader.style.removeProperty('--glass-x');
+    glassHeader.style.removeProperty('--glass-y');
+  });
+  const headerTargets = [...glassHeader.querySelectorAll('a[href^="#"]')];
+  function updateHeaderSection() {
+    const position = window.scrollY + Math.min(window.innerHeight * .38, 300);
+    let active = headerTargets[0];
+    for (const link of headerTargets) {
+      const section = document.querySelector(link.getAttribute('href'));
+      if (section && section.getBoundingClientRect().top + window.scrollY <= position) active = link;
+    }
+    for (const link of headerTargets) {
+      if (link === active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    }
+  }
+  window.addEventListener('scroll', updateHeaderSection, {passive:true});
+  window.addEventListener('resize', updateHeaderSection);
+  updateHeaderSection();
+
+  document.querySelectorAll('.hero-piece').forEach(piece => {
+    let x = 0, y = 0, startX = 0, startY = 0, pointerX = 0, pointerY = 0;
+    const limit = () => Math.min(110, document.querySelector('.hero-visual').clientWidth * .22);
+    const place = () => {
+      piece.style.setProperty('--drag-x', `${x}px`);
+      piece.style.setProperty('--drag-y', `${y}px`);
+    };
+    piece.addEventListener('pointerdown', event => {
+      if (event.button !== 0) return;
+      event.preventDefault();
+      piece.setPointerCapture(event.pointerId);
+      piece.classList.add('is-dragging');
+      startX = x; startY = y; pointerX = event.clientX; pointerY = event.clientY;
+    });
+    piece.addEventListener('pointermove', event => {
+      if (!piece.hasPointerCapture(event.pointerId)) return;
+      const max = limit();
+      x = Math.max(-max, Math.min(max, startX + event.clientX - pointerX));
+      y = Math.max(-max, Math.min(max, startY + event.clientY - pointerY));
+      place();
+    });
+    const stopDrag = () => piece.classList.remove('is-dragging');
+    piece.addEventListener('pointerup', stopDrag);
+    piece.addEventListener('pointercancel', stopDrag);
+    piece.addEventListener('dblclick', () => { x = 0; y = 0; place(); });
+    piece.addEventListener('keydown', event => {
+      const steps = {ArrowLeft:[-12,0],ArrowRight:[12,0],ArrowUp:[0,-12],ArrowDown:[0,12]};
+      if (steps[event.key]) {
+        event.preventDefault();
+        const max = limit();
+        x = Math.max(-max, Math.min(max, x + steps[event.key][0]));
+        y = Math.max(-max, Math.min(max, y + steps[event.key][1]));
+        place();
+      } else if (event.key === 'Home') { event.preventDefault(); x = 0; y = 0; place(); }
+    });
   });
 </script>
 
