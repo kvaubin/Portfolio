@@ -155,7 +155,7 @@
 
   /* ---------- SELECTED WORK ---------- */
   .work{background:var(--bg);padding:112px 0 190px;transition:padding-bottom .55s cubic-bezier(.16,1,.3,1);}
-  body:has(.project-detail:not(.detail-collapsed)) .work{padding-bottom:0;z-index:30;}
+  body:has(.project-detail:not(.detail-collapsed)) .work{padding-bottom:220px;z-index:30;}
 
   .placeholder-media{
     position:relative;overflow:hidden;border-radius:var(--radius-lg);
@@ -1208,6 +1208,7 @@
     .hero-title p{margin-top:22px;font-size:16px;}
     .hero-cta{padding:16px 28px;font-size:15px;}
     .work{padding-top:94px;padding-bottom:110px;}
+    body:has(.project-detail:not(.detail-collapsed)) .work{padding-bottom:160px;}
     .work>.section-head{padding-bottom:26px!important;}
     .work>.section-head h2,.production>.section-head h2{font-size:clamp(46px,12vw,58px);}
     .feature-project{margin:46px auto 66px;gap:24px;padding:0 24px;}
